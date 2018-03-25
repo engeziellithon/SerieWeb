@@ -51,19 +51,19 @@ namespace SerieWeb
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "9AUFsAf8UBzLr4hDnWLcicPrM",
+               consumerSecret: "tdch5n5gpv4xkdqc3eSxSZEFmJyBZuHJzYlyYA4D1jglJWm0r5");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "156200418404491",
+               appSecret: "bb343f24b154a8a2472d04e7fca7d35f");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "132800174708-tcad5k2cq4p34250ia0hd06sug7bvhpb.apps.googleusercontent.com",
+                ClientSecret = "0WqWdTYegjpoA2mBZlF7KlY2"
+            });
         }
     }
 }

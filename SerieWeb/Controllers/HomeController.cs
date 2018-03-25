@@ -10,5 +10,6 @@ namespace SerieWeb.Controllers
         {
             return View();
         }
+        
     }
 }

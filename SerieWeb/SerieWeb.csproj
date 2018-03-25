@@ -317,6 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Admininstracao\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
