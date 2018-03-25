@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using SerieWeb.Models;
+using SerieWeb.Models.Identity;
 
 namespace SerieWeb
 {
