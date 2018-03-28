@@ -1,9 +1,8 @@
-﻿using SeriesWeb.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SerieWeb.Models.SerieViewModels
 {
-    public class HomeViewModel
+    public class IndexViewModel
     {
         public IEnumerable<Serie> BannerDestaque { get; set; }
 

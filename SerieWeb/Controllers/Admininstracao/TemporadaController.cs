@@ -1,70 +1,71 @@
-﻿using System;
+﻿using SerieWeb.Models;
+using SerieWeb.Models.Identity;
+using System;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using SerieWeb.Models.Identity;
-using SerieWeb.Models;
+
 
 namespace SerieWeb.Controllers.Admininstracao
 {
-    public class SerieController : Controller
+    public class TemporadaController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        #region Index
-        // GET: Serie
+        #region index
+        // GET: Temporada
         public ActionResult Index()
         {
-            return View(db.Series.ToList());
+            var temporada = db.Temporadas.Include(t => t.Serie);
+            return View(temporada);
         }
         #endregion
 
         #region Detalhes
-        // GET: Serie/Details/5
         public ActionResult Detalhes(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = db.Series.Find(id);
+            Temporada temporada = db.Temporadas.Find(id);
 
-            if (serie == null)
+            if (temporada == null)
             {
                 return HttpNotFound();
             }
 
-            return View(serie);
+            return View(temporada);
         }
         #endregion
 
-        #region Adicionar serie 
-        // GET: Serie/Adicionar
+        #region Adicionar Temporada 
+        // GET: Temporada/Adicionar
         public ActionResult Adicionar()
         {
+            ViewData["SerieID"] = new SelectList(db.Series, "SerieID", "NomeSerie");
             return View();
+
         }
 
-        // POST: Serie/Adicionar
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,Sinopse,Nota")] Serie serie)
+        public ActionResult Adicionar([Bind(Include = "TemporadaID, NomeTemporada, SerieID")] Temporada temporada)
         {
             if (ModelState.IsValid)
             {
-                db.Series.Add(serie);
+                db.Temporadas.Add(temporada);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(serie);
+            ViewData["SerieID"] = new SelectList(db.Series, "SerieID", "NomeSerie", temporada.SerieID);
+            return View(temporada);
         }
         #endregion
 
-        #region Editar serie 
+        #region Editar temporada 
         [HttpGet]
         // GET: Serie/Edit/5
         public ActionResult Editar(int? id)
@@ -73,12 +74,13 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = db.Series.Find(id);
-            if (serie == null)
+            Temporada temporada = db.Temporadas.Find(id);
+            if (temporada == null)
             {
                 return HttpNotFound();
             }
-            return View(serie);
+            ViewData["SerieID"] = new SelectList(db.Series, "SerieID", "NomeSerie", temporada.SerieID);
+            return View(temporada);
         }
 
         [HttpPost, ActionName("Editar")]
@@ -89,13 +91,11 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            
-            var Serie = db.Series.Find(id);
+            var temporada = db.Temporadas.Find(id);
             try
-            {
-                if (TryUpdateModel(Serie, "",
-                  new string[] { "SerieID", "NomeSerie", "Imagem", "Sinopse", "Nota" }))
+            {               
+                if (TryUpdateModel(temporada, "",
+                  new string[] { "TemporadaID", "NomeTemporada", "SerieID" }))
                 {
                     try
                     {
@@ -112,33 +112,27 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             catch (Exception)
             {
-                ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");               
+                ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
             }
-
-            //    if (ModelState.IsValid)
-            //{
-            //    db.Entry(serie).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            return View(Serie);       
+            return View();
         }
         #endregion
 
-        #region Deletar Serie 
-        // GET: Serie/Delete/5
+        #region Deletar Temporada 
+        // GET: Serie/Deletar/5
         public ActionResult Deletar(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = db.Series.Find(id);
-            if (serie == null)
+            Temporada temporada = db.Temporadas.Include(s => s.Serie).First(t=>t.TemporadaID == id);
+            
+            if (temporada == null)
             {
                 return HttpNotFound();
             }
-            return View(serie);
+            return View(temporada);
         }
 
         // POST: Serie/Delete/5
@@ -146,8 +140,8 @@ namespace SerieWeb.Controllers.Admininstracao
         [ValidateAntiForgeryToken]
         public ActionResult Deletar(int id)
         {
-            Serie serie = db.Series.Find(id);
-            db.Series.Remove(serie);
+            Temporada temporada = db.Temporadas.Find(id);
+            db.Temporadas.Remove(temporada);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -163,5 +157,6 @@ namespace SerieWeb.Controllers.Admininstracao
             base.Dispose(disposing);
         }
         #endregion
+
     }
 }

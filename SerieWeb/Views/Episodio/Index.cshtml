@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SerieWeb.Models.Episodio>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Adicionar", "Adicionar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Temporada.NomeTemporada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeEpisodio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sinopse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Video)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataExibicao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Temporada.NomeTemporada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeEpisodio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sinopse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Video)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataExibicao)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.EpisodioID }) |
+            @Html.ActionLink("Detalhes", "Detalhes", new { id=item.EpisodioID }) |
+            @Html.ActionLink("Deletar", "Deletar", new { id=item.EpisodioID })
+        </td>
+    </tr>
+}
+
+</table>

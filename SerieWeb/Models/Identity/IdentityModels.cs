@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using SeriesWeb.Models;
 
 
 namespace SerieWeb.Models.Identity
@@ -27,10 +26,10 @@ namespace SerieWeb.Models.Identity
         {
         }
 
-        public virtual DbSet<Episodio> Episodio { get; set; }
-        public virtual DbSet<Genero> Genero { get; set; }
-        public virtual DbSet<Serie> Serie { get; set; }
-        public virtual DbSet<Temporada> Temporada { get; set; }
+        public virtual DbSet<Episodio> Episodios { get; set; }
+        public virtual DbSet<Genero> Generos { get; set; }
+        public virtual DbSet<Serie> Series { get; set; }
+        public virtual DbSet<Temporada> Temporadas { get; set; }
 
         public static ApplicationDbContext Create()
         {

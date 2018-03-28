@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SerieWeb.Models.Temporada>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Adicionar", "Adicionar")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Serie.NomeSerie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeTemporada)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Serie.NomeSerie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeTemporada)
+        </td>
+        <td>            
+            @Html.ActionLink("Editar", "Editar", new { id = item.TemporadaID }) |
+            @Html.ActionLink("Detalhes", "Detalhes", new { id = item.TemporadaID }) |
+            @Html.ActionLink("Deletar", "Deletar", new { id = item.TemporadaID })
+        </td>
+    </tr>
+}
+
+</table>

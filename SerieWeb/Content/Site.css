@@ -37,3 +37,13 @@ code {
 ul {
     list-style-type: none;
 }
+.badge-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    padding: 13px;
+}
+.badge-primary {
+    color: #fff;
+    background-color: #007bff;
+    padding: 13px;
+}

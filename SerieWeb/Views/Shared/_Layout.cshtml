@@ -6,12 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     @*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">*@
     <title>@ViewBag.Title - SerieWeb</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -24,11 +23,13 @@
             <ul class="navbar-nav ">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                        Admin
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        @Html.ActionLink("Serie", "Index", "Serie", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Episodio", "Index", "Episodio", new { area = "" }, new { @class = "nav-link" })
+                        @*@Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "navbar-link" })*@
                     </div>
                 </li>
                 <li class="nav-item">

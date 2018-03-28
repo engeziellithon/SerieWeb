@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace SeriesWeb.Models
+namespace SerieWeb.Models
 {
     [Table(name:"Episodio")]
     public class Episodio

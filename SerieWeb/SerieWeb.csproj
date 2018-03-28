@@ -51,6 +51,9 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="DataTables.AspNet.Core, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataTables.AspNet.Core.2.0.2\lib\net45\DataTables.AspNet.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -113,7 +116,7 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -191,10 +194,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\Admininstracao\EpisodioController.cs" />
     <Compile Include="Controllers\Admininstracao\SerieController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Site\ExplorarController.cs" />
+    <Compile Include="Controllers\Site\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\Identity\ManageController.cs" />
+    <Compile Include="Controllers\Admininstracao\TemporadaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -274,7 +280,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -315,17 +323,31 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Serie\Create.cshtml" />
-    <Content Include="Views\Serie\Delete.cshtml" />
-    <Content Include="Views\Serie\Details.cshtml" />
-    <Content Include="Views\Serie\Edit.cshtml" />
+    <Content Include="Views\Serie\Adicionar.cshtml" />
+    <Content Include="Views\Serie\Deletar.cshtml" />
+    <Content Include="Views\Serie\Detalhes.cshtml" />
+    <Content Include="Views\Serie\Editar.cshtml" />
     <Content Include="Views\Serie\Index.cshtml" />
+    <Content Include="Views\Temporada\Index.cshtml" />
+    <Content Include="Views\Temporada\Detalhes.cshtml" />
+    <Content Include="Views\Temporada\Adicionar.cshtml" />
+    <Content Include="Views\Temporada\Editar.cshtml" />
+    <Content Include="Views\Temporada\Deletar.cshtml" />
+    <Content Include="Views\Episodio\Adicionar.cshtml" />
+    <Content Include="Views\Episodio\Deletar.cshtml" />
+    <Content Include="Views\Episodio\Detalhes.cshtml" />
+    <Content Include="Views\Episodio\Editar.cshtml" />
+    <Content Include="Views\Episodio\Index.cshtml" />
+    <Content Include="Views\Episodio\TemporadaOpcaoParcial.cshtml" />
+    <Content Include="Views\Explorar\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>

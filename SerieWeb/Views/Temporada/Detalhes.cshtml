@@ -1,0 +1,34 @@
+﻿@model SerieWeb.Models.Temporada
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Temporada</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Serie.NomeSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serie.NomeSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeTemporada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeTemporada)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.SerieID }, new { @class = "badge badge-primary" }) |
+    @Html.ActionLink("Voltar para lista de Temporadas", "Index", new object { }, new { @class = "badge badge-secondary" })
+</p>
