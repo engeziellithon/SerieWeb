@@ -4,7 +4,28 @@
     ViewBag.Title = "DetalhesUsuario";
 }
 
-<div class="container">
+<style>
+    #fundo {
+        position: absolute;
+        z-index: 0;
+        opacity: 0.5;
+    }
+
+    #frente {
+        position: absolute;
+        z-index: 1;
+    }
+
+    }
+</style>
+
+<aside id="fundo">
+    <img id="planodefundo" class="img-responsive" src="http://www.diken.com.tr/wp-content/uploads/2014/06/20140410-game-of-thrones5.jpg">
+</aside>
+
+<div id="frente" class="container">
+    <br />
+    <br />
     <div class="row">
         <div class="col-3">
             <img class="card-img" src="@Html.DisplayFor(model => model.Imagem)" />
@@ -15,9 +36,10 @@
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Assista ao trailer
+                Assista ao trailer <span class="glyphicon glyphicon-film"></span>
             </button>
             <hr />
+            <span class="glyphicon glyphicon-film"></span>
             <h4>Sinopse</h4>
             <p>@Html.DisplayFor(model => model.Sinopse)</p>
             <h4>Nota</h4>
