@@ -89,8 +89,8 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            
+
+
             var Serie = db.Series.Find(id);
             try
             {
@@ -112,10 +112,16 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             catch (Exception)
             {
-                ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");               
+                ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
             }
-            
-            return View(Serie);       
+
+            //    if (ModelState.IsValid)
+            //{
+            //    db.Entry(serie).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            return View(Serie);
         }
         #endregion
 
@@ -136,7 +142,7 @@ namespace SerieWeb.Controllers.Admininstracao
         }
 
         // POST: Serie/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Deletar(int id)
         {
@@ -155,25 +161,6 @@ namespace SerieWeb.Controllers.Admininstracao
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        #endregion
-
-        #region DetalhesUsuario
-        // GET: Serie/Details/5
-        public ActionResult DetalhesUsuario(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Serie serie = db.Series.Find(id);
-
-            if (serie == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(serie);
         }
         #endregion
     }

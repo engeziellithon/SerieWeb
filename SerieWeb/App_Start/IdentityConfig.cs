@@ -33,10 +33,10 @@ namespace SerieWeb
         void sendMail(IdentityMessage message)
         {
             #region formatter
-            string text = string.Format("Please click on this link to {0}: {1}", message.Subject, message.Body);
-            string html = "Please confirm your account by clicking this link: <a href=\"" + message.Body + "\">link</a><br/>";
+            string text = string.Format("Por favor, confirme sua conta no Serie Web clicando neste link {0}: {1}", message.Subject, message.Body);
+            string html = "Por favor, confirme sua conta no Serie Web clicando neste link: <a href=\"" + message.Body + "\">Confirmar conta</a><br/>";
 
-            html += HttpUtility.HtmlEncode(@"Or click on the copy the following link on the browser:" + message.Body);
+           
             #endregion
 
             MailMessage msg = new MailMessage();

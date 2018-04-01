@@ -17,8 +17,10 @@ namespace SerieWeb.Models
 
         public String Imagem { get; set; }
 
+        public String ImagemBanner { get; set; }
+
         [Required()]
-        [MaxLength(256)]
+        [MaxLength(1000)]
         public String Sinopse { get; set; }
 
         public double Nota { get; set; }

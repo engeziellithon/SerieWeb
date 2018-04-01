@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using SerieWeb.Models;
 using SerieWeb.Models.Identity;
 
 namespace SerieWeb.Controllers.Identity
@@ -16,6 +14,7 @@ namespace SerieWeb.Controllers.Identity
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -23,7 +22,7 @@ namespace SerieWeb.Controllers.Identity
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +34,9 @@ namespace SerieWeb.Controllers.Identity
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -69,17 +68,27 @@ namespace SerieWeb.Controllers.Identity
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            // If username and password is correct check if account is activated.
+            bool confirmaremail = db.Users.Where(c => c.Email == model.Email).Select(e => e.EmailConfirmed).FirstOrDefault();
+
+            if (confirmaremail == false && result == SignInStatus.Success)
+            {
+                ModelState.AddModelError("", "Por favor confirme seu email antes de tentar fazer login.");
+                return View(model);
+            }
             // Isso não conta falhas de login em relação ao bloqueio de conta
             // Para permitir que falhas de senha acionem o bloqueio da conta, altere para shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
-                
+
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -92,6 +101,7 @@ namespace SerieWeb.Controllers.Identity
                     return View(model);
             }
         }
+
 
         //
         // GET: /Account/VerifyCode
@@ -122,7 +132,7 @@ namespace SerieWeb.Controllers.Identity
             // Se um usuário inserir códigos incorretos para uma quantidade especificada de tempo, então a conta de usuário 
             // será bloqueado por um período especificado de tempo. 
             // Você pode configurar os ajustes de bloqueio da conta em IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -163,12 +173,9 @@ namespace SerieWeb.Controllers.Identity
                        new { userId = user.Id, code = code },
                        protocol: Request.Url.Scheme);
 
-                    await UserManager.SendEmailAsync(user.Id,
-                       "Confirm your account",
-                       "Please confirm your account by clicking this link: <a href=\""
-                                                       + callbackUrl + "\">link</a>");
+                    await UserManager.SendEmailAsync(user.Id, "Confirme sua conta", callbackUrl);
                     // ViewBag.Link = callbackUrl;   // Used only for initial demo.
-                    return View("Index","Home");
+                    return RedirectToActionPermanent("EmailPedido", "Account", new { valor = 1 });
                 }
                 AddErrors(result);
             }
@@ -465,6 +472,19 @@ namespace SerieWeb.Controllers.Identity
             {
                 ModelState.AddModelError("", error);
             }
+        }
+
+        [AllowAnonymous]
+        public ActionResult EmailPedido(int? valor)
+        {
+            var PedidoConfirmacaoEmail = valor;
+            if ((User.Identity.IsAuthenticated)||(PedidoConfirmacaoEmail != 1))
+            {
+                return RedirectToAction("index", "Home");  
+            }
+           
+            // redirecionar para a página principal}}
+            return View();
         }
 
         private ActionResult RedirectToLocal(string returnUrl)

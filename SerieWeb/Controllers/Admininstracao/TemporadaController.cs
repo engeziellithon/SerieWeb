@@ -93,7 +93,7 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             var temporada = db.Temporadas.Find(id);
             try
-            {               
+            {
                 if (TryUpdateModel(temporada, "",
                   new string[] { "TemporadaID", "NomeTemporada", "SerieID" }))
                 {
@@ -126,8 +126,8 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Temporada temporada = db.Temporadas.Include(s => s.Serie).First(t=>t.TemporadaID == id);
-            
+            Temporada temporada = db.Temporadas.Include(s => s.Serie).First(t => t.TemporadaID == id);
+
             if (temporada == null)
             {
                 return HttpNotFound();
@@ -136,7 +136,7 @@ namespace SerieWeb.Controllers.Admininstracao
         }
 
         // POST: Serie/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Deletar(int id)
         {
