@@ -53,6 +53,8 @@ namespace SerieWeb.Models.Identity
         [EmailAddress]
         public string Email { get; set; }
 
+        public bool EmailConfirmed { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Senha")]

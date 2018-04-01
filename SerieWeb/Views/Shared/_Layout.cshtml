@@ -21,14 +21,15 @@
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav ">
+                @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "nav-link" })
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Admin
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        @Html.ActionLink("Serie", "Index", "Serie", new { area = "" }, new { @class = "nav-link" })
-                        @Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "nav-link" })
-                        @Html.ActionLink("Episodio", "Index", "Episodio", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Serie", "Index", "Serie", new { area = "" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Episodio", "Index", "Episodio", new { area = "" }, new { @class = "dropdown-item" })
                         @*@Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "navbar-link" })*@
                     </div>
                 </li>

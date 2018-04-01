@@ -51,9 +51,6 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="DataTables.AspNet.Core, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DataTables.AspNet.Core.2.0.2\lib\net45\DataTables.AspNet.Core.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -201,12 +198,17 @@
     <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\Identity\ManageController.cs" />
     <Compile Include="Controllers\Admininstracao\TemporadaController.cs" />
+    <Compile Include="Controllers\Usuario\PerfilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201803222246187_TableUserSerieTemporadaEpisodioGenero.cs" />
     <Compile Include="Migrations\201803222246187_TableUserSerieTemporadaEpisodioGenero.Designer.cs">
       <DependentUpon>201803222246187_TableUserSerieTemporadaEpisodioGenero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803311125109_seriemodificacaoImagenBanner.cs" />
+    <Compile Include="Migrations\201803311125109_seriemodificacaoImagenBanner.Designer.cs">
+      <DependentUpon>201803311125109_seriemodificacaoImagenBanner.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
@@ -340,6 +342,8 @@
     <Content Include="Views\Episodio\Index.cshtml" />
     <Content Include="Views\Episodio\TemporadaOpcaoParcial.cshtml" />
     <Content Include="Views\Explorar\Index.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\Account\EmailPedido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -360,6 +364,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803222246187_TableUserSerieTemporadaEpisodioGenero.resx">
       <DependentUpon>201803222246187_TableUserSerieTemporadaEpisodioGenero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803311125109_seriemodificacaoImagenBanner.resx">
+      <DependentUpon>201803311125109_seriemodificacaoImagenBanner.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

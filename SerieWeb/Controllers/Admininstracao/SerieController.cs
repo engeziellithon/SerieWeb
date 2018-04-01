@@ -89,8 +89,8 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            
+
+
             var Serie = db.Series.Find(id);
             try
             {
@@ -112,7 +112,7 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             catch (Exception)
             {
-                ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");               
+                ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
             }
 
             //    if (ModelState.IsValid)
@@ -121,7 +121,7 @@ namespace SerieWeb.Controllers.Admininstracao
             //    db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
-            return View(Serie);       
+            return View(Serie);
         }
         #endregion
 
@@ -142,7 +142,7 @@ namespace SerieWeb.Controllers.Admininstracao
         }
 
         // POST: Serie/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Deletar(int id)
         {

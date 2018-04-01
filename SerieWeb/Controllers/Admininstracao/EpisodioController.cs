@@ -131,7 +131,7 @@ namespace SerieWeb.Controllers.Admininstracao
         }
 
         // POST: Episodio/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Deletar(int id)
         {
