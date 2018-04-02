@@ -8,7 +8,6 @@
     #fundo {
         position: absolute;
         z-index: 0;
-        opacity: 0.5;
     }
 
     #frente {
@@ -16,12 +15,23 @@
         z-index: 1;
     }
 
+    div.container-fluid {
+        background-image: radial-gradient(circle at 20% 50%, rgba(22.35%, 23.92%, 24.31%, 0.98) 0%, rgba(1.96%, 5.49%, 9.02%, 0.88) 100%);
     }
 </style>
 
-<aside id="fundo">
-    <img id="planodefundo" class="img-responsive" src="http://www.diken.com.tr/wp-content/uploads/2014/06/20140410-game-of-thrones5.jpg">
-</aside>
+<div class="container-fluid" id="fundo">
+    <img id="planodefundo" class="img-responsive" src="">
+</div>
+
+
+<span class="imdbRatingPlugin" data-user="ur87005910" data-title="tt2193021" data-style="p3">
+    <a href="https://www.imdb.com/title/tt2193021/?ref_=plg_rt_1">
+        <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png" alt=" Arqueiro
+(2012) on IMDb" />
+    </a>
+</span>
+<script>(function (d, s, id) { var js, stags = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) { return; } js = d.createElement(s); js.id = id; js.src = "https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js"; stags.parentNode.insertBefore(js, stags); })(document, 'script', 'imdb-rating-api');</script>
 
 <div id="frente" class="container">
     <br />
@@ -30,6 +40,7 @@
         <div class="col-3">
             <img class="card-img" src="@Html.DisplayFor(model => model.Imagem)" />
         </div>
+        <i class="glyphicon-film"></i>
         <div class="col-9">
             <h1>@Html.DisplayFor(model => model.NomeSerie)</h1>
             <hr />
@@ -38,6 +49,7 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Assista ao trailer <i class="glyphicon glyphicon-film"></i>
             </button>
+            <i class="fa fa-check"></i>
             <hr />
             <i class="glyphicon glyphicon-film"></i>
             <h4>Sinopse</h4>
@@ -60,7 +72,7 @@
             </div>
             <div class="modal-body">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=rDHuyRyGuFQ" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/rDHuyRyGuFQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="modal-footer">
@@ -71,7 +83,7 @@
 </div>
 
 <script>
-    $('#myModal').on('shown.bs.modal', function () {
+    $('#exampleModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     })
 </script>
