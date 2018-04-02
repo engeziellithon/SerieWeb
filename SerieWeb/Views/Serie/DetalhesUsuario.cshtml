@@ -1,0 +1,78 @@
+﻿@model SerieWeb.Models.Serie
+
+@{
+    ViewBag.Title = "DetalhesUsuario";
+}
+
+<style>
+    #fundo {
+        position: absolute;
+        z-index: 0;
+        opacity: 0.5;
+    }
+
+    #frente {
+        position: absolute;
+        z-index: 1;
+    }
+
+    }
+</style>
+
+<aside id="fundo">
+    <img id="planodefundo" class="img-responsive" src="http://www.diken.com.tr/wp-content/uploads/2014/06/20140410-game-of-thrones5.jpg">
+</aside>
+
+<div id="frente" class="container">
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-3">
+            <img class="card-img" src="@Html.DisplayFor(model => model.Imagem)" />
+        </div>
+        <div class="col-9">
+            <h1>@Html.DisplayFor(model => model.NomeSerie)</h1>
+            <hr />
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Assista ao trailer <i class="glyphicon glyphicon-film"></i>
+            </button>
+            <hr />
+            <i class="glyphicon glyphicon-film"></i>
+            <h4>Sinopse</h4>
+            <p>@Html.DisplayFor(model => model.Sinopse)</p>
+            <h4>Nota</h4>
+            <p>@Html.DisplayFor(model => model.Nota)</p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Trailer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=rDHuyRyGuFQ" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
+
