@@ -37,10 +37,10 @@ ul {
 
 /*Serie individual Explorar/DetalhesSerie*/
 .DetalhesSerie {
-    background-color: red;
+    background: linear-gradient(20deg, #242E30 30%, #2a3031 25% );
     padding-right: 0;
     padding-left: 0;
-    height:31.250em;
+    height: 31.250em;
 }
 .containerDetalhesSerie {
     margin-top: 0;
@@ -61,4 +61,12 @@ ul {
     box-shadow: 0 0 4px rgba(0,0,0,0.2);
     border-radius: 4px;
 }
+.row.btnDetalhes {
+    margin-bottom: 50px;
+}
 /*----fim----*/
+
+
+
+
+  
