@@ -30,6 +30,7 @@ namespace SerieWeb.Models.Identity
         public virtual DbSet<Genero> Generos { get; set; }
         public virtual DbSet<Serie> Series { get; set; }
         public virtual DbSet<Temporada> Temporadas { get; set; }
+        public virtual DbSet<UsuarioPerfil> UsuarioPerfil { get; set; }
 
         public static ApplicationDbContext Create()
         {

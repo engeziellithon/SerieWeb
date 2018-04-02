@@ -221,6 +221,7 @@
     <Compile Include="Models\SerieViewModels\IndexViewModel.cs" />
     <Compile Include="Models\SerieViewModels\SerieViewModel.cs" />
     <Compile Include="Models\Temporada.cs" />
+    <Compile Include="Models\UsuarioPerfil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
