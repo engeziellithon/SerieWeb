@@ -3,48 +3,49 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="container">
+    <h2>Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>Serie</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NomeSerie)
+            </dt>
 
-<div>
-    <h4>Serie</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeSerie)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NomeSerie)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NomeSerie)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Imagem)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Imagem)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Imagem)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Imagem)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sinopse)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Sinopse)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sinopse)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Sinopse)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Nota)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nota)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nota)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nota)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Editar", "Editar", new { id = Model.SerieID }, new { @class = "badge badge-primary" }) |
+        @Html.ActionLink("Voltar para lista de Séries", "Index", new object { }, new { @class = "badge badge-secondary" })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Editar", new { id = Model.SerieID }, new { @class = "badge badge-primary" }) |
-    @Html.ActionLink("Voltar para lista de Séries", "Index", new object { }, new { @class = "badge badge-secondary" })
-</p>

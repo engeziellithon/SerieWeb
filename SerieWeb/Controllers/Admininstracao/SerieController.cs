@@ -164,23 +164,6 @@ namespace SerieWeb.Controllers.Admininstracao
         }
         #endregion
 
-        #region Detalhes dos usuarios
-        // GET: Serie/DetailsUsuario/5
-        public ActionResult DetalhesUsuario(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Serie serie = db.Series.Find(id);
-
-            if (serie == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(serie);
-        }
-        #endregion
+        
     }
 }

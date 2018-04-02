@@ -1,31 +1,7 @@
-﻿/* Sticky footer styles
--------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
+﻿/* --- Geral ---*/
+.container {
+    margin-top: 20px;
 }
-
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    line-height: 60px; /* Vertically center the text there */
-    
-}
-
-
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-
-body > .container {
-    padding: 20px 15px 0;
-    
-}
-
 .footer > .container {
     padding-right: 15px;
     padding-left: 15px;
@@ -37,6 +13,9 @@ code {
 ul {
     list-style-type: none;
 }
+
+
+/*Botoes do admin*/
 .badge-secondary {
     color: #fff;
     background-color: #6c757d;
@@ -47,8 +26,39 @@ ul {
     background-color: #007bff;
     padding: 13px;
 }
+/*------fimm ----*/
+
+/*Email confirmacao - Account/EmailPedido*/
 #imagemEmail {
     margin: 30px;
     width: 10%; 
-
 }
+/*---Fim---*/
+
+/*Serie individual Explorar/DetalhesSerie*/
+.DetalhesSerie {
+    background-color: red;
+    padding-right: 0;
+    padding-left: 0;
+    height:31.250em;
+}
+.containerDetalhesSerie {
+    margin-top: 0;
+    height: 31.250em;
+}
+.containerImagemdetalhes {
+    height: 31.250em;
+    padding-top:25px;
+}
+.containerInfoDetalhes {
+    height: 31.250em;
+    padding-top: 25px;
+}
+.img-seriedetalhes {
+    display: block;
+    width: 300px;
+    height: 450px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+/*----fim----*/

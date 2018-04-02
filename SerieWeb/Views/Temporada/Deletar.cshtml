@@ -3,39 +3,40 @@
 @{
     ViewBag.Title = "Deletar";
 }
+<div class="container">
+    <h2>Deletar</h2>
 
-<h2>Deletar</h2>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Temporada</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Serie.NomeSerie)
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Temporada</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Serie.NomeSerie)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Serie.NomeSerie)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Serie.NomeSerie)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NomeTemporada)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeTemporada)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NomeTemporada)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NomeTemporada)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Deletar" class="btn btn-danger" /> |
-            @Html.ActionLink("Voltar para lista de Séries", "Index", new object { }, new { @class = "badge badge-secondary" })
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Deletar" class="btn btn-danger" /> |
+                @Html.ActionLink("Voltar para lista de Séries", "Index", new object { }, new { @class = "badge badge-secondary" })
+            </div>
+        }
+    </div>
 </div>
