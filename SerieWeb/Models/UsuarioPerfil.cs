@@ -17,11 +17,8 @@ namespace SerieWeb.Models
         public int SerieID { get; set; }
         [ForeignKey(name: "SerieID")]
         public virtual Serie Serie { get; set; }
-
-
-        [ForeignKey("aspnetusers")]
-        [Column("Id")]
-        public string usuarioId { get; set; }
-
+       
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

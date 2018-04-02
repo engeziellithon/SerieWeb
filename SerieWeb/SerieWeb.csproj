@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201803311125109_seriemodificacaoImagenBanner.Designer.cs">
       <DependentUpon>201803311125109_seriemodificacaoImagenBanner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804021207401_perfilusuario.cs" />
+    <Compile Include="Migrations\201804021207401_perfilusuario.Designer.cs">
+      <DependentUpon>201804021207401_perfilusuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\Episodio.cs" />
@@ -368,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803311125109_seriemodificacaoImagenBanner.resx">
       <DependentUpon>201803311125109_seriemodificacaoImagenBanner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804021207401_perfilusuario.resx">
+      <DependentUpon>201804021207401_perfilusuario.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
