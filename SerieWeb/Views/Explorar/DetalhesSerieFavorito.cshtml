@@ -1,39 +1,80 @@
-﻿@model SerieWeb.Models.Serie
-
+﻿@model  SerieWeb.Models.SerieViewModels.DetalhesSerieViewModel
 @{
     ViewBag.Title = "DetalhesSerieFavorito";
 }
-<div class="container-fluid DetalhesSerie">
-    <div class="containerDetalhesSerie container">
-        <div class="row">
-            <div class="col-4 containerImagemdetalhes">
-                <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/vxuoMW6YBt6UsxvMfRNwRl9LtWS.jpg" class="img-seriedetalhes img-thumbnail rounded mx-auto d-block" alt="Responsive image">
-            </div>
-            <div class="col-8 containerInfoDetalhes">
-                <h1 class="text-white">The Walking Dead</h1>
-                <br />
-                <br />
-                <div class="row btnDetalhes">
-                    <div class="col-3">
-                        <button type="button" class="btn btn-secondary">1</button>
-                    </div>
-                    <div class="col-3">
-                        <button type="button" class="btn btn-secondary">2</button>
-                    </div>
-                    <div class="col-3">
-                        <button type="button" class="btn btn-secondary">3</button>
-                    </div>
-                    <div class="col-3">
-                        <button type="button" class="btn btn-secondary">4</button>
-                    </div>
+@foreach (var item in Model.serie)
+{
+    <div class="container-fluid DetalhesSerie">
+        <div class="containerDetalhesSerie container">
+            <div class="row">
+                <div class="col-4 containerImagemdetalhes">
+                    <img src="@item.Imagem" class="img-seriedetalhes img-thumbnail rounded mx-auto d-block" alt="Responsive image">
                 </div>
-                <div>
-                    <h2 class="text-white">Sinopse</h2>
-                    <p class="text-justify text-white">Ao acordar de um coma em um hospital abandonado, o policial Rick Grimes percebe que o mundo que ele conhecia não existe mais porque foi arrasado por uma epidemia de zumbis de dimensões apocalípticas. Perto dali, nos arredores de Atlanta, um grupo luta para sobreviver em um pequeno acampamento enquanto "os mortos" os perseguem o tempo todo. Será que Rick e os outros conseguirão manter sua condição humana e sobreviver nesse mundo novo e assustador? Será que eles se salvarão em um cenário tão difícil e enfrentando tantas rivalidades?</p>
+                <div class="col-8 containerInfoDetalhes">
+                    <h1 class="text-white">@item.NomeSerie</h1>
+                    <br />
+                    <br />
+                    <div class="row btnDetalhes">
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary">1</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary">2</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary">3</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary">4</button>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-white">Sinopse</h2>
+                        <p class="text-justify text-white">@item.Sinopse</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+}
+<div class="container">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                Temporada
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model.temporada)
+        {
+            <tr>
+                <td>
+                    @item.NomeTemporada
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
 
+<div class="container">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                episodio
+            </th>
 
+        </tr>
+
+        @foreach (var item in Model.episodio)
+        {
+            <tr>
+                <td>
+                    @item.NomeEpisodio
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
