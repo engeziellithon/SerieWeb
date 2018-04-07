@@ -3,7 +3,6 @@ using SerieWeb.Models.Identity;
 using SerieWeb.Models.SerieViewModels;
 using System.Linq;
 using System.Net;
-using System.Runtime.Serialization;
 using System.Web.Mvc;
 
 namespace SerieWeb.Controllers.Site
@@ -47,23 +46,19 @@ namespace SerieWeb.Controllers.Site
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Serie serie = db.Series.Find(id);     
-            
-            if(serie != null)
-            {
-                model.serie = db.Series.Where(s => s.SerieID == serie.SerieID);
+            Serie serie = db.Series.Find(id);
 
-                model.temporada = db.Temporadas.Where(t => t.SerieID == serie.SerieID);
-
-                var EpisodioTemporadaId = db.Temporadas.Where(t => t.SerieID == serie.SerieID).Select(t => t.TemporadaID).FirstOrDefault();
-
-                model.episodio = db.Episodios.Where(e => e.TemporadaID == EpisodioTemporadaId);
-            }
-            
             if (serie == null)
             {
                 return HttpNotFound();
             }
+            //Passar dados para view
+
+            model.serie = db.Series.Where(s => s.SerieID == serie.SerieID);
+
+            model.temporada = db.Temporadas.Where(t => t.SerieID == serie.SerieID);
+                
+            model.episodio = db.Episodios.Where(e => e.Temporada.Serie.SerieID == serie.SerieID);          
 
             return View(model);
         }

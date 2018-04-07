@@ -7,13 +7,6 @@
     padding-left: 15px;
 }
 
-code {
-    font-size: 80%;
-}
-ul {
-    list-style-type: none;
-}
-
 
 /*Botoes do admin*/
 .badge-secondary {
@@ -36,37 +29,101 @@ ul {
 /*---Fim---*/
 
 /*Serie individual Explorar/DetalhesSerie*/
-.DetalhesSerie {
-    background: linear-gradient(20deg, #242E30 30%, #2a3031 25% );
-    padding-right: 0;
-    padding-left: 0;
-    height: 31.250em;
+
+@media (min-width: 1000px) {
+    .DetalhesSerie {
+        background: linear-gradient(20deg, #242E30 30%, #2a3031 25% );
+        padding-right: 0;
+        padding-left: 0;
+        height: 31.250em;
+    }
+
+    .containerDetalhesSerie {
+        margin-top: 0;
+        height: 31.250em;
+    }
+
+    .containerImagemdetalhes {
+        height: 31.250em;
+        padding-top: 25px;
+    }
+
+    .containerInfoDetalhes {
+        height: 31.250em;
+        padding-top: 25px;
+    }
+
+    .img-seriedetalhes {
+        display: block;
+        width: 300px;
+        height: 450px;
+        box-shadow: -20px 7px 100px rgba(111, 109, 109, 0.2);
+        border-radius: 8px;
+    }
+
+    .row.btnDetalhes {
+        margin-bottom: 50px;
+    }
 }
-.containerDetalhesSerie {
-    margin-top: 0;
-    height: 31.250em;
-}
-.containerImagemdetalhes {
-    height: 31.250em;
-    padding-top:25px;
-}
-.containerInfoDetalhes {
-    height: 31.250em;
-    padding-top: 25px;
-}
-.img-seriedetalhes {
-    display: block;
-    width: 300px;
-    height: 450px;
-    box-shadow: 0 0 4px rgba(0,0,0,0.2);
-    border-radius: 4px;
-}
-.row.btnDetalhes {
-    margin-bottom: 50px;
+@media (max-width: 1000px) {
+    .DetalhesSerie {
+        background: linear-gradient(20deg, #242E30 30%, #2a3031 25% );
+        padding-right: 0;
+        padding-left: 0;     
+    }
+
+    .containerDetalhesSerie {
+        margin-top: 0;
+        height: 31.250em;
+    }
+
+    .containerImagemdetalhes {
+        height: 31.250em;
+        padding-top: 25px;
+    }
+
+    .containerInfoDetalhes {
+        height: 31.250em;
+        padding-top: 25px;
+    }
+
+    .img-seriedetalhes {
+        display: block;
+        width: 300px;
+        height: 450px;
+        box-shadow: -20px 7px 100px rgba(111, 109, 109, 0.2);
+        border-radius: 8px;
+    }
+
+    .row.btnDetalhes {
+        margin-bottom: 50px;
+    }
 }
 /*----fim----*/
 
+/*----imagem index----*/
 
+@media (min-width: 1367px) {
+    .img-indexcarousel {
+        display: block;
+        width: 100%;
+        height: 45em;
+        border-radius: 5px;
+    }
+}
+@media (max-width: 1366px) {
+    .img-indexcarousel {
+        display: block;
+        width: 100%;
+        height: 31.25em;
+        border-radius: 2px;
+        
+    }
+}
+/*----fim----*/
+/*----imagem index----*/
+.explorarCard {
+    border: 0 none transparent;
+}
 
-
-  
+/*----fim----*/

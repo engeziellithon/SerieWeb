@@ -7,8 +7,8 @@
     <div class="container-fluid DetalhesSerie">
         <div class="containerDetalhesSerie container">
             <div class="row">
-                <div class="col-4 containerImagemdetalhes">
-                    <img src="@item.Imagem" class="img-seriedetalhes img-thumbnail rounded mx-auto d-block" alt="Responsive image">
+                <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 containerImagemdetalhes">
+                    <img src="@item.Imagem" class="img-seriedetalhes img-responsive rounded mx-auto d-block" alt="Responsive image">
                 </div>
                 <div class="col-8 containerInfoDetalhes">
                     <h1 class="text-white">@item.NomeSerie</h1>
@@ -16,7 +16,7 @@
                     <br />
                     <div class="row btnDetalhes">
                         <div class="col-3">
-                            <button type="button" class="btn btn-secondary">1</button>
+                            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="<em>Tooltip</em> <u>with</u> <b>HTML</b>">1</button>
                         </div>
                         <div class="col-3">
                             <button type="button" class="btn btn-secondary">2</button>
@@ -78,3 +78,10 @@
 
     </table>
 </div>
+@section Scripts {
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+}
