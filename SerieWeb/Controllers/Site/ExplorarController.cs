@@ -1,9 +1,14 @@
-﻿using SerieWeb.Models;
+﻿using Microsoft.AspNet.Identity;
+using SerieWeb.Models;
 using SerieWeb.Models.Identity;
 using SerieWeb.Models.SerieViewModels;
+using System;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Mvc.Razor;
 
 namespace SerieWeb.Controllers.Site
 {
@@ -38,6 +43,7 @@ namespace SerieWeb.Controllers.Site
 
         #region Detalhes dos serie
         // GET: Serie/DetailsUsuario/5
+        [HttpGet]
         public ActionResult DetalhesSerieFavorito(int? id)
         {
             DetalhesSerieViewModel model = new DetalhesSerieViewModel();
@@ -57,11 +63,82 @@ namespace SerieWeb.Controllers.Site
             model.serie = db.Series.Where(s => s.SerieID == serie.SerieID);
 
             model.temporada = db.Temporadas.Where(t => t.SerieID == serie.SerieID);
-                
-            model.episodio = db.Episodios.Where(e => e.Temporada.Serie.SerieID == serie.SerieID);          
+
+            model.episodio = db.Episodios.Where(e => e.Temporada.Serie.SerieID == serie.SerieID);
 
             return View(model);
         }
         #endregion
+
+        [HttpPost]
+        public ActionResult SalvarFavorito(int IdSerie)
+        {
+            #region verifica se esta logando / Verifica id do usuario logado / verifica se a serie existe.
+           
+            string user = User.Identity.GetUserId();
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            Serie serie = db.Series.Find(IdSerie);
+
+            if (serie == null)
+            {
+                return HttpNotFound();
+            }
+            #endregion
+
+            UsuarioPerfil perfil = new UsuarioPerfil();
+            var StatusSerieFavorita = db.UsuarioPerfil.Where(p => p.SerieID == serie.SerieID && p.UserId == user).FirstOrDefault();                      
+            
+            #region Adicionar aos favoritos
+            if (StatusSerieFavorita == null)
+            {
+                perfil.UserId = user;
+                perfil.SerieID = serie.SerieID;
+                perfil.SerieFavorita = true;
+                db.UsuarioPerfil.Add(perfil);
+                db.SaveChanges();
+            }
+            #endregion
+
+            #region Edição da Serie favorita 
+            if (StatusSerieFavorita.SerieFavorita == false)
+            {
+                try
+                {
+                    perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
+                    perfil.SerieFavorita = true;
+                    db.Entry(perfil).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("DetalhesSerieFavorito", "Explorar", new { id = serie.SerieID });
+                }
+                catch (Exception ex)
+                {
+                    var teste = ex;
+                    ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
+                }
+            }
+            else
+            {               
+                try
+                {
+                    perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);                    
+                    perfil.SerieFavorita = false;                    
+                    db.Entry(perfil).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("DetalhesSerieFavorito", "Explorar", new { id = serie.SerieID });
+                }
+                catch (Exception ex)
+                {
+                    var teste = ex;
+                    ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
+                }
+            }
+            #endregion
+
+            return RedirectToAction("DetalhesSerieFavorito", "Explorar", new { id = serie.SerieID });
+        }
     }
 }

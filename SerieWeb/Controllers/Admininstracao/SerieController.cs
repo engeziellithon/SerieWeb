@@ -115,12 +115,7 @@ namespace SerieWeb.Controllers.Admininstracao
                 ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
             }
 
-            //    if (ModelState.IsValid)
-            //{
-            //    db.Entry(serie).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
+            
             return View(Serie);
         }
         #endregion

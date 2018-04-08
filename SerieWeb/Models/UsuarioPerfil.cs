@@ -20,5 +20,9 @@ namespace SerieWeb.Models
        
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
+
+        public bool SerieFavorita { get; set; }
+
+        public bool InteresseSerie { get; set; }
     }
 }

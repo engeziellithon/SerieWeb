@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201804030034547_seriesinopse.Designer.cs">
       <DependentUpon>201804030034547_seriesinopse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804072314276_serieFavoritaPerfil.cs" />
+    <Compile Include="Migrations\201804072314276_serieFavoritaPerfil.Designer.cs">
+      <DependentUpon>201804072314276_serieFavoritaPerfil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\Episodio.cs" />
@@ -385,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804030034547_seriesinopse.resx">
       <DependentUpon>201804030034547_seriesinopse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804072314276_serieFavoritaPerfil.resx">
+      <DependentUpon>201804072314276_serieFavoritaPerfil.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
