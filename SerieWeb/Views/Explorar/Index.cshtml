@@ -3,19 +3,29 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    .explorarCard {
+        height: 30vh;
+        width: 15vw;
+    }
+</style>
+
 <div class="container">
     <div class="col-12">
         <div class="row">
             @foreach (var item in Model)
             {
-                <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                    <div class="card explorarCard">
-                        <img class="card-img-top" src="@item.Imagem">
-                        <div class="card-block">
-                            <h5 class="text-bold">@item.NomeSerie</h5>
+                <a href="/Explorar/DetalhesSerieFavorito/@item.SerieID">
+
+                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                        <div class="card explorarCard">
+                            <img class="card-img-top" src="@item.Imagem">
+                            <div class="card-block">
+                                <h5 class="text-bold text-center">@item.NomeSerie</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             }
             <hr />
         </div>
