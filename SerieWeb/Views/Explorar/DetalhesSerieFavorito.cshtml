@@ -25,14 +25,12 @@
                                 {
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="IdSerie" value="@item.SerieID" />
-                                    <button type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Adicionar aos Favoritos"><i class="fa fa-telegram" aria-hidden="true"></i></button>
+                                    <button type="submit" class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Adicionar aos Favoritos"><i class="fa fa-telegram" aria-hidden="true"></i></button>
                                 }
                             }
                             else
                             {
                                  <button class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Faça o login e adicione a sua lista de Favoritos"><img src="~/Content/SVG/favorito.svg" /></button>
-
-
                             }                            
                         </div>
                         <div class="col-3">
@@ -42,12 +40,13 @@
                                 {
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="IdSerie" value="@item.SerieID" />
-                                    <button type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Adicionar a lista de interesse">ttt</button>
+                                    <button type="submit" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Adicionar a lista de interesse"><img src ="~/Content/SVG/like.svg"/></button>
                                 }
+
                             }
                             else
                             {
-                                <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Faça o login para adicionar a sua lista de interesse">ttt</button>
+                                <button type="button" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Faça o login para adicionar a sua lista de interesse"><img src="~/Content/SVG/like.svg" /></button>
                             }
                         </div>
                         <div class="col-3">
