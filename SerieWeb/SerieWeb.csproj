@@ -229,9 +229,9 @@
     <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\Identity\ManageViewModels.cs" />
     <Compile Include="Models\Funcoes\PaginatedList.cs" />
+    <Compile Include="Models\Perfil\PerfilViewModel.cs" />
     <Compile Include="Models\Serie.cs" />
     <Compile Include="Models\SerieViewModels\DetalhesSerieViewModel.cs" />
-    <Compile Include="Models\SerieViewModels\IndexViewModel.cs" />
     <Compile Include="Models\SerieViewModels\SerieViewModel.cs" />
     <Compile Include="Models\Temporada.cs" />
     <Compile Include="Models\UsuarioPerfil.cs" />
@@ -245,8 +245,10 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\SVG\star.svg" />
     <Content Include="Content\SVG\like.svg" />
     <Content Include="Content\SVG\favorito.svg" />
+    <Content Include="Content\SVG\play.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

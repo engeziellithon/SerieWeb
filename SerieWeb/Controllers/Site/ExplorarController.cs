@@ -144,7 +144,7 @@ namespace SerieWeb.Controllers.Site
         [HttpPost]
         public ActionResult InteresseSerie (int IdSerie)
         {
-            #region verifica se esta logando / Verifica id do usuario logado / verifica se a serie existe.
+            #region verifica se esta logando / Pega id do usuario logado / verifica se a serie existe.
 
             string user = User.Identity.GetUserId();
             if (user == null)
@@ -161,10 +161,10 @@ namespace SerieWeb.Controllers.Site
             #endregion
 
             UsuarioPerfil perfil = new UsuarioPerfil();
-            var StatusSerieFavorita = db.UsuarioPerfil.Where(p => p.SerieID == serie.SerieID && p.UserId == user).FirstOrDefault();
+            var StatusSerie = db.UsuarioPerfil.Where(p => p.SerieID == serie.SerieID && p.UserId == user).FirstOrDefault();
 
             #region Adicionar aos favoritos
-            if (StatusSerieFavorita == null)
+            if (StatusSerie == null)
             {
                 perfil.UserId = user;
                 perfil.SerieID = serie.SerieID;
@@ -175,11 +175,11 @@ namespace SerieWeb.Controllers.Site
             #endregion
 
             #region Edição da Serie favorita 
-            else if (StatusSerieFavorita.SerieFavorita == false)
+            else if (StatusSerie.SerieFavorita == false)
             {
                 try
                 {
-                    perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
+                    perfil = db.UsuarioPerfil.Find(StatusSerie.UsuarioPerfilID);
                     perfil.InteresseSerie = true;
                     db.Entry(perfil).State = EntityState.Modified;
                     db.SaveChanges();
@@ -195,7 +195,7 @@ namespace SerieWeb.Controllers.Site
             {
                 try
                 {
-                    perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
+                    perfil = db.UsuarioPerfil.Find(StatusSerie.UsuarioPerfilID);
                     perfil.InteresseSerie = false;
                     db.Entry(perfil).State = EntityState.Modified;
                     db.SaveChanges();

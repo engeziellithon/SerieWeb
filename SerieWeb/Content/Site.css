@@ -147,3 +147,11 @@
         border-color: #007bff;
         border-width: 2px;
     }
+.BtnStar {
+    border-radius: 10px;
+}
+
+    .BtnStar:hover {
+        border-color: yellow;
+        border-width: 2px;
+    }
