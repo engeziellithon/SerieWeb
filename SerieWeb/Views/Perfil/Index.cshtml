@@ -2,19 +2,27 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="container-fluid " style="background-color:red; height:250px;">
-    <div class="col-2" style="background-color:white; height:250px;">
+<div class="container-fluid Perfilbackground">
+    <div class="col-2" style="background-color:white; height:250px;border-radius: 250px;">
 
     </div>
 </div>
-<div class="container-fluid" style="background-color:blue; height:50px;">
-
+<div class="container-fluid-no-padding" >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="" style="margin-left:80px">
+            <ul class="navbar-nav">
+                @Html.ActionLink("Perfil", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Calendario", "CalendarioSerie", "Perfil", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Configuraçoes", "Index", "Manage", new { area = "" }, new { @class = "nav-link" })
+            </ul>
+        </div>
+    </nav>
 </div>
-<div class="container containerDetalhesSerie" style="background-color:yellow; height:540px;">
-    <div class="row">       
+<div class="container containerDetalhesSerie">
+    <div class="row">
         @foreach (var item in Model.serie)
         {
-            <div class="col" style="background-color:white; height:240px;margin:20px;">
+            <div class="col" style="background-color:black; height:240px;margin:20px;">
                 @item.NomeSerie
             </div>
         }

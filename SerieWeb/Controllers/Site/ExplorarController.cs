@@ -22,29 +22,12 @@ namespace SerieWeb.Controllers.Site
             return View(model);
         }
 
-        #region Detalhes dos serie
-        // GET: Serie/DetailsUsuario/5
-        public ActionResult DetalhesSerie(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Serie serie = db.Series.Find(id);
-
-            if (serie == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(serie);
-        }
-        #endregion
+        
 
         #region Detalhes dos serie
         // GET: Serie/DetailsUsuario/5
         [HttpGet]
-        public ActionResult DetalhesSerieFavorito(int? id)
+        public ActionResult DetalhesSerie(int? id)
         {
             DetalhesSerieViewModel model = new DetalhesSerieViewModel();
             if (id == null)
@@ -112,7 +95,7 @@ namespace SerieWeb.Controllers.Site
                     perfil.SerieFavorita = true;
                     db.Entry(perfil).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("DetalhesSerieFavorito", "Explorar", new { id = serie.SerieID });
+                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
                 }
                 catch (Exception ex)
                 {
@@ -128,7 +111,7 @@ namespace SerieWeb.Controllers.Site
                     perfil.SerieFavorita = false;
                     db.Entry(perfil).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("DetalhesSerieFavorito", "Explorar", new { id = serie.SerieID });
+                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
                 }
                 catch (Exception ex)
                 {
@@ -138,7 +121,7 @@ namespace SerieWeb.Controllers.Site
             }
             #endregion
 
-            return RedirectToAction("DetalhesSerieFavorito", "Explorar", new { id = serie.SerieID });
+            return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
         }
 
         [HttpPost]
@@ -183,7 +166,7 @@ namespace SerieWeb.Controllers.Site
                     perfil.InteresseSerie = true;
                     db.Entry(perfil).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("DetalhesSerieFavorito", "Explorar", new { id = serie.SerieID });
+                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
                 }
                 catch (Exception ex)
                 {
@@ -199,7 +182,7 @@ namespace SerieWeb.Controllers.Site
                     perfil.InteresseSerie = false;
                     db.Entry(perfil).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("DetalhesSerieFavorito", "Explorar", new { id = serie.SerieID });
+                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
                 }
                 catch (Exception ex)
                 {
@@ -209,7 +192,7 @@ namespace SerieWeb.Controllers.Site
             }
             #endregion
 
-            return RedirectToAction("DetalhesSerieFavorito", "Explorar", new { id = serie.SerieID });
+            return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
         }
     }
 }
