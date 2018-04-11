@@ -4,8 +4,8 @@
     ViewBag.Title = "Index";
 }
 <div class="container">
-    <h2>Index</h2>
-
+    <h2>Lista de Epsodios</h2>
+    <hr />
     <p>
         @Html.ActionLink("Adicionar", "Adicionar")
     </p>
@@ -26,7 +26,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.DataExibicao)
             </th>
-            <th></th>
+            <th>Opções</th>
         </tr>
 
         @foreach (var item in Model)

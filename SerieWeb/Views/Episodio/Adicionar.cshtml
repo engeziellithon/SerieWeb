@@ -4,15 +4,14 @@
     ViewBag.Title = "Create";
 }
 <div class="container">
-    <h2>Criar Episodio</h2>
+    <h2>Adicionar Episodio</h2>
+    <hr />
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Episodio</h4>
-            <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @if (ViewBag.listaSeries != null)
             {

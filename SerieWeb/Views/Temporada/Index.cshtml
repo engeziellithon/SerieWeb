@@ -4,20 +4,20 @@
     ViewBag.Title = "Index";
 }
 <div class="container">
-    <h2>Index</h2>
-
+    <h2>Lista de Temporadas</h2>
+    <hr />
     <p>
         @Html.ActionLink("Adicionar", "Adicionar")
     </p>
     <table class="table table-bordered">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Serie.NomeSerie)
+                Nome Serie
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NomeTemporada)
+                Nome Temporada
             </th>
-            <th></th>
+            <th>Opções</th>
         </tr>
 
         @foreach (var item in Model)

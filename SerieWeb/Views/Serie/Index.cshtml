@@ -5,8 +5,8 @@
 }
 
 <div class="container">
-    <h2>Index</h2>
-
+    <h2>Lista de Series</h2>
+    <hr />
     <p>
         @Html.ActionLink("Adicionar", "Adicionar")
     </p>
@@ -14,7 +14,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NomeSerie)
+                    Nome 
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Imagem)
@@ -25,7 +25,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Nota)
                 </th>
-                <th></th>
+                <th> Opções</th>
             </tr>
         </thead>
         <tbody>

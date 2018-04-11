@@ -15,7 +15,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         @Html.ActionLink("SerieWeb", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "navbar-brand" })
 
@@ -25,7 +25,6 @@
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav ">
-                @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "nav-link" })
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Admin
