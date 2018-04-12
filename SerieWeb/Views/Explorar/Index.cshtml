@@ -1,25 +1,60 @@
 ﻿@model IEnumerable<SerieWeb.Models.Serie>
 @{
     ViewData["Title"] = "Index";
+    int desktop = 0;
 }
 
+<style type="text/css">
+    a:link {
+        color:black;
+        text-decoration: none;
+    }
+</style>
+
+@if(desktop == 0)
+{
 <div class="container">
-    <div class="col-12">
-        <div class="row">
+    <div class="row">
+        <div class="card-deck">
             @foreach (var item in Model)
             {
-                <a href="/Explorar/DetalhesSerie/@item.SerieID">
-                    @*<a href="@Url.Action("DetalhesSerieFavorito","Explorar", new { @item.SerieID })">*@
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card explorarCard">
-                            <img class="card-img-top" src="@item.Imagem">
-                            <div class="card-block">
-                                <h5 class="text-bold text-center">@item.NomeSerie</h5>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card explorarCard">
+                        <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
+                            <img class="card-img-top" src="@item.Imagem" alt="Card image cap">
+                        </a>
+                        <div class="card-block">
+                            <div class="card-text">
+                                <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
+                                    <h5 class="card-text" style="text-align:center">@item.NomeSerie</h5>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </a>
-            }            
+                </div>
+            }
         </div>
     </div>
 </div>
+desktop++;
+}
+else
+{
+
+}
+
+@section Scripts{
+    <script>
+        debugger        
+        if (
+            (screen.width <= 640) ||
+            (window.matchMedia &&
+                window.matchMedia('only screen and (max-width: 640px)').matches
+            )
+        ) {
+            alert("mobile");
+        }
+
+    </script>
+    
+}

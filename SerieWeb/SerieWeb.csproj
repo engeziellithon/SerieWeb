@@ -245,6 +245,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\SVG\home.jpg" />
     <Content Include="Content\SVG\star.svg" />
     <Content Include="Content\SVG\like.svg" />
     <Content Include="Content\SVG\favorito.svg" />
@@ -365,7 +366,6 @@
     <Content Include="Views\Explorar\DetalhesSerie.cshtml" />
     <Content Include="Views\Perfil\Calendario.cshtml" />
     <Content Include="Views\Perfil\ServicoStreamming.cshtml" />
-    <Content Include="Views\Explorar\DetalhesSerieFavorito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
