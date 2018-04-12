@@ -2,6 +2,13 @@
 @{
     ViewBag.Title = "Detalhes Serie";
 }
+
+<style>
+    .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe {
+        width: 100% !important;
+    }
+</style>
+
 @foreach (var item in Model.serie)
 {
     <div class="container-fluid DetalhesSerie">
