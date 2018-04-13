@@ -33,6 +33,7 @@
         padding-right: 0;
         padding-left: 0;
         height: 31.250em;
+        padding-top: 50px;
     }
 
     .containerDetalhesSerie {
@@ -65,9 +66,9 @@
 
 @media (max-width: 1000px) {
     .DetalhesSerie {
-        background: linear-gradient(20deg, #242E30 30%, #2a3031 25% );
         padding-right: 0;
         padding-left: 0;
+        padding-top: 50px;
     }
 
     .containerDetalhesSerie {
@@ -76,7 +77,7 @@
     }
 
     .containerImagemdetalhes {
-        height: 31.250em;
+        height: 10vh;
         padding-top: 25px;
     }
 
@@ -119,11 +120,28 @@
     }
 }
 /*----fim----*/
-/*----imagem index----*/
+/*----Explorar index----*/
 .explorarCard {
     border: 0 none transparent;
-
 }
+
+.row.equal-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .row.equal-height > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+
+.card {
+    flex: 2;
+}
+
+
+
+
 
 /*----fim----*/
 
@@ -139,7 +157,7 @@
         border-color: red;
         border-width: 2px;
     }
-    
+
 .BtnLike {
     border-radius: 10px;
 }
@@ -148,6 +166,7 @@
         border-color: #007bff;
         border-width: 2px;
     }
+
 .BtnStar {
     border-radius: 10px;
 }
@@ -161,10 +180,10 @@
     padding-right: 0;
     padding-left: 0;
 }
+
 .Perfilbackground {
     background: linear-gradient(20deg, #242E30 30%, #2a3031 25% );
     padding-right: 0;
     padding-left: 0;
     height: 15.250em;
 }
-

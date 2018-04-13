@@ -15,7 +15,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         @Html.ActionLink("SerieWeb", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "navbar-brand" })
 
@@ -42,7 +42,8 @@
             </ul>
         </div>
     </nav>
-
+    <br />
+    <br />
     <main role="main">
         @RenderBody()
     </main>
