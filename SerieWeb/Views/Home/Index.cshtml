@@ -3,7 +3,7 @@
 }
 
 <style>
-    #fundo {       
+    #fundo {
         background-image: url('../../Content/SVG/home.jpg');
         position: fixed;
         width: 100%;
@@ -13,7 +13,6 @@
     hr {
         border-color: #ffffff !important;
     }
-
 </style>
 
 <div id="fundo">
@@ -25,11 +24,15 @@
                 <br />
                 <h1 style="color:white">SERIES WEB</h1>
                 <hr />
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </form>
+                
+                @using (Html.BeginForm("Pesquisa", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <p>Digite o nome</p>
+                    <input type="text" class="form-control" name="pesquisa" id="texto" placeholder="Digite a pesquisa" />
+                    <div><button class="btn btn-primary" type="submit">Buscar</button></div>
+                }
             </div>
         </div>
-    </div>    
+    </div>
 </div>
