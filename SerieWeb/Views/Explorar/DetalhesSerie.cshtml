@@ -3,6 +3,9 @@
     ViewBag.Title = "Detalhes Serie";
 }
 
+
+
+<!--Comentario do facebook responsivo-->
 <style>
     .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe {
         width: 100% !important;
@@ -11,7 +14,7 @@
 
 @foreach (var item in Model.serie)
 {
-    <div class="container-fluid DetalhesSerie">
+    <div class="container-fluid DetalhesSerie" id="toTop">
         <div class="containerDetalhesSerie container">
             <div class="row">
                 <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 containerImagemdetalhes">
@@ -71,7 +74,9 @@
                     </div>*@
 
                 <div class="col-8 containerInfoDetalhes">
-                    <h1 class="text-white">@item.NomeSerie</h1>                    
+
+                    <h1 class="text-white">@item.NomeSerie</h1>
+                    <br />
                     <button type="button" class="btn btn-default BtnStar">
                         <img src="~/Content/SVG/star.svg" /> Classificar
                     </button>
@@ -81,12 +86,12 @@
                         {
                             @Html.AntiForgeryToken()
                             <input type="hidden" name="IdSerie" value="@item.SerieID" />
-                            <button type="submit" class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Adicionar aos Favoritos"><img src="~/Content/SVG/favorito.svg" />Favoritar</button>
+                            <button type="submit" class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Adicionar aos Favoritos"><img src="~/Content/SVG/favorito.svg" /> Favoritar</button>
                         }
                     }
                     else
                     {
-                        <button class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Faça o login e adicione a sua lista de Favoritos"><img src="~/Content/SVG/favorito.svg" />Favoritar</button>
+                        <button class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Faça o login e adicione a sua lista de Favoritos"><img src="~/Content/SVG/favorito.svg" /> Favoritar</button>
                     }
                     @if (User.Identity.IsAuthenticated == true)
                     {
@@ -94,17 +99,17 @@
                         {
                             @Html.AntiForgeryToken()
                             <input type="hidden" name="IdSerie" value="@item.SerieID" />
-                            <button type="submit" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Adicionar a lista de interesse"><img src="~/Content/SVG/like.svg" />Interesse</button>
+                            <button type="submit" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Adicionar a lista de interesse"><img src="~/Content/SVG/like.svg" /> Interesse</button>
                         }
 
                     }
                     else
                     {
-                        <button type="button" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Faça o login para adicionar a sua lista de interesse"><img src="~/Content/SVG/like.svg" />Interesse</button>
+                        <button type="button" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Faça o login para adicionar a sua lista de interesse"><img src="~/Content/SVG/like.svg" /> Interesse</button>
                     }
-                        <button href="#trailer" class="btn btn-default BtnFavorito">
-                            <img src="~/Content/SVG/play.svg" />Assistir trailer
-                        </button>
+                    <button href="#trailer" class="btn btn-default BtnFavorito">
+                        <img src="~/Content/SVG/play.svg" /> Assistir trailer
+                    </button>
                     <div>
                         <br />
                         <h2 class="text-white">Sinopse</h2>
@@ -226,11 +231,11 @@
         <hr />
         <h4>Comentarios</h4>
         <hr />
-        <div class="fb-comments table-responsive" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
+        <div class="fb-comments" data-href="https://www.facebook.com/serieweb2018/" data-numposts="5"></div>
     </div>
 </div>
 
-
+<a id="to-top" href="#top" class="btn btn-dark btn-lg"><img src="~/Content/SVG/like.svg" /></a>
 
 @section Scripts {
     @Scripts.Render("~/bundles/popper")
@@ -249,8 +254,5 @@
             js = d.createElement(s); js.id = id;
             js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.12';
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-
+        }(document, 'script', 'facebook-jssdk'));</script>
 }
