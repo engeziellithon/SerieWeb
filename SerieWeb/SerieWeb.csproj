@@ -251,8 +251,6 @@
     <Content Include="Content\SVG\like.svg" />
     <Content Include="Content\SVG\favorito.svg" />
     <Content Include="Content\SVG\play.svg" />
-    <Content Include="Content\SVG\StarFade.gif" />
-    <Content Include="Content\SVG\StarGlow.gif" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
