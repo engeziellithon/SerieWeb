@@ -368,7 +368,6 @@
     <Content Include="Views\Explorar\DetalhesSerie.cshtml" />
     <Content Include="Views\Perfil\Calendario.cshtml" />
     <Content Include="Views\Perfil\ServicoStreamming.cshtml" />
-    <Content Include="Views\Explorar\_Nota.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
