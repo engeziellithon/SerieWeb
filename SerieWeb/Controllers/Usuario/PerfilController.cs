@@ -22,5 +22,12 @@ namespace SerieWeb.Controllers.Usuario
             
             return View(model);
         }
+
+        public ActionResult Calendario()
+        {
+           
+
+            return View();
+        }
     }
 }

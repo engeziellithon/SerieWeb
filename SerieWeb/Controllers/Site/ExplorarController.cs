@@ -3,12 +3,13 @@ using SerieWeb.Models;
 using SerieWeb.Models.Identity;
 using SerieWeb.Models.SerieViewModels;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Web.Mvc.Razor;
+
 
 namespace SerieWeb.Controllers.Site
 {
@@ -16,13 +17,21 @@ namespace SerieWeb.Controllers.Site
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Explorar
-        public ActionResult Index()
+        public ActionResult Index(string pesquisa)
         {
-            var model = db.Series.ToList();
+            
+            List<Serie> model = new List<Serie>();            
+            if (pesquisa != null)
+            {
+                model = db.Series.Where(x => x.NomeSerie.Contains(pesquisa)).ToList();
+            }
+            else
+            {
+                model = db.Series.ToList();
+            }          
+                 
             return View(model);
-        }
-
-        
+        }        
 
         #region Detalhes dos serie
         // GET: Serie/DetailsUsuario/5
@@ -43,11 +52,19 @@ namespace SerieWeb.Controllers.Site
             }
             //Passar dados para view
 
-            model.serie = db.Series.Where(s => s.SerieID == serie.SerieID);
+            model.serie = db.Series.Where(s => s.SerieID == serie.SerieID).Take(3);
 
             model.temporada = db.Temporadas.Where(t => t.SerieID == serie.SerieID);
 
             model.episodio = db.Episodios.Where(e => e.Temporada.Serie.SerieID == serie.SerieID);
+
+            ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
+
+            
+                      
+
+            
+
 
             return View(model);
         }
@@ -194,5 +211,7 @@ namespace SerieWeb.Controllers.Site
 
             return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
         }
+
+       
     }
 }

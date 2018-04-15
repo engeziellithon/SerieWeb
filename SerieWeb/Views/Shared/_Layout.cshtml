@@ -2,14 +2,12 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-    @*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    <meta name="author" content="">   
     <title>@ViewBag.Title - SerieWeb</title>
-    
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,7 +15,7 @@
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         @Html.ActionLink("SerieWeb", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "navbar-brand" })
+        @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "navbar-brand"})
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,12 +45,7 @@
     <main role="main">
         @RenderBody()
     </main>
-    @*<footer class="footer">
-        <div class="container-fluid">
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
-           
-        </div>
-    </footer>*@
+  
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
