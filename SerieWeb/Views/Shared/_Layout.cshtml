@@ -4,18 +4,36 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">   
+    <meta name="description" content="Serieweb">
+    <meta name="author" content="engeziellithon">
     <title>@ViewBag.Title - SerieWeb</title>
+    <link rel="manifest" href="~/Content/Icons/manifest.json">
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/Icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Content/Icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/Icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/Icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/Icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/Icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/Icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/Icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/Icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/Content/Icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/Icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/Icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/Icons/favicon-16x16.png">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/Content/Icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         @Html.ActionLink("SerieWeb", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "navbar-brand"})
+        @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "navbar-brand" })
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,8 +49,11 @@
                         @Html.ActionLink("Serie", "Index", "Serie", new { area = "" }, new { @class = "dropdown-item" })
                         @Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "dropdown-item" })
                         @Html.ActionLink("Episodio", "Index", "Episodio", new { area = "" }, new { @class = "dropdown-item" })
-                        @*@Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "navbar-link" })*@
+
                     </div>
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Perfil", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
                     @Html.Partial("_LoginPartial")
@@ -45,7 +66,7 @@
     <main role="main">
         @RenderBody()
     </main>
-  
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

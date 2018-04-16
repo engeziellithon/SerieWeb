@@ -19,6 +19,7 @@ namespace SerieWeb.Models
 
         public String ImagemBanner { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [Required()]        
         public String Sinopse { get; set; }
 

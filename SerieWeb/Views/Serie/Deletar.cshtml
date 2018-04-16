@@ -1,56 +1,71 @@
 ﻿@model SerieWeb.Models.Serie
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Deletar";
 }
+<div class="panel-header panel-header-sm">
+
+</div>
 <div class="container">
-    <h2>Deletar Serie</h2>
+    <div class="content" style="padding: 0; min-height: calc(100vh - 123px); margin-top: -50px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Deletar Série</h5>
+                    </div>
+                    <div class="card-body">                       
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.NomeSerie)
+                            </dt>
 
-    <div>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                Nome
-            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.NomeSerie)
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.NomeSerie)
-            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Imagem)
+                            </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Imagem)
-            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Imagem)
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Imagem)
-            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Sinopse)
+                            </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Sinopse)
-            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Sinopse)
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Sinopse)
-            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Nota)
+                            </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Nota)
-            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Nota)
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.Nota)
-            </dd>
+                        </dl>
 
-        </dl>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Deletar" class="btn btn-danger" /> |
-                @Html.ActionLink("Voltar para lista de Séries", "Index", new object { }, new { @class = "badge badge-secondary" })
+                        <div class="form-actions no-color float-right" style="margin-right:25px">
+                            
+                            @Html.ActionLink("Voltar", "Index", new object { }, new { @class = "badge badge-secondary" })  
+                            <input type="submit" value="Deletar" class="btn btn-danger" />
+                        </div>
+                        }
+                    </div>
+                </div>
             </div>
-        }
+        </div>
     </div>
 </div>
+
+
+

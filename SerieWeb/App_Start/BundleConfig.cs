@@ -23,11 +23,16 @@ namespace SerieWeb
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",                      
                       "~/Scripts/respond.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                      "~/Scripts/datatables.min.js"));
+
+          
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
-                      "~/Content/Admin.css"));
+                      "~/Content/AdminCustom.css",
+                      "~/Content/Datatables.css"));
             
         }
     }

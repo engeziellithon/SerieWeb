@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Edit";
 }
+<div class="panel-header panel-header-sm">
+
+</div>
 <div class="container">
     <h2>Editar Episodio</h2>
     <hr />
@@ -19,7 +22,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.NomeEpisodio, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.NomeEpisodio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.NomeEpisodio, new { htmlAttributes = new { @class = "form-control formepisodio" } })
                     @Html.ValidationMessageFor(model => model.NomeEpisodio, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -27,7 +30,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Sinopse, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Sinopse, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Sinopse, new { htmlAttributes = new { @class = "form-control formepisodio" } })
                     @Html.ValidationMessageFor(model => model.Sinopse, "", new { @class = "text-danger" })
                 </div>
             </div>

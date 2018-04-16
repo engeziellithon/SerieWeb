@@ -185,3 +185,15 @@
     padding-left: 0;
     height: 15.250em;
 }
+
+/*#region Admin */
+
+.control-label{
+    margin-left:18px;
+    padding-right:18px;
+}
+.formepisodio {
+    height:  40px;
+}
+
+/*#endregion */
