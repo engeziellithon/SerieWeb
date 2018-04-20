@@ -4,5 +4,17 @@
     "inputFiles": [
       "Scripts/datatables.js"
     ]
+  },
+  {
+    "outputFileName": "Scripts/ServiceWorker/pwabuilder-sw-register.min.js",
+    "inputFiles": [
+      "Scripts/ServiceWorker/pwabuilder-sw-register.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/ServiceWorker/pwabuilder-sw.min.js",
+    "inputFiles": [
+      "Scripts/ServiceWorker/pwabuilder-sw.js"
+    ]
   }
 ]

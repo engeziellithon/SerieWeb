@@ -26,7 +26,8 @@ namespace SerieWeb
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
                       "~/Scripts/datatables.min.js"));
 
-          
+            bundles.Add(new ScriptBundle("~/bundles/ServiceWorker").Include(
+                      "~/Scripts/ServiceWorker/App.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
