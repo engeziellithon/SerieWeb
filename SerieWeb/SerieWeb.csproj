@@ -277,7 +277,6 @@
     <Content Include="Content\SVG\like.svg" />
     <Content Include="Content\SVG\favorito.svg" />
     <Content Include="Content\SVG\play.svg" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
@@ -331,14 +330,6 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="pwabuilder-sw-register.js" />
-    <Content Include="pwabuilder-sw-register.min.js">
-      <DependentUpon>pwabuilder-sw-register.js</DependentUpon>
-    </Content>
-    <Content Include="pwabuilder-sw.js" />
-    <Content Include="pwabuilder-sw.min.js">
-      <DependentUpon>pwabuilder-sw.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\ServiceWorker\App.js" />
     <Content Include="Scripts\ServiceWorker\Service-Worker.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
