@@ -192,7 +192,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\Admininstracao\EpisodioController.cs" />
+    <Compile Include="Controllers\Admininstracao\GeneroController.cs" />
     <Compile Include="Controllers\Admininstracao\SerieController.cs" />
+    <Compile Include="Controllers\Admininstracao\ServicoStreamingsController.cs" />
     <Compile Include="Controllers\Admininstracao\TemporadaController.cs" />
     <Compile Include="Controllers\Site\ExplorarController.cs" />
     <Compile Include="Controllers\Site\HomeController.cs" />
@@ -226,10 +228,15 @@
     <Compile Include="Migrations\201804231859027_mudancabanco.Designer.cs">
       <DependentUpon>201804231859027_mudancabanco.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804241214183_TableGenerosAndServicoStreaming.cs" />
+    <Compile Include="Migrations\201804241214183_TableGenerosAndServicoStreaming.Designer.cs">
+      <DependentUpon>201804241214183_TableGenerosAndServicoStreaming.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
     <Compile Include="Models\Admininstracao\Genero.cs" />
     <Compile Include="Models\Admininstracao\Serie.cs" />
+    <Compile Include="Models\Admininstracao\ServicoStreaming.cs" />
     <Compile Include="Models\Admininstracao\Temporada.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
@@ -400,6 +407,16 @@
     <Content Include="Views\Episodio\Detalhes.cshtml" />
     <Content Include="Views\Episodio\Editar.cshtml" />
     <Content Include="Views\Episodio\Index.cshtml" />
+    <Content Include="Views\Genero\Adicionar.cshtml" />
+    <Content Include="Views\Genero\Deletar.cshtml" />
+    <Content Include="Views\Genero\Detalhes.cshtml" />
+    <Content Include="Views\Genero\Editar.cshtml" />
+    <Content Include="Views\Genero\Index.cshtml" />
+    <Content Include="Views\ServicoStreamings\Adicionar.cshtml" />
+    <Content Include="Views\ServicoStreamings\Deletar.cshtml" />
+    <Content Include="Views\ServicoStreamings\Detalhes.cshtml" />
+    <Content Include="Views\ServicoStreamings\Editar.cshtml" />
+    <Content Include="Views\ServicoStreamings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -435,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804231859027_mudancabanco.resx">
       <DependentUpon>201804231859027_mudancabanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804241214183_TableGenerosAndServicoStreaming.resx">
+      <DependentUpon>201804241214183_TableGenerosAndServicoStreaming.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

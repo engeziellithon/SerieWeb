@@ -5,15 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SerieWeb.Models.Admininstracao
 {
-    [Table(name: "Genero")]
-    public class Genero
+    [Table(name: "ServicoStreaming")]
+    public class ServicoStreaming
     {
-        public int GeneroID { get; set; }
+        public int ServicoStreamingID { get; set; }
 
         [Required()]
-        [Display(Name = "Gênero")]
+        [Display(Name = "Serviço Streaming")]
         [MaxLength(100)]
-        public String NomeGenero { get; set; }
+        public String NomeServicoStreaming { get; set; }
 
         public ICollection<Serie> Series { get; set; }
     }
