@@ -1,66 +1,78 @@
 ﻿@model SerieWeb.Models.Admininstracao.Episodio
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
+<div class="panel-header panel-header-sm">
 
-<h2>Details</h2>
-
-<div>
-    <h4>Episodio</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.serie.NomeSerie)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.serie.NomeSerie)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Temporada.NomeTemporada)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Temporada.NomeTemporada)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeEpisodio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomeEpisodio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sinopse)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sinopse)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Video)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Video)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataExibicao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataExibicao)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EpisodioID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="container">
+
+    <div class="content" style="padding: 0; min-height: calc(100vh - 123px); margin-top: -50px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Detalhes do Episodio</h5>
+                    </div>
+                    <div class="card-body">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.serie.NomeSerie)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.serie.NomeSerie)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Temporada.NomeTemporada)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Temporada.NomeTemporada)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.NomeEpisodio)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.NomeEpisodio)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Sinopse)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Sinopse)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Video)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Video)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DataExibicao)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DataExibicao)
+                            </dd>
+                        </dl>
+                        <div class="float-right" style="margin-right:25px">
+                            @Html.ActionLink("Voltar", "Index", new object { }, new { @class = "badge badge-secondary" })
+                            @Html.ActionLink("Editar", "Editar", new { id = Model.EpisodioID }, new { @class = "badge badge-primary" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
