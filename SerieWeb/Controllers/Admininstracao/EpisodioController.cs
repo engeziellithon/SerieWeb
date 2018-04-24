@@ -9,7 +9,14 @@ namespace SerieWeb.Controllers.Admininstracao
 {
     public class EpisodioController : Controller
     {
+        #region Banco
         private ApplicationDbContext db = new ApplicationDbContext();
+        #endregion
+
+        #region Index
+
+        #endregion
+
 
         // GET: Episodio
         public async Task<ActionResult> Index()
