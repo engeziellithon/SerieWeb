@@ -193,11 +193,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\Admininstracao\EpisodioController.cs" />
     <Compile Include="Controllers\Admininstracao\SerieController.cs" />
+    <Compile Include="Controllers\Admininstracao\TemporadaController.cs" />
     <Compile Include="Controllers\Site\ExplorarController.cs" />
     <Compile Include="Controllers\Site\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\Identity\ManageController.cs" />
-    <Compile Include="Controllers\Admininstracao\TemporadaController.cs" />
     <Compile Include="Controllers\Usuario\PerfilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,18 +222,19 @@
     <Compile Include="Migrations\201804072314276_serieFavoritaPerfil.Designer.cs">
       <DependentUpon>201804072314276_serieFavoritaPerfil.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804231859027_mudancabanco.cs" />
+    <Compile Include="Migrations\201804231859027_mudancabanco.Designer.cs">
+      <DependentUpon>201804231859027_mudancabanco.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Admininstracao\Episodio.cs" />
+    <Compile Include="Models\Admininstracao\Genero.cs" />
+    <Compile Include="Models\Admininstracao\Serie.cs" />
+    <Compile Include="Models\Admininstracao\Temporada.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
-    <Compile Include="Models\Episodio.cs" />
-    <Compile Include="Models\Genero.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\Identity\ManageViewModels.cs" />
-    <Compile Include="Models\Perfil\PerfilViewModel.cs" />
-    <Compile Include="Models\Serie.cs" />
-    <Compile Include="Models\SerieViewModels\DetalhesSerieViewModel.cs" />
-    <Compile Include="Models\SerieViewModels\SerieViewModel.cs" />
-    <Compile Include="Models\Temporada.cs" />
-    <Compile Include="Models\UsuarioPerfil.cs" />
+    <Compile Include="Models\Usuario\UsuarioPerfil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -378,29 +379,27 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\EmailPedido.cshtml" />
     <Content Include="Views\Serie\Adicionar.cshtml" />
     <Content Include="Views\Serie\Deletar.cshtml" />
     <Content Include="Views\Serie\Detalhes.cshtml" />
     <Content Include="Views\Serie\Editar.cshtml" />
     <Content Include="Views\Serie\Index.cshtml" />
-    <Content Include="Views\Temporada\Index.cshtml" />
-    <Content Include="Views\Temporada\Detalhes.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Explorar\Index.cshtml" />
+    <Content Include="Views\Explorar\DetalhesSerie.cshtml" />
+    <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\Perfil\Calendario.cshtml" />
     <Content Include="Views\Temporada\Adicionar.cshtml" />
-    <Content Include="Views\Temporada\Editar.cshtml" />
     <Content Include="Views\Temporada\Deletar.cshtml" />
+    <Content Include="Views\Temporada\Detalhes.cshtml" />
+    <Content Include="Views\Temporada\Editar.cshtml" />
+    <Content Include="Views\Temporada\Index.cshtml" />
     <Content Include="Views\Episodio\Adicionar.cshtml" />
     <Content Include="Views\Episodio\Deletar.cshtml" />
     <Content Include="Views\Episodio\Detalhes.cshtml" />
     <Content Include="Views\Episodio\Editar.cshtml" />
     <Content Include="Views\Episodio\Index.cshtml" />
-    <Content Include="Views\Episodio\TemporadaOpcaoParcial.cshtml" />
-    <Content Include="Views\Explorar\Index.cshtml" />
-    <Content Include="Views\Perfil\Index.cshtml" />
-    <Content Include="Views\Account\EmailPedido.cshtml" />
-    <Content Include="Views\Explorar\DetalhesSerie.cshtml" />
-    <Content Include="Views\Perfil\Calendario.cshtml" />
-    <Content Include="Views\Perfil\ServicoStreamming.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -433,6 +432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804072314276_serieFavoritaPerfil.resx">
       <DependentUpon>201804072314276_serieFavoritaPerfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804231859027_mudancabanco.resx">
+      <DependentUpon>201804231859027_mudancabanco.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

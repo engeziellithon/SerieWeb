@@ -1,62 +1,63 @@
-﻿@model IEnumerable<SerieWeb.Models.Episodio>
+﻿@model IEnumerable<SerieWeb.Models.Admininstracao.Episodio>
 
 @{
     ViewBag.Title = "Index";
 }
-<div class="panel-header panel-header-sm">
 
-</div>
-<div class="container">
-    <h2>Lista de Epsodios</h2>
-    <hr />
-    <p>
-        @Html.ActionLink("Adicionar", "Adicionar")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Temporada.NomeTemporada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeEpisodio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sinopse)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Video)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataExibicao)
-            </th>
-            <th>Opções</th>
-        </tr>
+<h2>Index</h2>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Temporada.NomeTemporada)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NomeEpisodio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sinopse)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Video)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataExibicao)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.EpisodioID }) |
-                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.EpisodioID }) |
-                    @Html.ActionLink("Deletar", "Deletar", new { id = item.EpisodioID })
-                </td>
-            </tr>
-        }
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.serie.NomeSerie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Temporada.NomeTemporada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeEpisodio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sinopse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Video)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataExibicao)
+        </th>
+        <th></th>
+    </tr>
 
-    </table>
-</div>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.serie.NomeSerie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Temporada.NomeTemporada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeEpisodio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sinopse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Video)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataExibicao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EpisodioID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EpisodioID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EpisodioID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using SerieWeb.Models;
+using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
-using SerieWeb.Models.SerieViewModels;
+using SerieWeb.Models.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,7 +39,7 @@ namespace SerieWeb.Controllers.Site
         [HttpGet]
         public ActionResult DetalhesSerie(int? id)
         {
-            DetalhesSerieViewModel model = new DetalhesSerieViewModel();
+            var model ="";
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -52,13 +53,13 @@ namespace SerieWeb.Controllers.Site
             }
             //Passar dados para view
 
-            model.serie = db.Series.Where(s => s.SerieID == serie.SerieID).Take(3);
+            //model.serie = db.Series.Where(s => s.SerieID == serie.SerieID).Take(3);
 
-            model.temporada = db.Temporadas.Where(t => t.SerieID == serie.SerieID);
+            //model.temporada = db.Temporadas.Where(t => t.SerieID == serie.SerieID);
 
-            model.episodio = db.Episodios.Where(e => e.Temporada.Serie.SerieID == serie.SerieID);
+            //model.episodio = db.Episodios.Where(e => e.Temporada.Serie.SerieID == serie.SerieID);
 
-            ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
+            //ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
 
             
                       

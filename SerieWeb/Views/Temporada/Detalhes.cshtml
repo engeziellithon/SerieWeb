@@ -1,34 +1,26 @@
-﻿@model SerieWeb.Models.Temporada
+﻿@model SerieWeb.Models.Admininstracao.Temporada
 
 @{
-    ViewBag.Title = "Detalhes";
+    ViewBag.Title = "Details";
 }
-<div class="container">
-    <h2>Detalhes Temporada</h2>
+
+<h2>Details</h2>
+
+<div>
+    <h4>Temporada</h4>
     <hr />
-    <div>
-        <h4></h4>
-        <dl class="dl-horizontal">
-            <dt>
-                Nome Serie
-            </dt>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeTemporada)
+        </dt>
 
-            <dd>
-                Nome Temporada
-            </dd>
+        <dd>
+            @Html.DisplayFor(model => model.NomeTemporada)
+        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.NomeTemporada)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.NomeTemporada)
-            </dd>
-
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Editar", "Editar", new { id = Model.SerieID }, new { @class = "badge badge-primary" }) |
-        @Html.ActionLink("Voltar para lista de Temporadas", "Index", new object { }, new { @class = "badge badge-secondary" })
-    </p>
+    </dl>
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TemporadaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

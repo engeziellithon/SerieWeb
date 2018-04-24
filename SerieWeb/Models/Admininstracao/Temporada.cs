@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace SerieWeb.Models
+namespace SerieWeb.Models.Admininstracao
 {
     [Table(name: "Temporada")]
     public class Temporada 
@@ -16,12 +16,6 @@ namespace SerieWeb.Models
         [Required()]
         [MaxLength(30)]
         public String NomeTemporada { get; set; }
-
-        public int SerieID { get; set; }
-        [ForeignKey(name: "SerieID")]
-        public virtual Serie Serie { get; set; }
-
-        [ForeignKey("TemporadaID")]
-        public ICollection<Episodio> Episodio { get; set; }
+        
     }
 }

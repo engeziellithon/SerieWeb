@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace SerieWeb.Models
+namespace SerieWeb.Models.Admininstracao
 {
     [Table(name:"Episodio")]
     public class Episodio
@@ -24,6 +24,10 @@ namespace SerieWeb.Models
         public string Video { get; set; }
 
         public DateTime DataExibicao { get; set; }
+
+        public int SerieID { get; set; }
+        [ForeignKey(name: "SerieID")]
+        public virtual Serie serie { get; set; }
 
         public int TemporadaID { get; set; }
         [ForeignKey(name: "TemporadaID")]

@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using SerieWeb.Models;
+using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
-using SerieWeb.Models.Perfil;
+
 
 namespace SerieWeb.Controllers.Usuario
 {
@@ -14,11 +16,11 @@ namespace SerieWeb.Controllers.Usuario
         [Authorize]
         public ActionResult Index()
         {
-            PerfilViewModel model = new PerfilViewModel();
+            Serie model = new Serie();
             var user = User.Identity.GetUserId();
             
             var PerfilSerieId = db.UsuarioPerfil.Where(u => u.UserId == user && u.SerieFavorita == true).Select(s => s.SerieID).ToList();
-            model.serie = db.Series.Where(s => PerfilSerieId.Contains(s.SerieID)).ToList();
+           // model.serie = db.Series.Where(s => PerfilSerieId.Contains(s.SerieID)).ToList();
             
             return View(model);
         }

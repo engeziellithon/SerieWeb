@@ -1,79 +1,76 @@
 ﻿using System;
 using System.Data;
-using System.Linq;
+using System.Data.Entity;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
+using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
-using SerieWeb.Models;
 
 namespace SerieWeb.Controllers.Admininstracao
 {
     public class SerieController : Controller
     {
+        #region Banco de dados
         private ApplicationDbContext db = new ApplicationDbContext();
+        #endregion
 
         #region Index
-        // GET: Serie
-        public ActionResult Index()
+
+        public async Task<ActionResult> Index()
         {
-            return View(db.Series.ToList());
+            return View(await db.Series.ToListAsync());
         }
         #endregion
 
         #region Detalhes
-        // GET: Serie/Details/5
-        public ActionResult Detalhes(int? id)
+        public async Task<ActionResult> Detalhes(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = db.Series.Find(id);
-
+            Serie serie = await db.Series.FindAsync(id);
             if (serie == null)
             {
                 return HttpNotFound();
             }
-
             return View(serie);
         }
         #endregion
 
-        #region Adicionar serie 
-        // GET: Serie/Adicionar
+        #region Adicionar Série
+        [HttpGet]
         public ActionResult Adicionar()
         {
             return View();
         }
 
-        // POST: Serie/Adicionar
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,Sinopse,Nota")] Serie serie)
+        public async Task<ActionResult> Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,ImagemBanner,Sinopse,Nota")] Serie serie)
         {
             if (ModelState.IsValid)
             {
                 db.Series.Add(serie);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
             return View(serie);
         }
+
         #endregion
 
-        #region Editar serie 
-        [HttpGet]
-        // GET: Serie/Edit/5
-        public ActionResult Editar(int? id)
+        #region Editar Série
+        
+        public async Task<ActionResult> Editar(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = db.Series.Find(id);
+            Serie serie = await db.Series.FindAsync(id);
             if (serie == null)
             {
                 return HttpNotFound();
@@ -81,17 +78,17 @@ namespace SerieWeb.Controllers.Admininstracao
             return View(serie);
         }
 
+        
         [HttpPost, ActionName("Editar")]
         [ValidateAntiForgeryToken]
-        public ActionResult EditarConfirmar(int? id)
+        public async Task<ActionResult> EditarConfirmar(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-
-            var Serie = db.Series.Find(id);
+            var Serie = await db.Series.FindAsync(id);
             try
             {
                 if (TryUpdateModel(Serie, "",
@@ -115,20 +112,19 @@ namespace SerieWeb.Controllers.Admininstracao
                 ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
             }
 
-            
+
             return View(Serie);
         }
         #endregion
 
-        #region Deletar Serie 
-        // GET: Serie/Delete/5
-        public ActionResult Deletar(int? id)
+        #region Deletar Serie
+        public async Task<ActionResult> Deletar(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = db.Series.Find(id);
+            Serie serie = await db.Series.FindAsync(id);
             if (serie == null)
             {
                 return HttpNotFound();
@@ -137,13 +133,13 @@ namespace SerieWeb.Controllers.Admininstracao
         }
 
         // POST: Serie/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Deletar")]
         [ValidateAntiForgeryToken]
-        public ActionResult Deletar(int id)
+        public async Task<ActionResult> DeletarConfirmacao(int id)
         {
-            Serie serie = db.Series.Find(id);
+            Serie serie = await db.Series.FindAsync(id);
             db.Series.Remove(serie);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
         #endregion
@@ -158,7 +154,5 @@ namespace SerieWeb.Controllers.Admininstracao
             base.Dispose(disposing);
         }
         #endregion
-
-        
     }
 }

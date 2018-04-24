@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
 
 
-namespace SerieWeb.Models
+namespace SerieWeb.Models.Usuario
 {
 
     [Table(name: "UsuarioPerfil")]

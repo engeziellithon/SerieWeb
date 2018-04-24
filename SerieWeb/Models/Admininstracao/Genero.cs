@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SerieWeb.Models
+namespace SerieWeb.Models.Admininstracao
 {
     public class Genero
     {
