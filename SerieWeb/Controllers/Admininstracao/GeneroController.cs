@@ -14,14 +14,20 @@ namespace SerieWeb.Controllers.Admininstracao
 {
     public class GeneroController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
 
+        #region Banco
+        private ApplicationDbContext db = new ApplicationDbContext();
+        #endregion
+
+        #region Index
         // GET: Genero
         public async Task<ActionResult> Index()
         {
             return View(await db.Generos.ToListAsync());
         }
+        #endregion
 
+        #region Detalhes
         // GET: Genero/Details/5
         public async Task<ActionResult> Detalhes(int? id)
         {
@@ -36,7 +42,9 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             return View(genero);
         }
+        #endregion
 
+        #region Adicionar
         // GET: Genero/Create
         public ActionResult Adicionar()
         {
@@ -59,7 +67,9 @@ namespace SerieWeb.Controllers.Admininstracao
 
             return View(genero);
         }
+        #endregion
 
+        #region Editar
         // GET: Genero/Edit/5
         public async Task<ActionResult> Editar(int? id)
         {
@@ -90,7 +100,9 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             return View(genero);
         }
+        #endregion
 
+        #region Deletar
         // GET: Genero/Delete/5
         public async Task<ActionResult> Deletar(int? id)
         {
@@ -116,7 +128,9 @@ namespace SerieWeb.Controllers.Admininstracao
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        #endregion
 
+        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -125,5 +139,6 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             base.Dispose(disposing);
         }
+        #endregion
     }
 }
