@@ -1,10 +1,42 @@
 ﻿@model SerieWeb.Models.Admininstracao.ServicoStreaming
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
+<div class="panel-header panel-header-sm">
 
-<h2>Details</h2>
+</div>
+<div class="container">
+    <div class="content" style="padding: 0; min-height: calc(100vh - 123px); margin-top: -50px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Detalhes dos Serviços</h5>
+                    </div>
+                    <div class="card-body">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.NomeServicoStreaming)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.NomeServicoStreaming)
+                            </dd>
+
+                        </dl>
+                        <div class="float-right" style="margin-right:25px">
+                            @Html.ActionLink("Voltar", "Index", new object { }, new { @class = "badge badge-secondary" })
+                            @Html.ActionLink("Editar", "Editar", new { id = Model.ServicoStreamingID }, new { @class = "badge badge-primary" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<h2>Details</h2>
 
 <div>
     <h4>ServicoStreaming</h4>
@@ -23,4 +55,4 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ServicoStreamingID }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

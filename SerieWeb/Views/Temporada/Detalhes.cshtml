@@ -1,26 +1,38 @@
 ﻿@model SerieWeb.Models.Admininstracao.Temporada
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
+<div class="panel-header panel-header-sm">
 
-<h2>Details</h2>
-
-<div>
-    <h4>Temporada</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeTemporada)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NomeTemporada)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TemporadaID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="container">
+    <div class="content" style="padding: 0; min-height: calc(100vh - 123px); margin-top: -50px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Detalhes da Temporada</h5>
+                    </div>
+                    <div class="card-body">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.NomeTemporada)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.NomeTemporada)
+                            </dd>
+
+                        </dl>
+                        <div class="float-right" style="margin-right:25px">
+                            @Html.ActionLink("Voltar", "Index", new object { }, new { @class = "badge badge-secondary" })
+                            @Html.ActionLink("Editar", "Editar", new { id = Model.TemporadaID }, new { @class = "badge badge-primary" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
