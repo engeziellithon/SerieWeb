@@ -9,21 +9,22 @@ namespace SerieWeb.Controllers.Admininstracao
 {
     public class EpisodioController : Controller
     {
-
         #region Banco
         private ApplicationDbContext db = new ApplicationDbContext();
         #endregion
 
         #region Index
+
+        #endregion
+
+
         // GET: Episodio
         public async Task<ActionResult> Index()
         {
             var episodios = db.Episodios.Include(e => e.serie).Include(e => e.Temporada);
             return View(await episodios.ToListAsync());
         }
-        #endregion
 
-        #region Detalhes
         // GET: Episodio/Details/5
         public async Task<ActionResult> Detalhes(int? id)
         {
@@ -38,9 +39,7 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             return View(episodio);
         }
-        #endregion
 
-        #region Adicionar
         // GET: Episodio/Create
         public ActionResult Adicionar()
         {
@@ -67,9 +66,7 @@ namespace SerieWeb.Controllers.Admininstracao
             ViewBag.TemporadaID = new SelectList(db.Temporadas, "TemporadaID", "NomeTemporada", episodio.TemporadaID);
             return View(episodio);
         }
-        #endregion
 
-        #region Editar
         // GET: Episodio/Edit/5
         public async Task<ActionResult> Editar(int? id)
         {
@@ -104,9 +101,7 @@ namespace SerieWeb.Controllers.Admininstracao
             ViewBag.TemporadaID = new SelectList(db.Temporadas, "TemporadaID", "NomeTemporada", episodio.TemporadaID);
             return View(episodio);
         }
-        #endregion
 
-        #region Deletar   
         // GET: Episodio/Delete/5
         public async Task<ActionResult> Deletar(int? id)
         {
@@ -132,9 +127,7 @@ namespace SerieWeb.Controllers.Admininstracao
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        #endregion
 
-        #region Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -143,6 +136,5 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             base.Dispose(disposing);
         }
-        #endregion
     }
 }

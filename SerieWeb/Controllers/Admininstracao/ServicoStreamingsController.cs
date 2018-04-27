@@ -14,20 +14,14 @@ namespace SerieWeb.Controllers.Admininstracao
 {
     public class ServicoStreamingsController : Controller
     {
-
-        #region Banco
         private ApplicationDbContext db = new ApplicationDbContext();
-        #endregion
 
-        #region Index
         // GET: ServicoStreamings
         public async Task<ActionResult> Index()
         {
             return View(await db.ServicosStreaming.ToListAsync());
         }
-        #endregion
 
-        #region Detalhes
         // GET: ServicoStreamings/Details/5
         public async Task<ActionResult> Detalhes(int? id)
         {
@@ -42,9 +36,7 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             return View(servicoStreaming);
         }
-        #endregion
 
-        #region Adicionar
         // GET: ServicoStreamings/Create
         public ActionResult Adicionar()
         {
@@ -67,9 +59,7 @@ namespace SerieWeb.Controllers.Admininstracao
 
             return View(servicoStreaming);
         }
-        #endregion
 
-        #region Editar
         // GET: ServicoStreamings/Edit/5
         public async Task<ActionResult> Editar(int? id)
         {
@@ -101,9 +91,6 @@ namespace SerieWeb.Controllers.Admininstracao
             return View(servicoStreaming);
         }
 
-        #endregion
-
-        #region Deletar
         // GET: ServicoStreamings/Delete/5
         public async Task<ActionResult> Deletar(int? id)
         {
@@ -129,9 +116,6 @@ namespace SerieWeb.Controllers.Admininstracao
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        #endregion
-
-        #region Dispose
 
         protected override void Dispose(bool disposing)
         {
@@ -141,6 +125,5 @@ namespace SerieWeb.Controllers.Admininstracao
             }
             base.Dispose(disposing);
         }
-        #endregion
     }
 }

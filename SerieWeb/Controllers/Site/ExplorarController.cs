@@ -16,16 +16,12 @@ namespace SerieWeb.Controllers.Site
 {
     public class ExplorarController : Controller
     {
-        #region Banco
         private ApplicationDbContext db = new ApplicationDbContext();
-        #endregion
-
-        #region Explorar
         // GET: Explorar
         public ActionResult Index(string pesquisa)
         {
-
-            List<Serie> model = new List<Serie>();
+            
+            List<Serie> model = new List<Serie>();            
             if (pesquisa != null)
             {
                 model = db.Series.Where(x => x.NomeSerie.Contains(pesquisa)).ToList();
@@ -33,12 +29,10 @@ namespace SerieWeb.Controllers.Site
             else
             {
                 model = db.Series.ToList();
-            }
-
+            }          
+                 
             return View(model);
-        }
-        #endregion
-
+        }        
 
         #region Detalhes dos serie
         // GET: Serie/DetailsUsuario/5
