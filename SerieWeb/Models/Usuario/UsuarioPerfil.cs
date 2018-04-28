@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNet.Identity.EntityFramework;
 using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
-
 
 namespace SerieWeb.Models.Usuario
 {
@@ -15,10 +13,12 @@ namespace SerieWeb.Models.Usuario
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UsuarioPerfilID { get; set; }
 
+        [Required()]
         public int SerieID { get; set; }
         [ForeignKey(name: "SerieID")]
         public virtual Serie Serie { get; set; }
-       
+
+        [Required()]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 

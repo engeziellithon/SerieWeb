@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using SerieWeb.Models;
 using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
 
@@ -16,13 +15,13 @@ namespace SerieWeb.Controllers.Usuario
         [Authorize]
         public ActionResult Index()
         {
-            Serie model = new Serie();
+           
             var user = User.Identity.GetUserId();
             
             var PerfilSerieId = db.UsuarioPerfil.Where(u => u.UserId == user && u.SerieFavorita == true).Select(s => s.SerieID).ToList();
            // model.serie = db.Series.Where(s => PerfilSerieId.Contains(s.SerieID)).ToList();
             
-            return View(model);
+            return View();
         }
 
         public ActionResult Calendario()

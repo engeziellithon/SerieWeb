@@ -197,3 +197,58 @@
 }
 
 /*#endregion */
+
+/*#region Home Index */
+#HomePesquisa {
+    background-color: rgba(255, 255, 255, 0.7098039215686275);
+    border:0;
+    color: black;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+    #HomePesquisa:hover {
+        border: 1px;
+        background-color: #fff;
+    }
+    #HomePesquisa::-moz-placeholder {
+        color: #000;
+        font-weight: bold;
+        filter: alpha(opacity=100);
+    }
+
+    #HomePesquisa:-moz-placeholder {
+        color: #000;
+        font-weight: bold;
+        filter: alpha(opacity=100);
+    }
+
+    #HomePesquisa::-webkit-input-placeholder {
+        color: #000;
+        font-weight: bold;
+        filter: alpha(opacity=100);
+    }
+
+    #HomePesquisa:-ms-input-placeholder {
+        color: #000;
+        font-weight: bold;
+        filter: alpha(opacity=100);
+    }
+
+.home-image {
+    background-image: url('../../Content/SVG/capa.jpg');
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #3c3c3c !important;
+    background-blend-mode: multiply;
+}
+
+.BtnPesquisa {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+
+/*#endregion */

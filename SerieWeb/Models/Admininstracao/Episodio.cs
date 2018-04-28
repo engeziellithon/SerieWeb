@@ -12,17 +12,24 @@ namespace SerieWeb.Models.Admininstracao
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EpisodioID { get; set; }
 
-        [Required()]
-        [MaxLength(30)]
+        [Required()]       
+        [StringLength(40, MinimumLength = 4)]
+        [Display(Name = "Nome da Episódio")]
         public String NomeEpisodio { get; set; }
 
-        [MaxLength(255)]
+        [DataType(DataType.MultilineText)]
+        [StringLength(400, MinimumLength = 50)]
         public string Sinopse { get; set; }
 
-
+        [Url]
+        [DataType(DataType.Url)]
         [MaxLength(255)]
+        [RegularExpression("https://www.youtube.com/watch\\?v=.*", ErrorMessage = "Adicione uma Url do Youtube")]
         public string Video { get; set; }
-
+        
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
         public DateTime DataExibicao { get; set; }
 
         public int SerieID { get; set; }

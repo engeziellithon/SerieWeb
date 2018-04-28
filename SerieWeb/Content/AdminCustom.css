@@ -5,7 +5,8 @@
     padding-top: 80px;
     padding-bottom: 45px;
     background: #141E30;
-    /* fallback for old browsers */
+
+    /* Navegadores Antigos */
     background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
     background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
     position: relative;
@@ -82,9 +83,6 @@
 /*#endregion */
 
 /*#region Form */
-
-
-
 .form-control::-moz-placeholder {
     color: #DDDDDD;
     opacity: 1;
@@ -112,7 +110,7 @@
 .form-control {
     background-color: transparent;
     border: 2px solid rgba(0, 0, 0, 0.16);
-    border-radius: 30px;
+    border-radius: 18px;
     color: #2c2c2c;
     line-height: normal;
     font-size: 0.8571em;
@@ -123,7 +121,7 @@
 }
 
     .form-control:focus {
-        border: 1px solid #f96332;
+        border: 1px solid #0094ff;
         -webkit-box-shadow: none;
         box-shadow: none;
         outline: 0 !important;

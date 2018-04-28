@@ -4,29 +4,39 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="panel-header panel-header-sm">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Genero</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NomeGenero)
-        </dt>
+</div>
+<div class="container">
+    <div class="content" style="padding: 0; min-height: calc(100vh - 123px); margin-top: -50px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Deletar Gênero</h5>
+                    </div>
+                    <div class="card-body">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.NomeGenero)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.NomeGenero)
+                            </dd>
+                        </dl>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.NomeGenero)
-        </dd>
+                            <div class="form-actions no-color float-right" style="margin-right:25px">
 
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                                @Html.ActionLink("Voltar", "Index", new object { }, new { @class = "badge badge-secondary" })
+                                <input type="submit" value="Deletar" class="btn btn-danger" />
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>

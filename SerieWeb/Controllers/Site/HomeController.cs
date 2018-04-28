@@ -1,6 +1,4 @@
-﻿using SerieWeb.Models.Identity;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace SerieWeb.Controllers
 {

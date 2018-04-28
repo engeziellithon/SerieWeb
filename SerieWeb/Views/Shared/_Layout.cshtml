@@ -6,12 +6,10 @@
     <meta name="description" content="Serieweb">
     <meta name="author" content="engeziellithon">
     <title>@ViewBag.Title - SerieWeb</title>
-    <link rel="manifest" href="~/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="~/Content/Icons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel='shortcut icon' type='image/x-icon' href='~/Content/Icons/favicon.ico' />
+
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -32,7 +30,8 @@
                         @Html.ActionLink("Serie", "Index", "Serie", new { area = "" }, new { @class = "dropdown-item" })
                         @Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "dropdown-item" })
                         @Html.ActionLink("Episodio", "Index", "Episodio", new { area = "" }, new { @class = "dropdown-item" })
-
+                        @Html.ActionLink("Gênero", "Index", "Genero", new { area = "" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Serviço de Streaming", "Index", "ServicoStreamings", new { area = "" }, new { @class = "dropdown-item" })                       
                     </div>
                 </li>
                 <li class="nav-item">
@@ -49,8 +48,6 @@
     <main role="main">
         @RenderBody()
     </main>
-
-    @Scripts.Render("~/bundles/ServiceWorker")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

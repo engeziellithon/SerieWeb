@@ -33,7 +33,7 @@ namespace SerieWeb.Models.Identity
         public virtual DbSet<UsuarioPerfil> UsuarioPerfil { get; set; }
         public virtual DbSet<ServicoStreaming> ServicosStreaming { get; set; }
         public virtual DbSet<Genero> Generos { get; set; }
-
+       
 
         public static ApplicationDbContext Create()
         {

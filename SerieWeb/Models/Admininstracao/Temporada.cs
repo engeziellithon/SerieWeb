@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,8 +13,7 @@ namespace SerieWeb.Models.Admininstracao
         public int TemporadaID { get; set; }
 
         [Required()]
-        [MaxLength(30)]
-        public String NomeTemporada { get; set; }
-        
+        [StringLength(15, MinimumLength = 9)]
+        public String NomeTemporada { get; set; }        
     }
 }

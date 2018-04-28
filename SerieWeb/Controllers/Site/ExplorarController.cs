@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using SerieWeb.Models;
 using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
 using SerieWeb.Models.Usuario;
@@ -24,7 +23,6 @@ namespace SerieWeb.Controllers.Site
         // GET: Explorar
         public ActionResult Index(string pesquisa)
         {
-
             List<Serie> model = new List<Serie>();
             if (pesquisa != null)
             {
@@ -45,7 +43,7 @@ namespace SerieWeb.Controllers.Site
         [HttpGet]
         public ActionResult DetalhesSerie(int? id)
         {
-            var model ="";
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -57,23 +55,14 @@ namespace SerieWeb.Controllers.Site
             {
                 return HttpNotFound();
             }
-            //Passar dados para view
 
-            //model.serie = db.Series.Where(s => s.SerieID == serie.SerieID).Take(3);
+            List<Episodio> episodio = new List<Episodio>();
+            episodio = db.Episodios.Where(e => e.SerieID == serie.SerieID).OrderBy(c=>c.Temporada.NomeTemporada).ToList();
+            ViewBag.Episodios = episodio;
 
-            //model.temporada = db.Temporadas.Where(t => t.SerieID == serie.SerieID);
+            ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
 
-            //model.episodio = db.Episodios.Where(e => e.Temporada.Serie.SerieID == serie.SerieID);
-
-            //ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
-
-            
-                      
-
-            
-
-
-            return View(model);
+            return View(serie);
         }
         #endregion
 
@@ -149,7 +138,7 @@ namespace SerieWeb.Controllers.Site
         }
 
         [HttpPost]
-        public ActionResult InteresseSerie (int IdSerie)
+        public ActionResult InteresseSerie(int IdSerie)
         {
             #region verifica se esta logando / Pega id do usuario logado / verifica se a serie existe.
 
@@ -219,6 +208,6 @@ namespace SerieWeb.Controllers.Site
             return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
         }
 
-       
+
     }
 }

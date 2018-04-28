@@ -8,7 +8,7 @@
 </div>
 <div class="container-fluid-no-padding">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="" style="margin-left:80px">
+        <div style="margin-left:80px">
             <ul class="navbar-nav">
                 @Html.ActionLink("Perfil", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
                 @Html.ActionLink("Calendario", "CalendarioSerie", "Perfil", new { area = "" }, new { @class = "nav-link" })
@@ -19,11 +19,6 @@
 </div>
 <div class="container containerDetalhesSerie">
     <div class="row">
-        @foreach (var item in Model.serie)
-        {
-            <div class="col" style="background-color:black; height:240px;margin:20px;">
-                @item.NomeSerie
-            </div>
-        }
+       
     </div>
 </div>

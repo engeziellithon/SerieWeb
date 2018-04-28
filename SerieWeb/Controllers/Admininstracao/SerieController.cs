@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Data.Entity;
-using System.Threading.Tasks;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
@@ -48,7 +48,7 @@ namespace SerieWeb.Controllers.Admininstracao
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,ImagemBanner,Sinopse,Nota")] Serie serie)
+        public async Task<ActionResult> Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,Trailer,Sinopse,Nota")] Serie serie)
         {
             if (ModelState.IsValid)
             {

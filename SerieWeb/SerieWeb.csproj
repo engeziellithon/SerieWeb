@@ -232,6 +232,26 @@
     <Compile Include="Migrations\201804241214183_TableGenerosAndServicoStreaming.Designer.cs">
       <DependentUpon>201804241214183_TableGenerosAndServicoStreaming.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804281321007_trailer.cs" />
+    <Compile Include="Migrations\201804281321007_trailer.Designer.cs">
+      <DependentUpon>201804281321007_trailer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804281823477_AdicionandoValidacao.cs" />
+    <Compile Include="Migrations\201804281823477_AdicionandoValidacao.Designer.cs">
+      <DependentUpon>201804281823477_AdicionandoValidacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804281835425_AdicionandoValidacaoEpisodio.cs" />
+    <Compile Include="Migrations\201804281835425_AdicionandoValidacaoEpisodio.Designer.cs">
+      <DependentUpon>201804281835425_AdicionandoValidacaoEpisodio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804281954318_TableSerieServicoGenero.cs" />
+    <Compile Include="Migrations\201804281954318_TableSerieServicoGenero.Designer.cs">
+      <DependentUpon>201804281954318_TableSerieServicoGenero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804282004539_GeneroSerieServico.cs" />
+    <Compile Include="Migrations\201804282004539_GeneroSerieServico.Designer.cs">
+      <DependentUpon>201804282004539_GeneroSerieServico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
     <Compile Include="Models\Admininstracao\Genero.cs" />
@@ -254,33 +274,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Datatables.css" />
-    <Content Include="Content\Icons\android-icon-144x144.png" />
-    <Content Include="Content\Icons\android-icon-192x192.png" />
-    <Content Include="Content\Icons\android-icon-36x36.png" />
-    <Content Include="Content\Icons\android-icon-48x48.png" />
-    <Content Include="Content\Icons\android-icon-72x72.png" />
-    <Content Include="Content\Icons\android-icon-96x96.png" />
-    <Content Include="Content\Icons\apple-icon-114x114.png" />
-    <Content Include="Content\Icons\apple-icon-120x120.png" />
-    <Content Include="Content\Icons\apple-icon-144x144.png" />
-    <Content Include="Content\Icons\apple-icon-152x152.png" />
-    <Content Include="Content\Icons\apple-icon-180x180.png" />
-    <Content Include="Content\Icons\apple-icon-57x57.png" />
-    <Content Include="Content\Icons\apple-icon-60x60.png" />
-    <Content Include="Content\Icons\apple-icon-72x72.png" />
-    <Content Include="Content\Icons\apple-icon-76x76.png" />
-    <Content Include="Content\Icons\apple-icon-precomposed.png" />
-    <Content Include="Content\Icons\apple-icon.png" />
-    <Content Include="Content\Icons\browserconfig.xml" />
-    <Content Include="Content\Icons\favicon-16x16.png" />
-    <Content Include="Content\Icons\favicon-32x32.png" />
-    <Content Include="Content\Icons\favicon-96x96.png" />
     <Content Include="Content\Icons\favicon.ico" />
-    <Content Include="Content\Icons\ms-icon-144x144.png" />
-    <Content Include="Content\Icons\ms-icon-150x150.png" />
-    <Content Include="Content\Icons\ms-icon-310x310.png" />
-    <Content Include="Content\Icons\ms-icon-70x70.png" />
-    <Content Include="Content\SVG\home.jpg" />
+    <Content Include="Content\SVG\capa.jpg" />
+    <Content Include="Content\SVG\pesquisa.svg" />
     <Content Include="Content\SVG\star.svg" />
     <Content Include="Content\SVG\like.svg" />
     <Content Include="Content\SVG\favorito.svg" />
@@ -338,8 +334,6 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\ServiceWorker\App.js" />
-    <Content Include="Scripts\ServiceWorker\Service-Worker.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -455,6 +449,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804241214183_TableGenerosAndServicoStreaming.resx">
       <DependentUpon>201804241214183_TableGenerosAndServicoStreaming.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281321007_trailer.resx">
+      <DependentUpon>201804281321007_trailer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281823477_AdicionandoValidacao.resx">
+      <DependentUpon>201804281823477_AdicionandoValidacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281835425_AdicionandoValidacaoEpisodio.resx">
+      <DependentUpon>201804281835425_AdicionandoValidacaoEpisodio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804281954318_TableSerieServicoGenero.resx">
+      <DependentUpon>201804281954318_TableSerieServicoGenero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804282004539_GeneroSerieServico.resx">
+      <DependentUpon>201804282004539_GeneroSerieServico.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

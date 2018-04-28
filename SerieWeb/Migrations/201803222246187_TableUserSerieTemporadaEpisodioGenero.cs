@@ -1,8 +1,7 @@
 namespace SerieWeb.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class TableUserSerieTemporadaEpisodioGenero : DbMigration
     {
         public override void Up()
