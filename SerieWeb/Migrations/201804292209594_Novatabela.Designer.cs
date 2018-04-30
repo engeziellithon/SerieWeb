@@ -7,13 +7,13 @@ namespace SerieWeb.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class TableSerieServicoGenero : IMigrationMetadata
+    public sealed partial class Novatabela : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TableSerieServicoGenero));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Novatabela));
         
         string IMigrationMetadata.Id
         {
-            get { return "201804281954318_TableSerieServicoGenero"; }
+            get { return "201804292209594_Novatabela"; }
         }
         
         string IMigrationMetadata.Source

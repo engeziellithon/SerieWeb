@@ -8,13 +8,15 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
-
+using System.Web.UI.WebControls;
 
 namespace SerieWeb.Controllers.Site
 {
     public class ExplorarController : Controller
     {
+       
         #region Banco
         private ApplicationDbContext db = new ApplicationDbContext();
         #endregion
@@ -26,13 +28,12 @@ namespace SerieWeb.Controllers.Site
             List<Serie> model = new List<Serie>();
             if (pesquisa != null)
             {
-                model = db.Series.Where(x => x.NomeSerie.Contains(pesquisa)).ToList();
+                model = db.Series.Where(x => x.NomeSerie.Contains(pesquisa)).Take(20).ToList();
             }
             else
             {
-                model = db.Series.ToList();
+                model = db.Series.OrderBy(d =>d.Nota).Take(20).ToList();
             }
-
             return View(model);
         }
         #endregion
@@ -48,20 +49,28 @@ namespace SerieWeb.Controllers.Site
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+            
             Serie serie = db.Series.Find(id);
-
+            List<Episodio> episodio = new List<Episodio>();
             if (serie == null)
             {
                 return HttpNotFound();
             }
+            if (serie.Trailer != null)
+            {
+                ViewBag.TrailerCompartilhar = "";
+                string trailer = serie.Trailer;
+                bool compartilharYoutube = Regex.IsMatch(serie.Trailer, @"^(https:\/\/)youtu(.be)?(\.com)?\/.+");
 
-            List<Episodio> episodio = new List<Episodio>();
+                if (compartilharYoutube == true)
+                {
+                    var TrailerCompartilhar = trailer.Substring(trailer.Length - 11);
+                    ViewBag.TrailerCompartilhar = TrailerCompartilhar;
+                }
+            }            
             episodio = db.Episodios.Where(e => e.SerieID == serie.SerieID).OrderBy(c=>c.Temporada.NomeTemporada).ToList();
             ViewBag.Episodios = episodio;
-
             ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
-
             return View(serie);
         }
         #endregion

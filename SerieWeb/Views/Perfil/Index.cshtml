@@ -17,8 +17,22 @@
         </div>
     </nav>
 </div>
-<div class="container containerDetalhesSerie">
+@*<div class="container containerDetalhesSerie">
     <div class="row">
-       
+
     </div>
+</div>*@
+<div class="container">
+    <div class="row">@Html.Partial("_Recomendado")</div>
+
+
+        <div class="row">@Html.Partial("_Favorito")</div>
+
+        <div class="row">@Html.Partial("_Calendario")</div>
+
+
+        <div class="row">@Html.Partial("_Servico")</div>
 </div>
+
+
+

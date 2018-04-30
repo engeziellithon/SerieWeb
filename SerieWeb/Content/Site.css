@@ -121,6 +121,14 @@
 /*----Explorar index----*/
 .explorarCard {
     border: 0 none transparent;
+    
+}
+#DivExplorarCard {
+    margin-bottom: 10px;
+}
+#desktop{
+    margin-top:25px;
+    margin-bottom:25px;
 }
 
 .row.equal-height {
@@ -188,12 +196,13 @@
 
 /*#region Admin */
 
-.control-label{
-    margin-left:18px;
-    padding-right:18px;
+.control-label {
+    margin-left: 18px;
+    padding-right: 18px;
 }
+
 .formepisodio {
-    height:  40px;
+    height: 40px;
 }
 
 /*#endregion */
@@ -201,15 +210,17 @@
 /*#region Home Index */
 #HomePesquisa {
     background-color: rgba(255, 255, 255, 0.7098039215686275);
-    border:0;
+    border: 0;
     color: black;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
+
     #HomePesquisa:hover {
         border: 1px;
         background-color: #fff;
     }
+
     #HomePesquisa::-moz-placeholder {
         color: #000;
         font-weight: bold;
@@ -252,3 +263,20 @@
 
 
 /*#endregion */
+
+
+button.multiselect.dropdown-toggle.btn.btn-Light {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 43px;
+    background-color: transparent;
+    border: 2px solid rgba(0, 0, 0, 0.16);
+    border-radius: 18px;
+    color: #2c2c2c;
+}
+.multiselect-container.dropdown-menu.show {
+    transform: translate3d(25px, 43px, 0px) !important;
+    min-width: 16rem !important;
+    margin: 0 !important;
+    padding-left: 25px !important;
+}

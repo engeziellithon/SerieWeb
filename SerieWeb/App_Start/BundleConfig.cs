@@ -24,14 +24,19 @@ namespace SerieWeb
                       "~/Scripts/respond.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
-                      "~/Scripts/datatables.min.js"));                     
+                      "~/Scripts/datatables.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/BootstrapMultiselect").Include(
+                      "~/Scripts/BootstrapMultiselect/BootstrapMultiselect.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/multiselect").Include(
+                                "~/Content/multiselect/multiselect.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
                       "~/Content/AdminCustom.css",
-                      "~/Content/Datatables.css"));
-            
+                      "~/Content/Datatables.css"));            
         }
     }
 }

@@ -2,6 +2,10 @@
 
 @{
     ViewBag.Title = "Adicionar Série";
+    var Generos = (List<SerieWeb.Models.Admininstracao.Genero>)ViewBag.Generos;
+    var Servicos = (List<SerieWeb.Models.Admininstracao.ServicoStreaming>)ViewBag.Servicos;
+    var count = 0;
+    @Scripts.Render("~/bundles/popper")
 }
 <div class="panel-header panel-header-sm">
 
@@ -16,23 +20,23 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="title">Adicionar Série</h5>
+                            <h5 class="title font-weight-bold">Adicionar Série</h5>
                         </div>
                         <div class="card-body">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="row">
-                                <div class="col-md-8 px-1">
+                                <div class="col-md-6 px-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.NomeSerie, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.NomeSerie, htmlAttributes: new { @class = "control-label col-md-8 font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.NomeSerie, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.NomeSerie, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 px-1">
+                                <div class="col-md-6 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Nota, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.Nota, htmlAttributes: new { @class = "control-label col-md-8 font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.Nota, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.Nota, "", new { @class = "text-danger" })
@@ -43,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-12  pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Sinopse, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.Sinopse, htmlAttributes: new { @class = "control-label col-md-8 font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.Sinopse, new { htmlAttributes = new { @class = "form-control", rows = "4", cols = "80" } })
                                             @Html.ValidationMessageFor(model => model.Sinopse, "", new { @class = "text-danger" })
@@ -54,7 +58,7 @@
                             <div class="row">
                                 <div class="col-md-12 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Imagem, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.Imagem, htmlAttributes: new { @class = "control-label col-md-8 font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.Imagem, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.Imagem, "", new { @class = "text-danger" })
@@ -65,7 +69,7 @@
                             <div class="row">
                                 <div class="col-md-12 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Trailer, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.Trailer, htmlAttributes: new { @class = "control-label col-md-8 font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.Trailer, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.Trailer, "", new { @class = "text-danger" })
@@ -73,26 +77,36 @@
                                     </div>
                                 </div>
                             </div>
-                            @*<div class="row">
-                                <div class="col-md-6 px-1">
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model., htmlAttributes: new { @class = "control-label" })
+                                        <label class="control-label col-md-8 font-weight-bold">Gênero</label>
                                         <div class="col-md-12">
-                                            @Html.DropDownList("GeneroID", null, htmlAttributes: new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.GeneroID, "", new { @class = "text-danger" })
+                                            <select class="custom-select col-md-12" id="Generos" name="ListGeneros" multiple="multiple">
+                                                @foreach (var item in Generos)
+                                                {
+                                                    <option value="@item.GeneroID">@item.NomeGenero</option>
+                                                    count++;
+                                                }
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 px-1">
+                                <div class="col-md-6 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.ServicoID, htmlAttributes: new { @class = "control-label" })
+                                        <label class="control-label col-md-12 font-weight-bold">Servico de Streaming</label>
                                         <div class="col-md-12">
-                                            @Html.DropDownList("ServicoID", null, htmlAttributes: new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.ServicoID, "", new { @class = "text-danger" })
+                                            <select class="custom-select col-md-12 " id="Servicos" name="ListServicos" multiple="multiple">
+                                                @foreach (var item in Servicos)
+                                                {
+                                                    <option value="@item.ServicoStreamingID">@item.NomeServicoStreaming</option>
+                                                    count++;
+                                                }
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                            </div>*@
+                            </div>
                         </div>
                         <div class="form-group">
                             <div>
@@ -112,4 +126,70 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/BootstrapMultiselect")
+    <script>
+        $(document).ready(function () {
+            $('#Servicos').multiselect({
+                includeResetOption: true,
+                maxHeight: 100,
+                buttonClass: 'btn btn-Light col-md-12',
+                buttonContainer: '<div />',
+                buttonText: function (options, select) {
+                    if (options.length === 0) {
+                        return 'Nenhuma Serviços selecionado';
+                    }
+                    else if (options.length == @count) {
+                        return 'Todas os Serviços Selecionadas';
+                    }
+                    else if (options.length > 3) {
+                        return '' + options.length +' Serviços Selecionados';
+                    }
+                    else {
+                        var labels = [];
+                        options.each(function () {
+                            if ($(this).attr('label') !== undefined) {
+                                labels.push($(this).attr('label'));
+                            }
+                            else {
+                                labels.push($(this).html());
+                            }
+                        });
+                        return labels.join(', ') + '';
+                    }
+                }
+            });
+            $('#Generos').multiselect({
+                includeResetOption: true,
+                maxHeight: 100,
+                buttonClass: 'btn btn-Light col-md-12',
+                buttonContainer: '<div />',
+                buttonText: function (options, select) {
+                    if (options.length === 0) {
+                        return 'Nenhuma Gênero selecionada';
+                    }
+                    else if (options.length == @count) {
+                        return 'Todos os Gêneros Selecionados';
+                    }
+                    else if (options.length > 3) {
+                        return '' + options.length +' Gêneros Selecionados';
+                    }
+                    else {
+                        var labels = [];
+                        options.each(function () {
+                            if ($(this).attr('label') !== undefined) {
+                                labels.push($(this).attr('label'));
+                            }
+                            else {
+                                labels.push($(this).html());
+                            }
+                        });
+                        return labels.join(', ') + '';
+                    }
+                }
+            });
+
+        });
+
+
+    </script>
 }

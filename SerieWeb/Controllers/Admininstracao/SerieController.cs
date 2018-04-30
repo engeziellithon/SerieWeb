@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -43,27 +45,37 @@ namespace SerieWeb.Controllers.Admininstracao
         [HttpGet]
         public ActionResult Adicionar()
         {
+            ViewBag.Generos = db.Generos.ToList();
+            ViewBag.Servicos = db.ServicosStreaming.ToList();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,Trailer,Sinopse,Nota")] Serie serie)
+        public async Task<ActionResult> Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,Trailer,Sinopse,Nota,ListGeneros")] Serie serie)
         {
             if (ModelState.IsValid)
             {
                 db.Series.Add(serie);
                 await db.SaveChangesAsync();
+                foreach (int item in serie.ListGeneros)
+                {
+                    var serieGeneros = new SeriesGeneros();
+                    serieGeneros.SerieID = serie.SerieID;
+                    serieGeneros.GeneroID = item;
+                    db.SeriesGeneros.Add(serieGeneros);
+                }
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Generos = db.Generos.ToList();
+            ViewBag.Servicos = db.ServicosStreaming.ToList();
             return View(serie);
         }
-
         #endregion
 
         #region Editar Série
-        
+
         public async Task<ActionResult> Editar(int? id)
         {
             if (id == null)
@@ -75,44 +87,80 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 return HttpNotFound();
             }
+            ViewBag.Generos = db.Generos.ToList();
+            ViewBag.Servicos = db.ServicosStreaming.ToList();
+            ViewBag.GeneroSelecionado = db.SeriesGeneros.Where(s => s.SerieID == serie.SerieID).Select(g => g.GeneroID).ToList();
+            ViewBag.ServicoSelecionado = db.SeriesServicos.Where(s => s.SerieID == serie.SerieID).Select(g => g.ServicoStreamingID).ToList();
+
             return View(serie);
         }
 
-        
+
         [HttpPost, ActionName("Editar")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditarConfirmar(int? id)
+        public async Task<ActionResult> EditarConfirmar(int? id, int?[] ListGeneros, int?[] ListServicos)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             var Serie = await db.Series.FindAsync(id);
+
             try
             {
                 if (TryUpdateModel(Serie, "",
-                  new string[] { "SerieID", "NomeSerie", "Imagem", "Sinopse", "Nota" }))
+                  new string[] { "SerieID", "NomeSerie", "Imagem", "Sinopse", "Nota", "Trailer" }))
                 {
                     try
                     {
-                        db.SaveChanges();
-
+                        var serieGeneros = db.SeriesGeneros.Where(s => s.SerieID == Serie.SerieID).ToList();
+                        foreach (var item in serieGeneros)
+                        {
+                            db.SeriesGeneros.Remove(item);                            
+                        }                        
+                        if (ListGeneros != null)
+                        {
+                            foreach (int item in ListGeneros)
+                            {
+                                var serieGenero = new SeriesGeneros();
+                                serieGenero.SerieID = Serie.SerieID;
+                                serieGenero.GeneroID = item;
+                                db.SeriesGeneros.Add(serieGenero);
+                            }
+                        }
+                        var serieServicos = db.SeriesServicos.Where(s => s.SerieID == Serie.SerieID).ToList();
+                        foreach (var item in serieServicos)
+                        {
+                            db.SeriesServicos.Remove(item);
+                            await db.SaveChangesAsync();
+                        }                        
+                        if (ListServicos != null)
+                        {
+                            foreach (int item in ListServicos)
+                            {
+                                var serieServico = new SeriesGeneros();
+                                serieServico.SerieID = Serie.SerieID;
+                                serieServico.GeneroID = item;
+                                db.SeriesGeneros.Add(serieServico);
+                            }
+                        }
+                        await db.SaveChangesAsync();
                         return RedirectToAction("Index");
                     }
                     catch (DataException)
                     {
-                        //Log the error (uncomment dex variable name and add a line here to write a log.
                         ModelState.AddModelError("", "Não foi possível salvar as alterações.Volte para index é tente novamente,se o problema persistir, consulte o administrador do sistema.");
                     }
                 }
             }
             catch (Exception)
             {
+
                 ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
             }
 
-
+            ViewBag.Generos = db.Generos.ToList();
+            ViewBag.Servicos = db.ServicosStreaming.ToList();
             return View(Serie);
         }
         #endregion

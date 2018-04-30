@@ -11,7 +11,6 @@ namespace SerieWeb.Models.Admininstracao
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SerieID { get; set; }
-
        
         [Required()]
         [StringLength(40, MinimumLength = 2)]
@@ -23,7 +22,7 @@ namespace SerieWeb.Models.Admininstracao
         [DataType(DataType.ImageUrl)]
         public String Imagem { get; set; }
 
-        [RegularExpression("https://www.youtube.com/watch\\?v=.*", ErrorMessage = "Adicione uma Url do Youtube")]
+        [RegularExpression("^(https:////)youtu(.be)?(/.com)?//.+", ErrorMessage = "Adicione Url de Compartilhamento do Youtube.Ex:"+""+"https:/ /youtu.be/4SZ3rMMYBLY"+"")]
         public String Trailer { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -33,8 +32,10 @@ namespace SerieWeb.Models.Admininstracao
         [Range(1, 100)]
         public double Nota { get; set; }
 
-        public virtual ICollection<Genero> generos { get; set; }
+        [NotMapped]
+        public int[] ListGeneros { get; set; }
 
-        public virtual ICollection<ServicoStreaming> servicoStreaming { get; set; }
+        [NotMapped]
+        public int[] ListServicos { get; set; }
     }
 }

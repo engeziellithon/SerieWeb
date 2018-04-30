@@ -244,18 +244,16 @@
     <Compile Include="Migrations\201804281835425_AdicionandoValidacaoEpisodio.Designer.cs">
       <DependentUpon>201804281835425_AdicionandoValidacaoEpisodio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201804281954318_TableSerieServicoGenero.cs" />
-    <Compile Include="Migrations\201804281954318_TableSerieServicoGenero.Designer.cs">
-      <DependentUpon>201804281954318_TableSerieServicoGenero.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201804282004539_GeneroSerieServico.cs" />
-    <Compile Include="Migrations\201804282004539_GeneroSerieServico.Designer.cs">
-      <DependentUpon>201804282004539_GeneroSerieServico.cs</DependentUpon>
+    <Compile Include="Migrations\201804292209594_Novatabela.cs" />
+    <Compile Include="Migrations\201804292209594_Novatabela.Designer.cs">
+      <DependentUpon>201804292209594_Novatabela.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
     <Compile Include="Models\Admininstracao\Genero.cs" />
     <Compile Include="Models\Admininstracao\Serie.cs" />
+    <Compile Include="Models\Admininstracao\SeriesGeneros.cs" />
+    <Compile Include="Models\Admininstracao\SeriesServicos.cs" />
     <Compile Include="Models\Admininstracao\ServicoStreaming.cs" />
     <Compile Include="Models\Admininstracao\Temporada.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
@@ -273,7 +271,12 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\multiselect\multiselect.css" />
+    <Content Include="Content\multiselect\multiselect.min.css">
+      <DependentUpon>multiselect.css</DependentUpon>
+    </Content>
     <Content Include="Content\Datatables.css" />
+    <Content Include="Content\SVG\eraser.svg" />
     <Content Include="Content\Icons\favicon.ico" />
     <Content Include="Content\SVG\capa.jpg" />
     <Content Include="Content\SVG\pesquisa.svg" />
@@ -334,6 +337,10 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\BootstrapMultiselect\BootstrapMultiselect.js" />
+    <Content Include="Scripts\BootstrapMultiselect\BootstrapMultiselect.min.js">
+      <DependentUpon>BootstrapMultiselect.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -390,7 +397,6 @@
     <Content Include="Views\Explorar\Index.cshtml" />
     <Content Include="Views\Explorar\DetalhesSerie.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
-    <Content Include="Views\Perfil\Calendario.cshtml" />
     <Content Include="Views\Temporada\Adicionar.cshtml" />
     <Content Include="Views\Temporada\Deletar.cshtml" />
     <Content Include="Views\Temporada\Detalhes.cshtml" />
@@ -411,6 +417,10 @@
     <Content Include="Views\ServicoStreamings\Detalhes.cshtml" />
     <Content Include="Views\ServicoStreamings\Editar.cshtml" />
     <Content Include="Views\ServicoStreamings\Index.cshtml" />
+    <Content Include="Views\Perfil\_Recomendado.cshtml" />
+    <Content Include="Views\Perfil\_Favorito.cshtml" />
+    <Content Include="Views\Perfil\_Calendario.cshtml" />
+    <Content Include="Views\Perfil\_Servico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -459,11 +469,8 @@
     <EmbeddedResource Include="Migrations\201804281835425_AdicionandoValidacaoEpisodio.resx">
       <DependentUpon>201804281835425_AdicionandoValidacaoEpisodio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804281954318_TableSerieServicoGenero.resx">
-      <DependentUpon>201804281954318_TableSerieServicoGenero.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201804282004539_GeneroSerieServico.resx">
-      <DependentUpon>201804282004539_GeneroSerieServico.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804292209594_Novatabela.resx">
+      <DependentUpon>201804292209594_Novatabela.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

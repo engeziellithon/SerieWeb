@@ -18,6 +18,6 @@ namespace SerieWeb.Models.Admininstracao
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Números e caracteres especiais não são permitidos no Gênero.")]
         public String NomeGenero { get; set; }
 
-        public ICollection<Serie> Series { get; set; }
+       
     }
 }

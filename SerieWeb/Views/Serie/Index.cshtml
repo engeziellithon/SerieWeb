@@ -27,12 +27,12 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.NomeSerie)
                                         </th>
-                                        <th>
+                                        @*<th>
                                             @Html.DisplayNameFor(model => model.Imagem)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Trailer)
-                                        </th>
+                                        </th>*@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Sinopse)
                                         </th>
@@ -50,12 +50,12 @@
                                         <td>
                                         @Html.DisplayFor(modelItem => item.NomeSerie)
                                         </td>
-                                        <td>
+                                        @*<td>
                                             @Html.DisplayFor(modelItem => item.Imagem)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Trailer)
-                                        </td>
+                                        </td>*@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Sinopse)
                                         </td>
@@ -114,7 +114,8 @@
                 "scrollX": true,
                 "pagingType": "simple",
                 "info": false,
-                "bLengthChange": false
+                "scrollY": '50vh',
+                "scrollCollapse": true                           
             });
         });
     </script>

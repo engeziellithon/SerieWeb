@@ -4,5 +4,17 @@
     "inputFiles": [
       "Scripts/datatables.js"
     ]
-  }  
+  },
+  {
+    "outputFileName": "Scripts/BootstrapMultiselect/BootstrapMultiselect.min.js",
+    "inputFiles": [
+      "Scripts/BootstrapMultiselect/BootstrapMultiselect.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/multiselect/multiselect.min.css",
+    "inputFiles": [
+      "Content/multiselect/multiselect.css"
+    ]
+  }
 ]
