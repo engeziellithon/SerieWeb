@@ -7,8 +7,6 @@
 
 }
 
-
-
 <!--Comentario do facebook responsivo-->
 <style>
     .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe {
@@ -113,7 +111,7 @@
         </div>
     </div>
 
-   
+
     @if (TrailerCompartilhar != null)
     {
         <div id="trailer">
@@ -131,20 +129,38 @@
 
             <h4 class="page-header" style="padding-top:40px; padding-bottom:40px;">Indicações</h4>
 
-            <div class="card-group">
+            @*<div class="card-deck">
+
+                    @foreach (var item in Indicacoes)
+                    {
+                        <div class="card">
+                            <img class="card-img" src="@item.Imagem" alt="Card image cap" style="height:150px; width:100px;">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.NomeSerie</h5>
+                                <p class="card-text">@item.Nota</p>
+                            </div>
+
+                        </div>
+                    }
+                </div>*@
+            <div class="row">
 
                 @foreach (var item in Indicacoes)
                 {
-                    <div class="card">
-                        <img class="card-img-top" src="@item.Imagem" alt="Card image cap" style="height:150px; width:100px;">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.NomeSerie</h5>
-                            <p class="card-text">@item.Nota</p>
-                        </div>
-                        
+
+                    <div class="col-2">
+                        <img class="card-img" src="@item.Imagem" alt="Card image cap" style="height:150px; width:100px;">
+
+                    </div>
+                    <div class="col-2">
+                        <h5 class="card-title">@item.NomeSerie</h5>
+                        <p class="card-text">@item.Nota</p>
                     </div>
                 }
+
             </div>
+
+
         </div>
 
     </div>
@@ -165,10 +181,6 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
-
-
-
-
             (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
@@ -176,8 +188,5 @@
                 js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.12';
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
-
-
-
     </script>
 }
