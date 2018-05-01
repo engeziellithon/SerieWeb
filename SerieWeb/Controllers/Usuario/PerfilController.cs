@@ -11,10 +11,21 @@ namespace SerieWeb.Controllers.Usuario
     public class PerfilController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index()
+        public ActionResult Index(int? )
         {
+            int? ParcialMostrar = id;
+            if(ParcialMostrar > 1)
+            {
+                ViewBag.ParcialMostrar = ParcialMostrar;
+            }
+            else
+            {
+                ViewBag.ParcialMostrar = 1;
+            }
             return View();
         }
+
+        
 
         public ActionResult _Recomendado()
         {

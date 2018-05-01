@@ -1,38 +1,54 @@
 ﻿@model SerieWeb.Models.Usuario.UsuarioPerfil
 @{
     ViewBag.Title = "Index";
+    var count = ViewBag.ParcialMostrar;
 }
-<div class="container-fluid Perfilbackground">
-    <div class="col-2" style="background-color:white; height:250px;border-radius: 250px;">
-    </div>
-</div>
-<div class="container-fluid-no-padding">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div style="margin-left:80px">
-            <ul class="navbar-nav">
-                @Html.ActionLink("Perfil", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Calendario", "CalendarioSerie", "Perfil", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Configuraçoes", "Index", "Manage", new { area = "" }, new { @class = "nav-link" })
-            </ul>
-        </div>
-    </nav>
-</div>
-@*<div class="container containerDetalhesSerie">
-    <div class="row">
-
-    </div>
-</div>*@
 <div class="container">
-    <div class="row">@Html.Partial("_Recomendado")</div>
-
-
-        <div class="row">@Html.Partial("_Favorito")</div>
-
-        <div class="row">@Html.Partial("_Calendario")</div>
-
-
-        <div class="row">@Html.Partial("_Servico")</div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link PerfilPartial active" href="#profile" role="tab" data-toggle="tab" id="1">profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link PerfilPartial" href="#buzz" role="tab" data-toggle="tab" id="2">buzz</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link PerfilPartial" href="#references" role="tab" data-toggle="tab" id="3">references</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link PerfilPartial" href="#teste" role="tab" data-toggle="tab" id="4">references</a>
+        </li>
+    </ul>
 </div>
+<div class="container" id="divPartial">
+      @{
+          if (count == 1)
+          { @Html.Partial("_Favorito"); }
 
-
+          if (count == 2)
+          {
+              @Html.Partial("_Recomendado");
+          }
+          if (count == 3)
+          {
+              @Html.Partial("_Servico");
+          }
+          if (count == 4)
+          {
+              @Html.Partial("_Calendario");
+          }
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+    $(function () {
+        $('.nav-link.PerfilPartial').click(function () {
+            var id = this.id;
+            $.get('@Url.Content("Perfil/index")', { 'id': id }, function (data) {
+                $('#divPartial').html();
+                });
+        });
+     });
+    </script>
+}
 
