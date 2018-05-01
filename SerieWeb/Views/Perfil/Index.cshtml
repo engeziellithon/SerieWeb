@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="container-fluid Perfilbackground">
+@*<div class="container-fluid Perfilbackground">
     <div class="col-2" style="background-color:white; height:250px;border-radius: 250px;">
     </div>
 </div>
@@ -16,23 +16,67 @@
             </ul>
         </div>
     </nav>
-</div>
-@*<div class="container containerDetalhesSerie">
-    <div class="row">
-
-    </div>
 </div>*@
-<div class="container">
+@*<div class="container containerDetalhesSerie">
+        <div class="row">
+
+        </div>
+    </div>*@
+
+<!--partial views-->
+@*<div class="container">
     <div class="row">@Html.Partial("_Recomendado")</div>
 
 
-        <div class="row">@Html.Partial("_Favorito")</div>
+    <div class="row">@Html.Partial("_Favorito")</div>
 
-        <div class="row">@Html.Partial("_Calendario")</div>
+    <div class="row">@Html.Partial("_Calendario")</div>
 
 
-        <div class="row">@Html.Partial("_Servico")</div>
+    <div class="row">@Html.Partial("_Servico")</div>
+</div>*@
+<div class="panel-header panel-header-sm">
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="rec-tab" data-toggle="tab" href="#rec" role="tab" aria-controls="rec" aria-selected="true">Recomendado</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="fav-tab" data-toggle="tab" href="#fav" role="tab" aria-controls="fav" aria-selected="false">Favoritos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="ser-tab" data-toggle="tab" href="#ser" role="tab" aria-controls="ser" aria-selected="false">Serviços</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="cal-tab" data-toggle="tab" href="#cal" role="tab" aria-controls="cal" aria-selected="false">Calendario</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="rec" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">@Html.Partial("_Recomendado")</div>
+                </div>
+                <div class="tab-pane fade" id="fav" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row">@Html.Partial("_Favorito")</div>
+                </div>
+                <div class="tab-pane fade" id="ser" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="row">@Html.Partial("_Servico")</div>
+                </div>
+                <div class="tab-pane fade" id="cal" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="row">@Html.Partial("_Calendario")</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-
+<script>
+    $('#myTab a').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>
