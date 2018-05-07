@@ -3,7 +3,11 @@
 @{
     ViewBag.Title = "Efetuar login";
 }
-<div class="container">
+<div class="panel-header panel-header-sm">
+
+</div>
+
+@*<div class="container">
     <div class="row">
         <div class="col-md-8">
             <section id="loginForm">
@@ -57,7 +61,72 @@
             </section>
         </div>
     </div>
+</div>*@
+
+<div class="container">
+    <div class="content" style="padding: 0; min-height: calc(100vh - 123px); margin-top: -50px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="title" style="text-align:center">Entrar</h3>
+                    </div>
+                    <div class="card-body" style="text-align:center">
+                        <section id="loginForm">
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-6 offset-3">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-6 offset-3">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="checkbox">
+                                            @Html.CheckBoxFor(m => m.RememberMe)
+                                            @Html.LabelFor(m => m.RememberMe)
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="submit" value="Efetuar login" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                                <p>
+                                    @Html.ActionLink("Registrar-se como novo usuário", "Register")
+                                </p>
+                                //Ativar isso assim que você tiver a confirmação de conta ativada para a funcionalidade de redefinição de senha
+                                <p>
+                                    @Html.ActionLink("Esqueceu sua senha?", "ForgotPassword")
+                                </p>
+                            }
+                        </section>
+
+                        @*login com rede social*@
+                        <section id="socialLoginForm">
+                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

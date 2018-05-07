@@ -14,7 +14,7 @@ namespace SerieWeb.Models.Admininstracao
 
         [Required()]       
         [StringLength(40, MinimumLength = 4)]
-        [Display(Name = "Nome da Episódio")]
+        [Display(Name = "Nome do Episódio")]
         public String NomeEpisodio { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -30,6 +30,7 @@ namespace SerieWeb.Models.Admininstracao
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
+        [Display(Name = "Data de Exibição")]
         public DateTime DataExibicao { get; set; }
 
         public int SerieID { get; set; }

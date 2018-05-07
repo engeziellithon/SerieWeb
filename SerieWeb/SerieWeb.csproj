@@ -279,11 +279,15 @@
     <Content Include="Content\SVG\eraser.svg" />
     <Content Include="Content\Icons\favicon.ico" />
     <Content Include="Content\SVG\capa.jpg" />
+    <Content Include="Content\SVG\faceazul.svg" />
+    <Content Include="Content\SVG\facepreto.svg" />
     <Content Include="Content\SVG\pesquisa.svg" />
     <Content Include="Content\SVG\star.svg" />
     <Content Include="Content\SVG\like.svg" />
     <Content Include="Content\SVG\favorito.svg" />
     <Content Include="Content\SVG\play.svg" />
+    <Content Include="Content\SVG\ttazul.svg" />
+    <Content Include="Content\SVG\ttpreto.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
