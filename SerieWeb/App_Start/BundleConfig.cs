@@ -7,6 +7,7 @@ namespace SerieWeb
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
+            #region script
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -28,15 +29,16 @@ namespace SerieWeb
 
             bundles.Add(new ScriptBundle("~/bundles/BootstrapMultiselect").Include(
                       "~/Scripts/BootstrapMultiselect/BootstrapMultiselect.min.js"));
+            #endregion
 
-            bundles.Add(new StyleBundle("~/Content/multiselect").Include(
-                                "~/Content/multiselect/multiselect.min.css"));
+            //bundles.Add(new StyleBundle("~/Content/multiselect").Include(
+            //                    "~/Content/Multiselect/Multiselect.min.css"));
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",
-                      "~/Content/site.css",
-                      "~/Content/AdminCustom.css",
-                      "~/Content/Datatables.css"));            
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.min.css",
+                      "~/Content/Datatables/Datatables.min.css"));            
         }
     }
 }

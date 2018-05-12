@@ -264,18 +264,23 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\AdminCustom.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\multiselect\multiselect.css" />
-    <Content Include="Content\multiselect\multiselect.min.css">
+    <Content Include="Content\Datatables\Datatables.min.css">
+      <DependentUpon>Datatables.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Multiselect\multiselect.css" />
+    <Content Include="Content\Multiselect\multiselect.min.css">
       <DependentUpon>multiselect.css</DependentUpon>
     </Content>
-    <Content Include="Content\Datatables.css" />
+    <Content Include="Content\Datatables\Datatables.css" />
+    <Content Include="Content\Site.min.css">
+      <DependentUpon>Site.css</DependentUpon>
+    </Content>
     <Content Include="Content\SVG\eraser.svg" />
     <Content Include="Content\Icons\favicon.ico" />
     <Content Include="Content\SVG\capa.jpg" />

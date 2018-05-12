@@ -16,5 +16,23 @@
     "inputFiles": [
       "Content/multiselect/multiselect.css"
     ]
+  },
+  {
+    "outputFileName": "Content/Site.min.css",
+    "inputFiles": [
+      "Content/Site.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Datatables.min.css",
+    "inputFiles": [
+      "Content/Datatables.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/AdminCustom.min.css",
+    "inputFiles": [
+      "Content/AdminCustom.css"
+    ]
   }
 ]

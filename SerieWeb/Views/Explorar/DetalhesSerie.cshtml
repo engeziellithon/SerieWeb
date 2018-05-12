@@ -1,8 +1,10 @@
 ﻿@model  SerieWeb.Models.Admininstracao.Serie
 @{
     ViewBag.Title = "Detalhes Serie";
+
     var Indicacoes = (List<SerieWeb.Models.Admininstracao.Serie>)ViewBag.Indicacoes;
     var Episodios = (List<SerieWeb.Models.Admininstracao.Episodio>)ViewBag.Episodios;
+    var Temporadas = (List<SerieWeb.Models.Admininstracao.Temporada>)ViewBag.listatemporada;
     var TrailerCompartilhar = ViewBag.TrailerCompartilhar;
 
 }
@@ -52,7 +54,9 @@
                             }
                             else
                             {
-                                <button class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Faça o login e adicione a sua lista de Favoritos"><img src="~/Content/SVG/favorito.svg" /> Favoritar</button>
+                                <button class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Faça o login e adicione a sua lista de Favoritos">
+                                    <img src="~/Content/SVG/favorito.svg" /> Favoritar
+                                </button>
                             }
                         </div>
                         <div class="col-3">
@@ -62,13 +66,15 @@
                                 {
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="IdSerie" value="@Model.SerieID" />
-                                    <button type="submit" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Adicionar a lista de interesse"><img src="~/Content/SVG/like.svg" /> Interesse</button>
+                                    <button type="submit" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Adicionar a lista de interesse"><img src="~/Content/SVG/like.svg" /> Interesse </button>
                                 }
 
                             }
                             else
                             {
-                                <button type="button" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Faça o login para adicionar a sua lista de interesse"><img src="~/Content/SVG/like.svg" /> Interesse</button>
+                                <button type="button" class="btn btn-default BtnLike" data-toggle="tooltip" data-placement="bottom" title="Faça o login para adicionar a sua lista de interesse">
+                                    <img src="~/Content/SVG/like.svg" /> Interesse
+                                </button>
                             }
                         </div>
                         <div class="col-3">
@@ -83,94 +89,61 @@
         </div>
     </div>
 </div>
-
-
-@*<div id="DispositivoMovel">
-        <div class="row">
-            <div class="col-12">
-                <img src="@Model.Imagem" class="img-seriedetalhes img-responsive rounded mx-auto d-block" alt="Responsive image">
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <button type="button" class="btn btn-warning btn-lg btn-block BtnStar">
-                        <img src="~/Content/SVG/star.svg" /> Classificar
-                    </button>
-                </div>
-                <div class="col-12">
-                    @if (User.Identity.IsAuthenticated == true)
-                    {
-                        using (Html.BeginForm("SalvarFavorito", "Explorar", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="IdSerie" value="@Model.SerieID" />
-                            <button type="submit" class="btn btn-danger btn-lg btn-block BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Adicionar aos Favoritos"><img src="~/Content/SVG/favorito.svg" /> Favoritar</button>
-                        }
-                    }
-                    else
-                    {
-                        <button class="btn btn-danger btn-lg btn-block BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Faça o login e adicione a sua lista de Favoritos"><img src="~/Content/SVG/favorito.svg" /> Favoritar</button>
-                    }
-                </div>
-                <div class="col-12">
-                    @if (User.Identity.IsAuthenticated == true)
-                    {
-                        using (Html.BeginForm("InteresseSerie", "Explorar", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="IdSerie" value="@Model.SerieID" />
-                            <button type="submit" class="btn btn-success btn-lg btn-block BtnLike" data-toggle="tooltip" data-placement="bottom" title="Adicionar a lista de interesse"><img src="~/Content/SVG/like.svg" /> Interesse</button>
-                        }
-
-                    }
-                    else
-                    {
-                        <button type="button" class="btn btn-success btn-lg btn-block BtnLike" data-toggle="tooltip" data-placement="bottom" title="Faça o login para adicionar a sua lista de interesse"><img src="~/Content/SVG/like.svg" /> Interesse</button>
-                    }
-                </div>
-            </div>
-        </div>
-
-    </div>*@
-
-
-
-
 <div class="container">
-    <div id="temporada">
-        <hr />
-        <h4>Temporadas</h4>
-        <hr />
-        <div id="accordion">
-            <div class="card">
-                <div class="card-header" id="headingOne">
 
-                    <h5 class="mb-0">
-
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"></button>
-                    </h5>
-
-
-                </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">
-                        dffadfasfdffsd
-                    </div>
-                </div>
-            </div>
-
+    @if (ViewBag.listaTemporada != null)
+    {
+        <div class="form-group">
+            <label for="Temporadas">Temporadas</label>
+            <select class="form-control" id="Temporada" name="ListTemporadas">
+                @foreach (var item in Temporadas)
+                {
+                    <option value="@item.TemporadaID"> @item.NomeTemporada </option>
+                }
+            </select>
         </div>
-    </div>
+        
+
+    }
+    @*<table id="EpisodiosTable" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NomeSerie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sinopse)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.ListaEpisodios)
+                {
+                    @*<tr>
+                        <td>
+                            @Html.DisplayFor(modelItem =>)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem =>)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@
+
 
 
     @if (TrailerCompartilhar != null)
     {
         <div id="trailer">
+
             <hr />
-            <h4>Trailer</h4>
+
+            <h4> Trailer </h4>
+
             <hr />
+
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe width="560" height="315" src="https://youtube.com/embed/@TrailerCompartilhar" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
@@ -182,20 +155,7 @@
             <hr />
             <h4>Indicações</h4>
             <hr />
-            @*<div class="card-deck">
 
-                    @foreach (var item in Indicacoes)
-                    {
-                        <div class="card">
-                            <img class="card-img" src="@item.Imagem" alt="Card image cap" style="height:150px; width:100px;">
-                            <div class="card-body">
-                                <h5 class="card-title">@item.NomeSerie</h5>
-                                <p class="card-text">@item.Nota</p>
-                            </div>
-
-                        </div>
-                    }
-                </div>*@
             <div class="row">
 
                 @foreach (var item in Indicacoes)
@@ -230,7 +190,11 @@
 @section Scripts {
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
-    <script>
+    <script>       
+
+        
+
+        
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
@@ -241,5 +205,24 @@
                 js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.12';
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
+
+
+    </script>
+    <script>
+        $("#Temporada").change(function () {
+            debugger
+            var TemporadaID = $(this).val();
+            $.ajax({
+                type: "get",
+                url: "/Episodio/GetTemporadasList?SerieID=" + SerieID,
+                contentType: "json",
+
+                success: function (response) {
+                    $("#TemporadaID").empty();
+                    $("#TemporadaID").append(response);
+
+                }
+            })
+        });
     </script>
 }

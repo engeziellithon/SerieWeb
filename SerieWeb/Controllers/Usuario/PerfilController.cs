@@ -11,7 +11,7 @@ namespace SerieWeb.Controllers.Usuario
     public class PerfilController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index(int? )
+        public ActionResult Index(int? id)
         {
             int? ParcialMostrar = id;
             if(ParcialMostrar > 1)

@@ -44,18 +44,22 @@ namespace SerieWeb.Controllers.Site
         [HttpGet]
         public ActionResult DetalhesSerie(int? id)
         {
-
+            #region Verificar se serie existe
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             
             Serie serie = db.Series.Find(id);
-            List<Episodio> episodio = new List<Episodio>();
+            
+
             if (serie == null)
             {
                 return HttpNotFound();
             }
+            #endregion
+
+
             if (serie.Trailer != null)
             {
                 ViewBag.TrailerCompartilhar = "";
@@ -67,9 +71,21 @@ namespace SerieWeb.Controllers.Site
                     var TrailerCompartilhar = trailer.Substring(trailer.Length - 11);
                     ViewBag.TrailerCompartilhar = TrailerCompartilhar;
                 }
-            }            
-            episodio = db.Episodios.Where(e => e.SerieID == serie.SerieID).OrderBy(c=>c.Temporada.NomeTemporada).ToList();
-            ViewBag.Episodios = episodio;
+            }
+
+
+            ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).OrderBy(c => c.NomeTemporada).ToList();
+            //ViewBag.listatemporada = ListaTemporada.OrderBy(c => c.NomeTemporada).ToList();
+            
+
+            ////foreach (var item in listaTemporada)
+            ////{
+            ////    List<Temporada> Temporadas = db.
+            ////}
+
+            //ViewBag.Episodios = db.Episodios.Where(e => e.SerieID == serie.SerieID).ToList();
+
+
             ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
             return View(serie);
         }
