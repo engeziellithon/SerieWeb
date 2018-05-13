@@ -9,12 +9,7 @@
 
 }
 
-<!--Comentario do facebook responsivo-->
-<style>
-    .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe {
-        width: 100% !important;
-    }
-</style>
+
 
 <div id="Desktop">
     <div class="container-fluid DetalhesSerie" id="toTop">
@@ -102,7 +97,7 @@
                 }
             </select>
         </div>
-        
+
 
     }
     @*<table id="EpisodiosTable" class="table table-striped table-bordered" style="width:100%">
@@ -181,7 +176,7 @@
         <hr />
         <h4>Comentarios</h4>
         <hr />
-        <div class="fb-comments" data-href="https://www.facebook.com/serieweb2018/" data-numposts="5"></div>
+        <div class="fb-comments" data-href="@Request.Url.ToString()" data-numposts="5"></div>
     </div>
 </div>
 
@@ -190,39 +185,20 @@
 @section Scripts {
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
-    <script>       
-
-        
-
-        
+    <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.12';
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
+
+        $(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.12';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
 
 
     </script>
-    <script>
-        $("#Temporada").change(function () {
-            debugger
-            var TemporadaID = $(this).val();
-            $.ajax({
-                type: "get",
-                url: "/Episodio/GetTemporadasList?SerieID=" + SerieID,
-                contentType: "json",
 
-                success: function (response) {
-                    $("#TemporadaID").empty();
-                    $("#TemporadaID").append(response);
-
-                }
-            })
-        });
-    </script>
 }

@@ -846,3 +846,7 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
     margin: 0 !important;
     padding-left: 25px !important;
 }
+
+.fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe {
+    width: 100% !important;
+}
