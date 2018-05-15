@@ -33,11 +33,13 @@ namespace SerieWeb.Models.Admininstracao
         [Display(Name = "Data de Exibição")]
         public DateTime DataExibicao { get; set; }
 
+        [Display(Name = "Nome da Série")]
         public int SerieID { get; set; }
         [ForeignKey(name: "SerieID")]
         public virtual Serie serie { get; set; }
 
-        public int TemporadaID { get; set; }
+        [Display(Name = "Nome da Temporada")]
+        public int TemporadaID { get; set; }        
         [ForeignKey(name: "TemporadaID")]
         public virtual Temporada Temporada { get; set; }
     }
