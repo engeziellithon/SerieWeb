@@ -7,6 +7,7 @@ using SerieWeb.Models.Identity;
 
 namespace SerieWeb.Controllers.Admininstracao
 {
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class TemporadaController : Controller
     {
         #region Banco

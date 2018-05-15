@@ -11,6 +11,7 @@ using SerieWeb.Models.Identity;
 
 namespace SerieWeb.Controllers.Admininstracao
 {
+    [Authorize(Roles = "SuperAdmin,Admin")]
     public class SerieController : Controller
     {
         #region Banco de dados

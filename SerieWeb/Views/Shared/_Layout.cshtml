@@ -9,7 +9,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel='shortcut icon' type='image/x-icon' href='~/Content/Icons/favicon.ico' />
-   
+
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -22,21 +22,30 @@
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav ">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        @Html.ActionLink("Serie", "Index", "Serie", new { area = "" }, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Episodio", "Index", "Episodio", new { area = "" }, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Gênero", "Index", "Genero", new { area = "" }, new { @class = "dropdown-item" })
-                        @Html.ActionLink("Serviço de Streaming", "Index", "ServicoStreamings", new { area = "" }, new { @class = "dropdown-item" })                       
-                    </div>
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Perfil", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
-                </li>
+                
+                @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                {
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @Html.ActionLink("Serie", "Index", "Serie", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Temporada", "Index", "Temporada", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Episodio", "Index", "Episodio", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Gênero", "Index", "Genero", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Serviço de Streaming", "Index", "ServicoStreamings", new { area = "" }, new { @class = "dropdown-item" })
+                        </div>
+
+                    </li>
+                }
+                @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Usuario"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Perfil", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                }
                 <li class="nav-item">
                     @Html.Partial("_LoginPartial")
                 </li>

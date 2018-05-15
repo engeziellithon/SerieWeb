@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SerieWeb.Models.Identity;
@@ -51,6 +52,7 @@ namespace SerieWeb.Controllers.Identity
                 _userManager = value;
             }
         }
+
 
         //
         // GET: /Account/Login
@@ -154,8 +156,7 @@ namespace SerieWeb.Controllers.Identity
             return View();
         }
 
-        //
-        // POST: /Account/Register
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -167,6 +168,12 @@ namespace SerieWeb.Controllers.Identity
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    await roleManager.CreateAsync(new IdentityRole("Usuario"));
+                    await UserManager.AddToRoleAsync(user.Id, "Usuario");
+
+
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action(
                        "ConfirmEmail", "Account",
@@ -406,6 +413,9 @@ namespace SerieWeb.Controllers.Identity
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManager = new RoleManager<IdentityRole>(roleStore);                        
+                        await UserManager.AddToRoleAsync(user.Id, "Usuario");
                         return RedirectToLocal(returnUrl);
                     }
                 }

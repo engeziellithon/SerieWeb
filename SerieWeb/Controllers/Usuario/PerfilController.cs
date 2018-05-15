@@ -1,13 +1,12 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
-using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
 
 
 namespace SerieWeb.Controllers.Usuario
 {
-    [Authorize]
+    [Authorize(Roles = "SuperAdmin,Admin,Usuario")]
     public class PerfilController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -27,25 +26,19 @@ namespace SerieWeb.Controllers.Usuario
 
         
 
-        public ActionResult _Recomendado()
+        public ActionResult Recomendado()
         {
             var user = User.Identity.GetUserId();
             var PerfilSerieId = db.UsuarioPerfil.Where(u => u.UserId == user).Select(s => s.SerieID).ToList();
             var serie = db.Series.Where(s => PerfilSerieId.Contains(s.SerieID)).ToList();
             return View();
         }
-        public ActionResult _Favorito()
-        {
-            var user = User.Identity.GetUserId();
-            var PerfilSerieId = db.UsuarioPerfil.Where(u => u.UserId == user && u.SerieFavorita == true).Select(s => s.SerieID).ToList();
-            var serie = db.Series.Where(s => PerfilSerieId.Contains(s.SerieID)).ToList();
-            return View(serie);
-        }
-        public ActionResult _Calendario()
+        
+        public ActionResult Calendario()
         {
             return View();
         }
-        public ActionResult _Servico()
+        public ActionResult Servico()
         {
             return View();
         }

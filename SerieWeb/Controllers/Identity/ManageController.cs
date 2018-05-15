@@ -332,7 +332,7 @@ namespace SerieWeb.Controllers.Identity
             base.Dispose(disposing);
         }
 
-#region Auxiliadores
+        #region Auxiliadores
         // Usado para proteção XSRF ao adicionar logins externos
         private const string XsrfKey = "XsrfId";
 
@@ -384,5 +384,6 @@ namespace SerieWeb.Controllers.Identity
         }
 
 #endregion
+
     }
 }
