@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col-md-12 px-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.NomeServicoStreaming, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.NomeServicoStreaming, htmlAttributes: new { @class = "control-label font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.NomeServicoStreaming, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.NomeServicoStreaming, "", new { @class = "text-danger" })

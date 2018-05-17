@@ -2,8 +2,6 @@
 @using Microsoft.Owin.Security
 
 <div class="container">
-    <h5>Use outro serviço para fazer login.</h5>
-    <hr />
     @{
         var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
         if (loginProviders.Count() == 0)
@@ -22,9 +20,24 @@
                 @Html.AntiForgeryToken()
                 <div id="socialLoginList">
                     <p>
+
                         @foreach (AuthenticationDescription p in loginProviders)
                         {
-                            <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Faça login usando sua conta @p.Caption">@p.AuthenticationType</button>
+                            if (p.AuthenticationType == "Google")
+                            {
+                                <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Faça login usando sua conta @p.Caption">@p.AuthenticationType</button>
+
+                            }
+                            else if (p.AuthenticationType == "Facebook")
+                            {
+
+                                 <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Faça login usando sua conta @p.Caption"><img style="height:25px" src="~/Content/SVG/facepreto.svg" />@p.AuthenticationType</button>
+                            }
+                            else
+                            {
+
+                                 <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Faça login usando sua conta @p.Caption"><img style="height:25px" src="~/Content/SVG/ttpreto.svg" />@p.AuthenticationType</button>
+                            }
                         }
                     </p>
                 </div>
