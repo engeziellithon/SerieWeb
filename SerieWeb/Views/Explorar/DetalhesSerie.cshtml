@@ -96,47 +96,25 @@
                 }
             </select>
         </div>
-
-
     }
-    @*<table id="EpisodiosTable" class="table table-striped table-bordered" style="width:100%">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.NomeSerie)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Sinopse)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in ViewBag.ListaEpisodios)
-                {
-                    @*<tr>
-                        <td>
-                            @Html.DisplayFor(modelItem =>)
-                        </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem =>)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>*@
-
-
+    <table id="Tabela-Episodio" class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Episódio</th>
+                <th>Data</th>                
+            </tr>
+        </thead>
+        <tbody id="dadosTabela-Episodio">
+            <!-- CARREGA VIA AJAX -->
+        </tbody>
+    </table>
 
     @if (TrailerCompartilhar != null)
     {
-        <div id="trailer">
+        <div id="trailer">        
 
-            <hr />
-
-            <h4> Trailer </h4>
-
-            <hr />
+            <h4> Trailer </h4>        
 
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe width="560" height="315" src="https://youtube.com/embed/@TrailerCompartilhar" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -171,10 +149,8 @@
         </div>
 
     </div>
-    <div id="coments">
-        <hr />
-        <h4>Comentarios</h4>
-        <hr />
+    <div id="coments">        
+        <h4>Comentarios</h4>        
         <div class="fb-comments" data-href="@Request.Url.ToString()" data-numposts="5"></div>
     </div>
 </div>
@@ -197,6 +173,40 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
+        //Função que exibe a movimentação de equipamentos de um contrato
+        $("#Temporada").change(function () {
+            
+            var TemporadaID = $('#Temporada').val();
+            var SerieID = @Model.SerieID;
+
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "/Explorar/ExiberEpisodio",
+                data: { TemporadaID: TemporadaID, SerieID: SerieID },
+                dataType: "json",
+                cache: false,
+                success: function (result) {
+                    if (result.listaEpisodio != null) {
+                        
+
+                        var resultado = "";
+                        $.each(result.listaEpisodio, function (idx, elem) {
+                            resultado += "<tr>";
+                            resultado += "<td>" + elem.NomeEpisodio + "</td>"
+                            resultado += "<td>" + elem.DataEpisodio + "</td>";
+                            resultado += "</tr>";
+                        });
+
+                        //carrega a movimentação dos equipamentos do contrato
+                        $("#dadosTabela-Episodio").html(resultado);
+
+
+                    }
+
+                }
+            });
+        });
 
     </script>
 

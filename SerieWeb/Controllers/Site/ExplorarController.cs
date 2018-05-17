@@ -34,11 +34,11 @@ namespace SerieWeb.Controllers.Site
             {
                 model = db.Series.OrderBy(d =>d.Nota).Take(20).ToList();
             }
+           
             return View(model);
         }
         #endregion
-
-
+        
         #region Detalhes dos serie
         // GET: Serie/DetailsUsuario/5
         [HttpGet]
@@ -90,6 +90,19 @@ namespace SerieWeb.Controllers.Site
             return View(serie);
         }
         #endregion
+
+        [HttpPost]
+        public ActionResult ExiberEpisodio(int SerieID,int TemporadaID)
+        {
+            
+            var listaEpisodios = db.Episodios.Where(s => s.SerieID == SerieID && s.TemporadaID == TemporadaID).Select(s => new
+            {
+                NomeEpisodio = s.NomeEpisodio,
+                DataEpisodio = s.DataExibicao.ToString()
+            }).ToList();
+
+            return Json(new { listaEpisodio = listaEpisodios });
+        }
 
         [HttpPost]
         public ActionResult SalvarFavorito(int IdSerie)
