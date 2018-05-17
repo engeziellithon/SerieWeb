@@ -20,6 +20,7 @@ namespace SerieWeb.Controllers.Admininstracao
         public async Task<ActionResult> Index()
         {
             var episodios = db.Episodios.Include(e => e.serie).Include(e => e.Temporada);
+            
             return View(await episodios.ToListAsync());
         }
         #endregion
@@ -116,6 +117,7 @@ namespace SerieWeb.Controllers.Admininstracao
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Episodio episodio = await db.Episodios.FindAsync(id);
+           
             if (episodio == null)
             {
                 return HttpNotFound();
