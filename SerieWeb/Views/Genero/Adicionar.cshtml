@@ -22,7 +22,7 @@
                             <div class="row">
                                 <div class="col-md-12 px-1">                                   
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.NomeGenero, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.NomeGenero, htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.NomeGenero, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.NomeGenero, "", new { @class = "text-danger" })

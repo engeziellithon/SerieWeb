@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col-md-6 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.SerieID, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.SerieID, htmlAttributes: new { @class = "control-label font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.DropDownList("SerieID", null, htmlAttributes: new { @class = "form-control", style = "padding: 5px 18px 5px 18px;"  })
                                             @Html.ValidationMessageFor(model => model.SerieID, "", new { @class = "text-danger" })
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-md-6 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.TemporadaID, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.TemporadaID, htmlAttributes: new { @class = "control-label font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.DropDownList("TemporadaID", null, htmlAttributes: new { @class = "form-control", style = "padding: 5px 18px 5px 18px;" })
                                             @Html.ValidationMessageFor(model => model.TemporadaID, "", new { @class = "text-danger" })
@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-md-8 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.NomeEpisodio, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.NomeEpisodio, htmlAttributes: new { @class = "control-label font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.NomeEpisodio, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.NomeEpisodio, "", new { @class = "text-danger" })
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="col-md-4 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.DataExibicao, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.DataExibicao, htmlAttributes: new { @class = "control-label font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.DataExibicao, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.DataExibicao, "", new { @class = "text-danger" })
@@ -64,7 +64,7 @@
                             <div class="row">
                                 <div class="col-md-12 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Sinopse, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.Sinopse, htmlAttributes: new { @class = "control-label font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.Sinopse, new { htmlAttributes = new { @class = "form-control", rows = "4", cols = "80" } })
                                             @Html.ValidationMessageFor(model => model.Sinopse, "", new { @class = "text-danger" })
@@ -75,7 +75,7 @@
                             <div class="row">
                                 <div class="col-md-12 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Video, htmlAttributes: new { @class = "control-label" })
+                                        @Html.LabelFor(model => model.Video, htmlAttributes: new { @class = "control-label font-weight-bold" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.Video, new { htmlAttributes = new { @class = "form-control", rows = "4", cols = "80" } })
                                             @Html.ValidationMessageFor(model => model.Video, "", new { @class = "text-danger" })
