@@ -87,7 +87,7 @@
 <div class="container">
     @if (ViewBag.listaTemporada != null)
     {
-        <div class="form-group">
+        <div class="col-sm-4">
             <label for="Temporadas">Temporadas</label>
             <select class="form-control" id="Temporada" name="ListTemporadas">
                 @foreach (var item in Temporadas)
@@ -98,17 +98,19 @@
         </div>
     }
 
-    <table id="Tabela-Episodio" class="table table-responsive">
+    <table id="Tabela-Episodio" class="table table-hover">
         <thead>
             <tr>
-                <th>Episódio</th>
-                <th>Data</th>                
+                <th>Nª</th>
+                <th class="col">Episódio</th>
+                <th class="col">Data</th>                
             </tr>
         </thead>
         <tbody id="dadosTabela-Episodio">
             <!-- CARREGA VIA AJAX -->
         </tbody>
     </table>
+
 
     @if (TrailerCompartilhar != null)
     {
@@ -191,8 +193,10 @@
                         
 
                         var resultado = "";
+                        var count = 0;
                         $.each(result.listaEpisodio, function (idx, elem) {
                             resultado += "<tr>";
+                            resultado += "<td>" + count++ + "</td>"
                             resultado += "<td>" + elem.NomeEpisodio + "</td>"
                             resultado += "<td>" + elem.DataEpisodio + "</td>";
                             resultado += "</tr>";

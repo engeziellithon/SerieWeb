@@ -108,7 +108,7 @@
 .form-control {
     background-color: transparent;
     border: 2px solid rgba(0, 0, 0, 0.16);
-    border-radius: 18px;
+    border-radius: 12px !important;
     color: #2c2c2c;
     line-height: normal;
     font-size: 0.8571em;
@@ -838,7 +838,7 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
     height: 43px;
     background-color: transparent;
     border: 2px solid rgba(0, 0, 0, 0.16);
-    border-radius: 18px;
+    border-radius: 12px;
     color: #2c2c2c;
 }
 .multiselect-container.dropdown-menu.show {

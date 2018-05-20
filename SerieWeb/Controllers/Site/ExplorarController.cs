@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -75,15 +76,7 @@ namespace SerieWeb.Controllers.Site
 
 
             ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).OrderBy(c => c.NomeTemporada).ToList();
-            //ViewBag.listatemporada = ListaTemporada.OrderBy(c => c.NomeTemporada).ToList();
             
-
-            ////foreach (var item in listaTemporada)
-            ////{
-            ////    List<Temporada> Temporadas = db.
-            ////}
-
-            //ViewBag.Episodios = db.Episodios.Where(e => e.SerieID == serie.SerieID).ToList();
 
 
             ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
@@ -94,13 +87,14 @@ namespace SerieWeb.Controllers.Site
         [HttpPost]
         public ActionResult ExiberEpisodio(int SerieID,int TemporadaID)
         {
-            
+
             var listaEpisodios = db.Episodios.Where(s => s.SerieID == SerieID && s.TemporadaID == TemporadaID).Select(s => new
             {
                 NomeEpisodio = s.NomeEpisodio,
-                DataEpisodio = s.DataExibicao.ToString()
+                DataEpisodio = s.DataExibicao.Day + "/" + s.DataExibicao.Month + "/" + s.DataExibicao.Year
             }).ToList();
 
+           
             return Json(new { listaEpisodio = listaEpisodios });
         }
 
