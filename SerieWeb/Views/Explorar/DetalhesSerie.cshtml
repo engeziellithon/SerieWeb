@@ -4,7 +4,7 @@
 
     var Indicacoes = (List<SerieWeb.Models.Admininstracao.Serie>)ViewBag.Indicacoes;
     var Episodios = (List<SerieWeb.Models.Admininstracao.Episodio>)ViewBag.Episodios;
-    var Temporadas = (List<SerieWeb.Models.Admininstracao.Temporada>)ViewBag.listatemporada;
+    var Temporadas = (IEnumerable<SerieWeb.Models.Admininstracao.Temporada>)ViewBag.listatemporada;
     var TrailerCompartilhar = ViewBag.TrailerCompartilhar;
 
 }
@@ -87,37 +87,44 @@
 <div class="container">
     @if (ViewBag.listaTemporada != null)
     {
-        <div class="col-sm-4">
-            <label for="Temporadas">Temporadas</label>
-            <select class="form-control" id="Temporada" name="ListTemporadas">
-                @foreach (var item in Temporadas)
-                {
-                    <option value="@item.TemporadaID"> @item.NomeTemporada </option>
-                }
-            </select>
-        </div>
-    }
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <h4>Temporadas</h4>
+            </div>
+            <div class="col-2">
+                <div class="col-sm-12 float-right" style="padding-right:0; margin-bottom:10px;">
 
-    <table id="Tabela-Episodio" class="table table-hover">
-        <thead>
-            <tr>
-                <th>Nª</th>
-                <th class="col">Episódio</th>
-                <th class="col">Data</th>                
-            </tr>
-        </thead>
-        <tbody id="dadosTabela-Episodio">
-            <!-- CARREGA VIA AJAX -->
-        </tbody>
-    </table>
+                    <select class="form-control" id="Temporada" name="ListTemporadas">
+                        @foreach (var item in Temporadas)
+                        {
+                            <option value="@item.TemporadaID"> @item.NomeTemporada </option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+
+        <table id="Tabela-Episodio" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nª</th>
+                    <th class="col">Episódio</th>
+                    <th class="col">Data</th>
+                </tr>
+            </thead>
+            <tbody id="dadosTabela-Episodio">
+                <!-- CARREGA VIA AJAX -->
+            </tbody>
+        </table>
+    }
 
 
     @if (TrailerCompartilhar != null)
     {
-        <div id="trailer">        
-
-            <h4> Trailer </h4>        
-
+        <div id="trailer">
+            <h4> Trailer </h4>
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe width="560" height="315" src="https://youtube.com/embed/@TrailerCompartilhar" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
@@ -151,8 +158,9 @@
         </div>
 
     </div>
-    <div id="coments">        
-        <h4>Comentarios</h4>        
+
+    <div id="coments">
+        <h4>Comentarios</h4>
         <div class="fb-comments" data-href="@Request.Url.ToString()" data-numposts="5"></div>
     </div>
 </div>
@@ -175,9 +183,38 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        //Função que exibe a movimentação de equipamentos de um contrato
+
+        $(document).ready(function () {
+           
+           var TemporadaID = $('#Temporada').val();
+            var SerieID = @Model.SerieID;
+
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "/Explorar/ExiberEpisodio",
+                data: { TemporadaID: TemporadaID, SerieID: SerieID },
+                dataType: "json",
+                cache: false,
+                success: function (result) {
+                    if (result.listaEpisodio != null) {
+                        var resultado = "";
+                        var count = 1;
+                        $.each(result.listaEpisodio, function (idx, elem) {
+                            resultado += "<tr>";
+                            resultado += "<td>" + count++ + "</td>"
+                            resultado += "<td>" + elem.NomeEpisodio + "</td>"
+                            resultado += "<td>" + elem.DataEpisodio + "</td>";
+                            resultado += "</tr>";
+                        });
+                        $("#dadosTabela-Episodio").html(resultado);
+                    }
+                }
+            });
+        });
+
         $("#Temporada").change(function () {
-            
+
             var TemporadaID = $('#Temporada').val();
             var SerieID = @Model.SerieID;
 
@@ -190,10 +227,8 @@
                 cache: false,
                 success: function (result) {
                     if (result.listaEpisodio != null) {
-                        
-
                         var resultado = "";
-                        var count = 0;
+                        var count = 1;
                         $.each(result.listaEpisodio, function (idx, elem) {
                             resultado += "<tr>";
                             resultado += "<td>" + count++ + "</td>"
@@ -201,13 +236,8 @@
                             resultado += "<td>" + elem.DataEpisodio + "</td>";
                             resultado += "</tr>";
                         });
-
-                        //carrega a movimentação dos equipamentos do contrato
                         $("#dadosTabela-Episodio").html(resultado);
-
-
                     }
-
                 }
             });
         });

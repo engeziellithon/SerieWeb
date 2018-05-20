@@ -74,12 +74,11 @@ namespace SerieWeb.Controllers.Site
                 }
             }
 
-
-            ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).OrderBy(c => c.NomeTemporada).ToList();
-            
-
-
             ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
+            ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).ToList().Distinct() ;
+
+            
+           
             return View(serie);
         }
         #endregion
