@@ -14,7 +14,7 @@ namespace SerieWeb.Models.Admininstracao
         public int ServicoStreamingID { get; set; }
 
         [Required()]
-        [Display(Name = "Serviço Streaming")]
+        [Display(Name = "Serviço de Streaming")]
         [StringLength(100, MinimumLength = 4)]
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Números e caracteres especiais não são permitidos.")]
         public String NomeServicoStreaming { get; set; }

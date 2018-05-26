@@ -21,9 +21,9 @@ namespace SerieWeb.Controllers.Admininstracao
 
         #region Index
 
-        public ActionResult Index(string valor = "")
+        public ActionResult Index()
         {
-            ViewBag.MessagemSucesso = valor;
+
             return View(db.Series.ToList());
         }
         #endregion
@@ -76,8 +76,8 @@ namespace SerieWeb.Controllers.Admininstracao
                     db.SeriesServicos.Add(serieServicos);
                 }
                 await db.SaveChangesAsync();
-                String valor = "A Serio " + serie.NomeSerie + " foi salva com sucesso";
-                return RedirectToAction("Index","Serie",new { valor });
+
+                return RedirectToAction("Index");
             }
             ViewBag.Generos = db.Generos.ToList();
             ViewBag.Servicos = db.ServicosStreaming.ToList();
@@ -86,7 +86,7 @@ namespace SerieWeb.Controllers.Admininstracao
         #endregion
 
         #region Editar Série
-
+        [HttpGet]
         public async Task<ActionResult> Editar(int? id)
         {
             if (id == null)
@@ -120,7 +120,7 @@ namespace SerieWeb.Controllers.Admininstracao
             try
             {
                 if (TryUpdateModel(Serie, "",
-                  new string[] { "SerieID", "NomeSerie", "Imagem", "Sinopse", "Nota", "Trailer" }))
+                  new string[] { "SerieID", "NomeSerie", "Imagem", "Sinopse", "Nota", "Trailer", "ListGeneros", "ListServicos" }))
                 {
                     try
                     {

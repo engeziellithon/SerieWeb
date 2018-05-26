@@ -29,7 +29,7 @@ namespace SerieWeb.Controllers.Site
             List<Serie> model = new List<Serie>();
             if (pesquisa != null)
             {
-                model = db.Series.Where(x => x.NomeSerie.Contains(pesquisa)).Take(20).ToList();
+                model = db.Series.Where(x => x.NomeSerie.Contains(pesquisa)).Take(20).OrderBy(d => d.Nota).ToList();
             }
             else
             {

@@ -17,7 +17,7 @@
             <div class="card-deck">
                 @foreach (var item in Model)
                 {
-                    <div class="col-sm-6 col-md-4 col-lg-3" id="DivExplorarCard">
+                    <div class="col-lg-3" id="DivExplorarCard">
                         <div class="card explorarCard">
                             <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
                                 <img class="card-img-top" src="@item.Imagem" alt="Card image cap">
@@ -36,57 +36,6 @@
         </div>
     </div>
 </div>
-
-@*(teste para mobile)*@
-@*<div class="row">
-        <div class="card-group">
-            @foreach (var item in Model)
-            {
-                <div class="col-6cell">
-                    <div class="card">
-                        <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
-                            <img class="card-img-top" src="@item.Imagem" alt="Card image cap">
-                        </a>
-                        <div class="card-block">
-                            <div class="card-text">
-                                <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
-                                    <h5 class="card-text" style="text-align:center">@item.NomeSerie</h5>
-                                    <h5 class="card-text" style="text-align:center">@item.Nota</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>*@
-
-
-@*(dice para mobile)*@
-@*<div id="cell">
-        <div class="row">
-            <div class="card">
-                @foreach (var item in Model)
-            {
-                <div class="col-xs-6">
-                    <div class="card">
-                        <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
-                            <img class="card-img-top" src="@item.Imagem" alt="Card image cap">
-                        </a>
-                        <div class="card-block">
-                            <div class="card-text">
-                                <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
-                                    <h5 class="card-text" style="text-align:center">@item.NomeSerie</h5>
-                                    <h5 class="card-text" style="text-align:center">@item.Nota</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        }
-            </div>
-        </div>
-    </div>*@
 
 
 
