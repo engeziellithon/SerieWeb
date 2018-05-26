@@ -76,9 +76,9 @@ namespace SerieWeb.Controllers.Site
 
             ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
             ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).ToList().Distinct();
-            
-            
-          
+            ViewBag.listagenero = db.SeriesGeneros.Where(g => g.SerieID == serie.SerieID).ToList();
+            ViewBag.listaservico = db.SeriesServicos.Where(g => g.SerieID == serie.SerieID).ToList();
+
             return View(serie);
         }
         #endregion
