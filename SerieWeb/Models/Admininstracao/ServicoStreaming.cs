@@ -15,7 +15,7 @@ namespace SerieWeb.Models.Admininstracao
 
         [Required()]
         [Display(Name = "Serviço Streaming")]
-        [StringLength(100, MinimumLength = 4)]
+        [StringLength(100, MinimumLength = 3)]
         [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Números e caracteres especiais não são permitidos.")]
         public String NomeServicoStreaming { get; set; }
 
