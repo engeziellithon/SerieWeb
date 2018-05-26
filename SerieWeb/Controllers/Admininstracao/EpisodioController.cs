@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
+//using System;
 
 namespace SerieWeb.Controllers.Admininstracao
 {
@@ -60,6 +61,7 @@ namespace SerieWeb.Controllers.Admininstracao
         {
             if (ModelState.IsValid)
             {
+                //Convert.ToDateTime(episodio.DataExibicao).ToString("dd/MM/yyyy");
                 db.Episodios.Add(episodio);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -80,6 +82,7 @@ namespace SerieWeb.Controllers.Admininstracao
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Episodio episodio = await db.Episodios.FindAsync(id);
+            //episodio.DataExibicao.ToString("dd/MM/yyyy");
             if (episodio == null)
             {
                 return HttpNotFound();

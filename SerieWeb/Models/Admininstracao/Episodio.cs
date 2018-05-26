@@ -27,10 +27,11 @@ namespace SerieWeb.Models.Admininstracao
         [RegularExpression("https://www.youtube.com/watch\\?v=.*", ErrorMessage = "Adicione uma Url do Youtube")]
         public string Video { get; set; }
         
-        [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
+        [Required]       
+        [DataType(DataType.Date, ErrorMessage = "Data de Exibição deve estar Preenchida é deve ser uma data válida")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [Display(Name = "Data de Exibição")]
+        [Range(typeof(DateTime), "01/01/1900", "31/12/2030")]
         public DateTime DataExibicao { get; set; }
 
         [Display(Name = "Nome da Série")]

@@ -62,7 +62,8 @@
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.DataExibicao)
+                                @*@Html.DisplayFor(model => model.DataExibicao)*@
+                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.DataExibicao))
                             </dd>
                         </dl>
                         <div class="float-right" style="margin-right:25px">

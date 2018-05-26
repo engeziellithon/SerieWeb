@@ -57,8 +57,8 @@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.NomeEpisodio)
                                             </td>                                           
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.DataExibicao)
+                                            <td>                                                
+                                                @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.DataExibicao))
                                             </td>
                                             <td>
                                                 @Html.ActionLink("Editar", "Editar", new { id = item.EpisodioID }) |
