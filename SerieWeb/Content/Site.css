@@ -588,7 +588,8 @@ textarea.form-control {
 
 @media (min-width: 1000px) {
     .DetalhesSerie {
-        background: linear-gradient(20deg, #242E30 30%, #2a3031 25% );
+        background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
+        background: linear-gradient(to right, #0c2646 0%, #162435 60%, #163250 100%);
         padding-right: 0;
         padding-left: 0;
         height: 31.250em;
@@ -629,6 +630,8 @@ textarea.form-control {
 
 @media (max-width: 1000px) {
     .DetalhesSerie {
+        background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
+        background: linear-gradient(to right, #0c2646 0%, #162435 60%, #163250 100%);
         padding-right: 0;
         padding-left: 0;
     }
