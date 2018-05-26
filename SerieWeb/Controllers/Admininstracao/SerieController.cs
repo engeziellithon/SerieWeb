@@ -149,10 +149,10 @@ namespace SerieWeb.Controllers.Admininstracao
                         {
                             foreach (int item in ListServicos)
                             {
-                                var serieServico = new SeriesGeneros();
+                                var serieServico = new SeriesServicos();
                                 serieServico.SerieID = Serie.SerieID;
-                                serieServico.GeneroID = item;
-                                db.SeriesGeneros.Add(serieServico);
+                                serieServico.ServicoStreamingID = item;
+                                db.SeriesServicos.Add(serieServico);
                             }
                         }
                         await db.SaveChangesAsync();
