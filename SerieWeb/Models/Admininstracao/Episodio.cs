@@ -28,10 +28,9 @@ namespace SerieWeb.Models.Admininstracao
         public string Video { get; set; }
         
         [Required]       
-        [DataType(DataType.Date, ErrorMessage = "Data de Exibição deve estar Preenchida é deve ser uma data válida")]
+        [DataType(DataType.Date, ErrorMessage = "Data de Exibição deve estar Preenchida")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [Display(Name = "Data de Exibição")]
-        [Range(typeof(DateTime), "01/01/1900", "31/12/2030")]
+        [Display(Name = "Data de Exibição")]       
         public DateTime DataExibicao { get; set; }
 
         [Display(Name = "Nome da Série")]
