@@ -5,7 +5,8 @@
     var Indicacoes = (List<SerieWeb.Models.Admininstracao.Serie>)ViewBag.Indicacoes;
     var Episodios = (List<SerieWeb.Models.Admininstracao.Episodio>)ViewBag.Episodios;
     var Temporadas = (IEnumerable<SerieWeb.Models.Admininstracao.Temporada>)ViewBag.listatemporada;
-
+    var Generos = (IEnumerable<SerieWeb.Models.Admininstracao.Genero>)ViewBag.listagenero;
+    var Servicos = (IEnumerable<SerieWeb.Models.Admininstracao.ServicoStreaming>)ViewBag.listaservico;
 
 
     var MensagemSucesso = ViewBag.Msg != null ? ViewBag.Msg : "";
@@ -26,6 +27,22 @@
                         <h1 class="text-white">@Model.NomeSerie</h1>
                         <hr />
                     </div>
+                    <div class="row">
+                        <div class="col-6">
+                            @foreach (var item in Generos)
+                            {
+                                <p class="text-justify text-white">Genero: @item.NomeGenero</p>
+                            }
+                        </div>
+                        <div class="col-6">
+                            @foreach (var item in Servicos)
+                            {
+                                <p class="text-justify text-white">Serviço: @item.NomeServicoStreaming</p>
+
+                            }
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-12">
                             <br />
@@ -57,8 +74,8 @@
                                 </button>
                             }
                         </div>
-                      
-                       
+
+
                     </div>
 
                 </div>
@@ -152,7 +169,7 @@
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
     <script>
-       
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
@@ -172,7 +189,7 @@
 
 
         $(document).ready(function () {
-            
+
            var TemporadaID = $('#Temporada').val();
             var SerieID = @Model.SerieID;
 
