@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
 
+
 namespace SerieWeb.Controllers.Admininstracao
 {
     [Authorize(Roles = "SuperAdmin,Admin")]
@@ -20,9 +21,10 @@ namespace SerieWeb.Controllers.Admininstracao
 
         #region Index
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index(string valor = "")
         {
-            return View(await db.Series.ToListAsync());
+            ViewBag.MessagemSucesso = valor;
+            return View(db.Series.ToList());
         }
         #endregion
 
@@ -53,7 +55,7 @@ namespace SerieWeb.Controllers.Admininstracao
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,Trailer,Sinopse,Nota,ListGeneros")] Serie serie)
+        public async Task<ActionResult> Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,Trailer,Sinopse,Nota,ListGeneros,ListServicos")] Serie serie)
         {
             if (ModelState.IsValid)
             {
@@ -66,8 +68,16 @@ namespace SerieWeb.Controllers.Admininstracao
                     serieGeneros.GeneroID = item;
                     db.SeriesGeneros.Add(serieGeneros);
                 }
+                foreach (int item in serie.ListServicos)
+                {
+                    var serieServicos = new SeriesServicos();
+                    serieServicos.SerieID = serie.SerieID;
+                    serieServicos.ServicoStreamingID = item;
+                    db.SeriesServicos.Add(serieServicos);
+                }
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                String valor = "A Serio " + serie.NomeSerie + " foi salva com sucesso";
+                return RedirectToAction("Index","Serie",new { valor });
             }
             ViewBag.Generos = db.Generos.ToList();
             ViewBag.Servicos = db.ServicosStreaming.ToList();

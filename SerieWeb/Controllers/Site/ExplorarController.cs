@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Globalization;
+
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -43,7 +43,7 @@ namespace SerieWeb.Controllers.Site
         #region Detalhes dos serie
         // GET: Serie/DetailsUsuario/5
         [HttpGet]
-        public ActionResult DetalhesSerie(int? id)
+        public ActionResult DetalhesSerie(int? id, string MensagemSucesso)
         {
             #region Verificar se serie existe
             if (id == null)
@@ -75,10 +75,10 @@ namespace SerieWeb.Controllers.Site
             }
 
             ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
-            ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).ToList().Distinct() ;
-
+            ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).ToList().Distinct();
             
-           
+            
+          
             return View(serie);
         }
         #endregion
@@ -155,6 +155,7 @@ namespace SerieWeb.Controllers.Site
                     perfil.SerieFavorita = false;
                     db.Entry(perfil).State = EntityState.Modified;
                     db.SaveChanges();
+                    
                     return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
                 }
                 catch (Exception ex)
@@ -164,80 +165,12 @@ namespace SerieWeb.Controllers.Site
                 }
             }
             #endregion
-
+            
+          
             return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
         }
 
-        [HttpPost]
-        public ActionResult InteresseSerie(int IdSerie)
-        {
-            #region verifica se esta logando / Pega id do usuario logado / verifica se a serie existe.
-
-            string user = User.Identity.GetUserId();
-            if (user == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            Serie serie = db.Series.Find(IdSerie);
-
-            if (serie == null)
-            {
-                return HttpNotFound();
-            }
-            #endregion
-
-            UsuarioPerfil perfil = new UsuarioPerfil();
-            var StatusSerie = db.UsuarioPerfil.Where(p => p.SerieID == serie.SerieID && p.UserId == user).FirstOrDefault();
-
-            #region Adicionar aos favoritos
-            if (StatusSerie == null)
-            {
-                perfil.UserId = user;
-                perfil.SerieID = serie.SerieID;
-                perfil.InteresseSerie = true;
-                db.UsuarioPerfil.Add(perfil);
-                db.SaveChanges();
-            }
-            #endregion
-
-            #region Edição da Serie favorita 
-            else if (StatusSerie.SerieFavorita == false)
-            {
-                try
-                {
-                    perfil = db.UsuarioPerfil.Find(StatusSerie.UsuarioPerfilID);
-                    perfil.InteresseSerie = true;
-                    db.Entry(perfil).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
-                }
-                catch (Exception ex)
-                {
-                    var teste = ex;
-                    ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
-                }
-            }
-            else
-            {
-                try
-                {
-                    perfil = db.UsuarioPerfil.Find(StatusSerie.UsuarioPerfilID);
-                    perfil.InteresseSerie = false;
-                    db.Entry(perfil).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
-                }
-                catch (Exception ex)
-                {
-                    var teste = ex;
-                    ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
-                }
-            }
-            #endregion
-
-            return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
-        }
+       
 
 
     }

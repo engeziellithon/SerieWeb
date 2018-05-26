@@ -22,7 +22,7 @@ namespace SerieWeb.Models.Admininstracao
         [DataType(DataType.ImageUrl)]
         public String Imagem { get; set; }
 
-        [RegularExpression(@"^(https:\/\/)youtu(.be)?(\.com)?\/.+", ErrorMessage = "Adicione Url de Compartilhamento do Youtube.Ex:"+""+"https:/ /youtu.be/4SZ3rMMYBLY"+"")]
+        [RegularExpression(@"^(https:\/\/)youtu(.be)?(\.com)?\/.+", ErrorMessage = "Adicione Url de Compartilhamento do Youtube. Ex:"+""+"https:/ /youtu.be/4SZ3rMMYBLY"+"")]
         public String Trailer { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -33,6 +33,7 @@ namespace SerieWeb.Models.Admininstracao
         public double Nota { get; set; }
 
         [NotMapped]
+        [Required(ErrorMessage = "A série precisa ter pelo menos 1 gênero")]
         public int[] ListGeneros { get; set; }
 
         [NotMapped]
