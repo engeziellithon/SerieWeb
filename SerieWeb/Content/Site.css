@@ -783,9 +783,9 @@ textarea.form-control {
     border-bottom-right-radius: 0;
 }
 
-    #HomePesquisa:hover {
-        border: 1px;
-        background-color: #fff;
+    #HomePesquisa:active {
+        border: 40px solid;
+        background-color: #204065;
     }
 
     #HomePesquisa::-moz-placeholder {
@@ -813,12 +813,12 @@ textarea.form-control {
     }
 
 .home-image {
-    background-image: url('../../Content/SVG/capa.jpg');
-    position: fixed;
+    /*background-image: url('../../Content/SVG/capa.jpg');*/
+    /*position: fixed;
     width: 100%;
-    height: 100%;
-    background-color: #3c3c3c !important;
-    background-blend-mode: multiply;
+    height: 100%;*/
+    /*background-color: #3c3c3c !important;
+    /*background-blend-mode: multiply;*/
 }
 
 .BtnPesquisa {
@@ -854,3 +854,32 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
 .dropdownTempID {
     padding-top: 7px !important;
 }
+
+/*#region ModalSucesso */
+
+#success-icon {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    left: 50%;
+    margin-left: -55px;
+    top: -5%;
+    background-color: #59bc69;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: solid 5px white;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+    #success-icon div {
+        position: absolute;
+        top: 34%;
+        left: 26%;
+        transform: rotate(-45deg);
+        border-bottom: solid 0.8em white;
+        border-left: solid 0.8em white;
+        height: 15%;
+        width: 33%;
+    }
+/*#endregion ModalSucesso */
+

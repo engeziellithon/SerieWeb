@@ -4,6 +4,7 @@
     ViewBag.Title = "Adicionar Série";
     var Generos = (List<SerieWeb.Models.Admininstracao.Genero>)ViewBag.Generos;
     var Servicos = (List<SerieWeb.Models.Admininstracao.ServicoStreaming>)ViewBag.Servicos;
+   
     var count = 0;
     @Scripts.Render("~/bundles/popper")
 }
@@ -89,6 +90,7 @@
                                                     count++;
                                                 }
                                             </select>
+                                            @Html.ValidationMessageFor(model => model.ListGeneros, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>

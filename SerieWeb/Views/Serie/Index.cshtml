@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Lista de Séries";
+    string MensagemSucesso = (String)ViewBag.MessagemSucesso;
 }
 
 <div class="panel-header panel-header-sm">
@@ -28,11 +29,11 @@
                                             @Html.DisplayNameFor(model => model.NomeSerie)
                                         </th>
                                         @*<th>
-                                            @Html.DisplayNameFor(model => model.Imagem)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Trailer)
-                                        </th>*@
+                                                @Html.DisplayNameFor(model => model.Imagem)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Trailer)
+                                            </th>*@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Sinopse)
                                         </th>
@@ -46,29 +47,29 @@
                                     @foreach (var item in Model)
                                     {
 
-                                    <tr>
-                                        <td>
-                                        @Html.DisplayFor(modelItem => item.NomeSerie)
-                                        </td>
-                                        @*<td>
-                                            @Html.DisplayFor(modelItem => item.Imagem)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Trailer)
-                                        </td>*@
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Sinopse)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Nota)
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Editar", "Editar", new { id = item.SerieID }) |
-                                            @Html.ActionLink("Detalhes", "Detalhes", new { id = item.SerieID }) |
-                                            @Html.ActionLink("Deletar", "Deletar", new { id = item.SerieID })
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NomeSerie)
+                                            </td>
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.Imagem)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Trailer)
+                                                </td>*@
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Sinopse)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Nota)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Editar", "Editar", new { id = item.SerieID }) |
+                                                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.SerieID }) |
+                                                @Html.ActionLink("Deletar", "Deletar", new { id = item.SerieID })
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
 
                                     }
                                 </tbody>
@@ -80,6 +81,28 @@
         </div>
     </div>
 </div>
+
+<div id="MensagemSucesso" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <svg id="close-modal" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 10 10">
+                <line x1="1" y1="-1" x2="9" y2="11" stroke-width="2.5" />
+                <line x1="9" y1="-1" x2="1" y2="11" stroke-width="2.5" />
+            </svg>
+            <h1><strong>@MensagemSucesso</strong></h1>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="Mensagem" value="@MensagemSucesso" />
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -115,8 +138,17 @@
                 "pagingType": "simple",
                 "info": false,
                 "scrollY": '50vh',
-                "scrollCollapse": true                           
+                "scrollCollapse": true
             });
         });
+
+
+        if ($('#Mensagem').val() != '') {
+            $('#MensagemSucesso').modal({
+                keyboard: false
+            });
+        }
+
+
     </script>
 }
