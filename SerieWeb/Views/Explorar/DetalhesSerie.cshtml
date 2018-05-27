@@ -1,14 +1,12 @@
 ﻿@model  SerieWeb.Models.Admininstracao.Serie
 @{
-    ViewBag.Title = "Detalhes Serie";
+    ViewBag.Title = "Detalhes da Serie";
 
     var Indicacoes = (List<SerieWeb.Models.Admininstracao.Serie>)ViewBag.Indicacoes;
     var Episodios = (List<SerieWeb.Models.Admininstracao.Episodio>)ViewBag.Episodios;
     var Temporadas = (IEnumerable<SerieWeb.Models.Admininstracao.Temporada>)ViewBag.listatemporada;
-    var Generos = (IEnumerable<SerieWeb.Models.Admininstracao.Genero>)ViewBag.listagenero;
-    var Servicos = (IEnumerable<SerieWeb.Models.Admininstracao.ServicoStreaming>)ViewBag.listaservico;
-
-
+    var Generos = (List<SerieWeb.Models.Admininstracao.Genero>)ViewBag.listagenero;
+    var Servicos = (List<SerieWeb.Models.Admininstracao.ServicoStreaming>)ViewBag.listaservico;
     var MensagemSucesso = ViewBag.Msg != null ? ViewBag.Msg : "";
     var TrailerCompartilhar = ViewBag.TrailerCompartilhar;
 }
@@ -23,29 +21,43 @@
                     <img src="@Model.Imagem" class="img-seriedetalhes img-responsive rounded mx-auto d-block" alt="Responsive image">
                 </div>
                 <div class="col-8 containerInfoDetalhes">
-                    <div class="row">
-                        <h1 class="text-white">@Model.NomeSerie</h1>
-                        <hr />
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            @foreach (var item in Generos)
-                            {
-                                <p class="text-justify text-white">Genero: @item.NomeGenero</p>
-                            }
-                        </div>
-                        <div class="col-6">
-                            @foreach (var item in Servicos)
-                            {
-                                <p class="text-justify text-white">Serviço: @item.NomeServicoStreaming</p>
+                    <div>
+                        <h1 class="text-white font-weight-bold">@Model.NomeSerie</h1>
 
-                            }
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <p class="text-white font-weight-bold">Gêneros: </p>
+                                </div>
+                                <div class="row">
+                                    @foreach (var item in Generos)
+                                    {
+
+                                        <span class="border border-white" style="margin-right: 10px;margin-bottom: 10px;">
+                                            <p class="text-justify text-white" style="margin-bottom:0; margin-left:5px; margin-right:5px"> @item.NomeGenero</p>
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <label class="text-white font-weight-bold">Serviços de Streaming</label>
+                                </div>
+                                <div class="row">
+                                    @foreach (var item in Servicos)
+                                    {
+                                        <span class="border border-white" style="margin-right: 10px;margin-top:9px;">
+                                            <p class="text-justify text-white" style="margin-bottom:0; margin-left:5px; margin-right:5px"> @item.NomeServicoStreaming</p>
+                                        </span>
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12">
-                            <br />
                             <h2 class="text-white">Sinopse</h2>
                             <p class="text-justify text-white">@Model.Sinopse</p>
                             <br />
@@ -74,7 +86,20 @@
                                 </button>
                             }
                         </div>
-
+                        <div class="col-6">
+                            
+                            <label class="range">
+                                <input class="range-input"
+                                       type="range"
+                                       min="0"
+                                       max="100"
+                                       step="1"
+                                       value="50">
+                                <span class="range-box">
+                                    <span class="range-counter">50</span>
+                                </span>
+                            </label>
+                        </div>
 
                     </div>
 
@@ -83,7 +108,8 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container"> 
+
     @if (ViewBag.listaTemporada != null)
     {
         <div class="col-12" style="margin-top:40px; margin-bottom:60px;">
@@ -160,8 +186,12 @@
         <h4 class="col-md-4">Comentarios</h4>
         <div class="fb-comments" data-href="@Request.Url.ToString()" data-numposts="5"></div>
     </div>
+
+
 </div>
 
+
+    
 
 
 
@@ -174,10 +204,36 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
 
-        if ($('#MensagemSucesso').val() != "") {
-            debugger
-            $('#MensagemSucesso').modal('show');
+        window.addEventListener('resize', triggerAll);
+        document.addEventListener('input', (evt) => RangeInput(
+            evt.target
+        ));
+
+        triggerAll();
+
+        function triggerAll() {
+            document
+                .querySelectorAll('.range-input')
+                .forEach(RangeInput);
         }
+
+        function RangeInput(input) {
+            if (input.type !== 'range') {
+                return;
+            }
+            
+            const range = (input.max - input.min) / 100;
+            const thumbSize = 20;
+            const inputHalfWidth = input.clientWidth - thumbSize;
+            const balloonPosition = (parseFloat(input.value) * (inputHalfWidth / 100)) - (thumbSize / 2);
+            const balloon = input.nextElementSibling;
+
+            balloon.style.left = `${balloonPosition}px`;
+            balloon.firstElementChild.textContent = input.value;
+
+            input.style.setProperty('--value', (input.value - input.min) / range);
+        }
+
 
         $(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
