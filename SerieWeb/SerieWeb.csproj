@@ -252,6 +252,10 @@
     <Compile Include="Migrations\201805141907458_Admininistrador.Designer.cs">
       <DependentUpon>201805141907458_Admininistrador.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805272314469_avaliacaoSerieUser.cs" />
+    <Compile Include="Migrations\201805272314469_avaliacaoSerieUser.Designer.cs">
+      <DependentUpon>201805272314469_avaliacaoSerieUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
     <Compile Include="Models\Admininstracao\Genero.cs" />
@@ -488,6 +492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805141907458_Admininistrador.resx">
       <DependentUpon>201805141907458_Admininistrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805272314469_avaliacaoSerieUser.resx">
+      <DependentUpon>201805272314469_avaliacaoSerieUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

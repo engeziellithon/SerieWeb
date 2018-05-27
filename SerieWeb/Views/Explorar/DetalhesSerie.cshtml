@@ -83,18 +83,19 @@
                             }
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-default BtnStar" data-toggle="tooltip" data-placement="bottom" title="Nota total da Série e quantidade de avaliaçoes">
+                            <button type="button" class="btn btn-default BtnStar disabled" data-toggle="tooltip" data-placement="bottom" title="Nota total da Série e quantidade de avaliaçoes" style="opacity: 1;">
                                 <img src="~/Content/SVG/star.svg" />
                                 8 | 200
                                 <img src="~/Content/SVG/user.svg" />
                             </button>
+
                         </div>
                         <div class="col-6">
                             <div class="row">
                                 <div class="col-5" style="margin:auto;">
                                     <p class="text-white font-weight-bold" style="margin-bottom:0;">Sua Avaliação:</p>
                                 </div>
-                                <div class="col-7" style="margin-top:10px;">
+                                <div class="col-5" style="margin-top:10px;">
                                     <label class="range">
                                         <input class="range-input"
                                                type="range"
@@ -106,6 +107,10 @@
                                             <span class="range-counter" id="counter"></span>
                                         </span>
                                     </label>
+                                </div>
+                                <div class="col-2" style="margin:auto;">
+                                    <span class="badge badge-pill badge-primary" style="padding:8px">Salvar</span>
+
                                 </div>
                             </div>
                         </div>
@@ -232,7 +237,7 @@
             if (input.type !== 'range') {
                 return;
             }
-            debugger
+           
             count = input.value;           
 
             const range = (input.max - input.min) / 100;

@@ -24,6 +24,6 @@ namespace SerieWeb.Models.Usuario
 
         public bool SerieFavorita { get; set; }
 
-        public bool InteresseSerie { get; set; }
+        public double Avaliacao { get; set; }
     }
 }
