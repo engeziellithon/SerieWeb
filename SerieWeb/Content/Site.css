@@ -420,7 +420,6 @@
     .input-group-btn:first-child > .dropdown-toggle,
     .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
         border-right: 0 none;
-
     }
 
     .input-group .form-control:last-child,
@@ -625,7 +624,7 @@ textarea.form-control {
     /*.visible {
         visibility: visible;
     }*/
-    
+
 }
 
 @media (max-width: 1000px) {
@@ -639,7 +638,7 @@ textarea.form-control {
     .containerDetalhesSerie {
         margin-top: 0;
         height: 31.250em;
-        position:fixed;
+        position: fixed;
     }
 
     .containerImagemdetalhes {
@@ -691,14 +690,15 @@ textarea.form-control {
 /*----Explorar index----*/
 .explorarCard {
     border: 0 none transparent;
-    
 }
+
 #DivExplorarCard {
     margin-bottom: 10px;
 }
-#desktop{
-    margin-top:25px;
-    margin-bottom:25px;
+
+#desktop {
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .row.equal-height {
@@ -786,7 +786,7 @@ textarea.form-control {
     border-bottom-right-radius: 0;
 }
 
-    #HomePesquisa:active {        
+    #HomePesquisa:active {
         background-color: rgba(222, 222, 222, 0.5);
     }
 
@@ -834,6 +834,7 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
     border-radius: 12px;
     color: #2c2c2c;
 }
+
 .multiselect-container.dropdown-menu.show {
     transform: translate3d(25px, 43px, 0px) !important;
     min-width: 16rem !important;
@@ -897,10 +898,10 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
         display: inline-block;
         width: 100%;
         height: 20px;
-        background: -webkit-linear-gradient(left, #ffc80a 0%, #90bf43 100%);
-        background: -moz-linear-gradient(left, #ffc80a 0%, #90bf43 100%);
-        background: -o-linear-gradient(left, #ffc80a 0%, #90bf43 100%);
-        background: linear-gradient(to right, #ffc80a 0%, #90bf43 100%);
+        background: -webkit-linear-gradient(left, #731818 0%, #90bf43 100%);
+        background: -moz-linear-gradient(left, #731818 0%, #90bf43 100%);
+        background: -o-linear-gradient(left, #731818 0%, #90bf43 100%);
+        background: linear-gradient(to right, #731818 0%, #90bf43 100%);
         border-radius: 10px;
         outline: none;
         cursor: pointer;
@@ -964,8 +965,9 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
             border-radius: 10px;
         }
 
+
         .range input[type="range"]::-ms-track {
-            background: linear-gradient(90deg, #ffc80a 0%, #90bf43 100%);
+            background: linear-gradient(90deg, #731818 0%, #90bf43 100%);
             height: 20px;
         }
 
@@ -995,6 +997,7 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
 
 .range-counter {
     display: block;

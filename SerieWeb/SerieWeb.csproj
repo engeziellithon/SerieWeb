@@ -297,6 +297,7 @@
     <Content Include="Content\SVG\play.svg" />
     <Content Include="Content\SVG\ttazul.svg" />
     <Content Include="Content\SVG\ttpreto.svg" />
+    <Content Include="Content\SVG\user.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">
