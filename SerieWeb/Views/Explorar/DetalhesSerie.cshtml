@@ -116,100 +116,105 @@
     </div>
 </div>
 <div class="container">
+    <div class="card" style="margin-bottom:30px;">
+        <div class="card-header">
+                <h5>Temporadas</h5>               
 
-    @if (ViewBag.listaTemporada != null)
-    {
-        <div class="col-12" style="margin-top:40px; margin-bottom:60px;">
-            <div class="row justify-content-between ">
-                <div class="col-md-4">
-                    <h4>Temporadas</h4>
-                </div>
-                <div class="col-2">
-                    <div class="col-sm-12 float-right" style="padding-right:0; margin-bottom:10px;">
+        </div>
+        @if (ViewBag.listaTemporada != null)
+        {
+            <div class="col-12" style="margin-top:10px;">
+                <div class="row justify-content-between ">
+                        <div class="col-md-4">
+                                @*<h4>Temporadas</h4>*@
+                            </div>
+                        <div class="col-2">
+                            <div class="col-sm-12 float-right" style="padding-right:0; margin-bottom:10px;">
 
-                        <select class="form-control" id="Temporada" name="ListTemporadas">
-                            @foreach (var item in Temporadas)
-                            {
-                                <option value="@item.TemporadaID"> @item.NomeTemporada </option>
-                            }
-                        </select>
+                                <select class="form-control" id="Temporada" name="ListTemporadas">
+                                    @foreach (var item in Temporadas)
+                                    {
+                                        <option value="@item.TemporadaID"> @item.NomeTemporada </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
                     </div>
+
+
+
+                <table id="Tabela-Episodio" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nª</th>
+                            <th class="col">Episódio</th>
+                            <th class="col">Data</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dadosTabela-Episodio">
+                        <!-- CARREGA VIA AJAX -->
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+
+    <div class="card" style="margin-bottom:30px;">
+        <div class="card-header">
+            <h5>Trailer</h5>
+        </div>
+        @if (TrailerCompartilhar != null)
+        {
+            <div id="trailer" class="col-md-12">
+                <div class="embed-responsive embed-responsive-16by9 col-12">
+                    <iframe width="560" height="315" src="https://youtube.com/embed/@TrailerCompartilhar" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
             </div>
+        }
+    </div>
 
-
-
-            <table id="Tabela-Episodio" class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nª</th>
-                        <th class="col">Episódio</th>
-                        <th class="col">Data</th>
-                    </tr>
-                </thead>
-                <tbody id="dadosTabela-Episodio">
-                    <!-- CARREGA VIA AJAX -->
-                </tbody>
-            </table>
+    <div class="card" style="margin-bottom:30px;">
+        <div class="card-header">
+            <h5>Indicações</h5>
         </div>
-    }
-
-
-    @if (TrailerCompartilhar != null)
-    {
-        <div id="trailer" class="col-md-12" style="margin-bottom:60px;">
-            <h4 class="col-md-4"> Trailer </h4>
-            <div class="embed-responsive embed-responsive-16by9 col-12">
-                <iframe width="560" height="315" src="https://youtube.com/embed/@TrailerCompartilhar" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-        </div>
-    }
-
-
-    
-
-        <div class="card" style="margin-bottom:30px;">
-            <div class="card-header">
-                Indicações
-            </div>
-            <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
-                @*<ol class="carousel-indicators">
+        <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+            @*<ol class="carousel-indicators">
                     <li data-target="#carousel" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel" data-slide-to="1"></li>
                     <li data-target="#carousel" data-slide-to="2"></li>
                     <li data-target="#carousel" data-slide-to="3"></li>
                 </ol>*@
-                <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 style="text-align:center">Lista de indicações</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.carousel-item -->
+                @foreach (var item in Indicacoes)
+                {
+                    <div class="carousel-item">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <h2 style="text-align:center">Lista de indicações</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+                                <div class="col-md-2"><img src="@item.Imagem" class="d-block img-fluid" style="height:200px; width:150px;"></div>
+                                <div class="col-md-10">
+                                    <h3>@item.NomeSerie</h3>
+                                    <p>@item.Nota</p>
+                                    <p>@item.Sinopse</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- /.carousel-item -->
-                    @foreach (var item in Indicacoes)
-                    {
-                        <div class="carousel-item">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-2"><img src="@item.Imagem" class="d-block img-fluid" style="height:200px; width:150px;"></div>
-                                    <div class="col-md-10">
-                                        <h3>@item.NomeSerie</h3>
-                                        <p>@item.Nota</p>
-                                        <p>@item.Sinopse</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    <!-- /.carousel-item -->
-                </div>
-                <!-- /.carousel-inner -->
-                @*<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                }
+                <!-- /.carousel-item -->
+            </div>
+            <!-- /.carousel-inner -->
+            @*<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
@@ -217,24 +222,21 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>*@
-            </div>
-            <!-- /.carousel -->
-            <a href="" class="btn btn-primary">Ir para serie</a>
-
         </div>
-    
+        <!-- /.carousel -->
+        <a href="" class="btn btn-primary">Ir para serie</a>
+
+    </div>
+
     <!-- /.container -->
     <div class="card">
         <div class="card-header">
-            Comentarios
+            <h5>Comentarios</h5>
         </div>
         <div id="coments" style="margin-bottom:60px;">
             <div class="fb-comments" data-href="@Request.Url.ToString()" data-numposts="5"></div>
         </div>
     </div>
-
-
-
 </div>
 
 
