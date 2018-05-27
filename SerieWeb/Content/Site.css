@@ -1009,3 +1009,18 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
+
+/*css do carrousel*/
+
+.carousel {
+    background: #007aeb;
+}
+
+.carousel-item .img-fluid {
+    width: 100%;
+}
+
+.carousel-item a {
+    display: block;
+    width: 100%;
+}
