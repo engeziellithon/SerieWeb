@@ -2,11 +2,9 @@
 using SerieWeb.Models.Admininstracao;
 using SerieWeb.Models.Identity;
 using SerieWeb.Models.Usuario;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -60,7 +58,6 @@ namespace SerieWeb.Controllers.Site
             }
             #endregion
 
-
             if (serie.Trailer != null)
             {
                 ViewBag.TrailerCompartilhar = "";
@@ -73,16 +70,23 @@ namespace SerieWeb.Controllers.Site
                     ViewBag.TrailerCompartilhar = TrailerCompartilhar;
                 }
             }
+            // user logado
+            string user = User.Identity.GetUserId();
 
             ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
             ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).ToList().Distinct();
             ViewBag.listagenero = db.SeriesGeneros.Where(g => g.SerieID == serie.SerieID).Select(s=>s.Genero).ToList();
             ViewBag.listaservico = db.SeriesServicos.Where(g => g.SerieID == serie.SerieID).Select(s => s.ServicoStreaming).ToList();
 
+            ViewBag.Avaliacoes = db.UsuarioPerfil.Where(s => s.SerieID == serie.SerieID && s.Avaliacao >= 0).ToList();
+
+            ViewBag.UserNota = db.UsuarioPerfil.FirstOrDefault(s => s.SerieID == serie.SerieID && s.Avaliacao >= 0 && s.UserId == user).Avaliacao;
+
             return View(serie);
         }
         #endregion
 
+        #region listar episodio da serue
         [HttpPost]
         public ActionResult ExiberEpisodio(int SerieID,int TemporadaID)
         {
@@ -96,7 +100,9 @@ namespace SerieWeb.Controllers.Site
            
             return Json(new { listaEpisodio = listaEpisodios });
         }
+        #endregion
 
+        #region Salvar seie nos favoritos 
         [HttpPost]
         public ActionResult SalvarFavorito(int IdSerie)
         {
@@ -141,9 +147,8 @@ namespace SerieWeb.Controllers.Site
                     db.SaveChanges();
                     return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
                 }
-                catch (Exception ex)
-                {
-                    var teste = ex;
+                catch (DataException)
+                { 
                     ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
                 }
             }
@@ -158,9 +163,8 @@ namespace SerieWeb.Controllers.Site
                     
                     return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
                 }
-                catch (Exception ex)
-                {
-                    var teste = ex;
+                catch (DataException)
+                {                    
                     ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
                 }
             }
@@ -169,9 +173,65 @@ namespace SerieWeb.Controllers.Site
           
             return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
         }
+        #endregion
 
-       
+        #region Avaliacao da serie 
+        [HttpPost]
+        public ActionResult AvaliarSerie(int avaliacao, int SerieID)
+        {
+            #region verifica se esta logando / Verifica id do usuario logado / verifica se a serie existe.
 
+            string user = User.Identity.GetUserId();
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            Serie serie = db.Series.Find(SerieID);
+
+            if (serie == null)
+            {
+                return HttpNotFound();
+            }
+            #endregion
+
+            UsuarioPerfil perfil = new UsuarioPerfil();
+            var SerieAvaliadaUsuario = db.UsuarioPerfil.Where(p => p.SerieID == serie.SerieID && p.UserId == user).FirstOrDefault();
+
+            #region Adicionar Avaliacao da Serie
+            if (SerieAvaliadaUsuario == null)
+            {
+                perfil.UserId = user;
+                perfil.SerieID = serie.SerieID;
+                perfil.Avaliacao = avaliacao;
+                db.UsuarioPerfil.Add(perfil);
+                db.SaveChanges();
+            }
+            #endregion
+
+            #region Edição da Avaliacao Serie         
+            else
+            {
+                try
+                {
+                    perfil = db.UsuarioPerfil.Find(SerieAvaliadaUsuario.UsuarioPerfilID);
+                    perfil.Avaliacao = avaliacao;
+                    db.Entry(perfil).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
+                }
+            }
+            #endregion
+
+
+            return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
+        }
+        #endregion
 
     }
 }

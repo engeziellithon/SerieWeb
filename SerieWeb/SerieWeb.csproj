@@ -256,6 +256,10 @@
     <Compile Include="Migrations\201805272314469_avaliacaoSerieUser.Designer.cs">
       <DependentUpon>201805272314469_avaliacaoSerieUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805280045133_avaliacaoSerieTipocampo.cs" />
+    <Compile Include="Migrations\201805280045133_avaliacaoSerieTipocampo.Designer.cs">
+      <DependentUpon>201805280045133_avaliacaoSerieTipocampo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
     <Compile Include="Models\Admininstracao\Genero.cs" />
@@ -495,6 +499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805272314469_avaliacaoSerieUser.resx">
       <DependentUpon>201805272314469_avaliacaoSerieUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805280045133_avaliacaoSerieTipocampo.resx">
+      <DependentUpon>201805280045133_avaliacaoSerieTipocampo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
