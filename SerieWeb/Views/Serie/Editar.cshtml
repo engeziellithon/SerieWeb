@@ -62,6 +62,17 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-12 pr-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ImagemFavorito, htmlAttributes: new { @class = "control-label col-md-8 font-weight-bold" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.ImagemFavorito, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.ImagemFavorito, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12 pr-2">
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.Trailer, htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold" })
@@ -79,29 +90,29 @@
                                         <div class="col-md-12">
                                             <select class="custom-select col-md-12" id="Generos" name="ListGeneros" multiple="multiple">
                                                 @if (GeneroSelecionado != null)
-                                                {
-                                                    foreach (var item in Generos)
-                                                    {
-                                                        if (GeneroSelecionado.Contains(item.GeneroID))
-                                                        {
-                                                            <option value="@item.GeneroID" selected>@item.NomeGenero</option>
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="@item.GeneroID">@item.NomeGenero</option>
-                                                        }
-                                                        count++;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    foreach (var item in Generos)
-                                                    {
-                                                        <option value="@item.GeneroID">@item.NomeGenero</option>
+                        {
+                            foreach (var item in Generos)
+                            {
+                                if (GeneroSelecionado.Contains(item.GeneroID))
+                                {
+                                    <option value="@item.GeneroID" selected>@item.NomeGenero</option>
+        }
+        else
+        {
+                        <option value="@item.GeneroID">@item.NomeGenero</option>
+}
+count++;
+}
+}
+else
+{
+foreach (var item in Generos)
+{
+                        <option value="@item.GeneroID">@item.NomeGenero</option>
 
-                                                        count++;
-                                                    }
-                                                }
+count++;
+}
+}
                                             </select>
                                         </div>
                                     </div>
@@ -112,29 +123,29 @@
                                         <div class="col-md-12">
                                             <select class="custom-select col-md-12 " id="Servicos" name="ListServicos" multiple="multiple">
                                                 @if (ServicoSelecionado != null)
-                                                {
-                                                    foreach (var item in Servicos)
-                                                    {
-                                                        if (ServicoSelecionado.Contains(item.ServicoStreamingID))
-                                                        {
-                                                            <option value="@item.ServicoStreamingID" selected>@item.NomeServicoStreaming</option>
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="@item.ServicoStreamingID">@item.NomeServicoStreaming</option>
-                                                        }
-                                                        count++;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    foreach (var item in Servicos)
-                                                    {
-                                                        <option value="@item.ServicoStreamingID">@item.NomeServicoStreaming</option>
+                        {
+                            foreach (var item in Servicos)
+                            {
+                                if (ServicoSelecionado.Contains(item.ServicoStreamingID))
+                                {
+                                    <option value="@item.ServicoStreamingID" selected>@item.NomeServicoStreaming</option>
+        }
+        else
+        {
+                        <option value="@item.ServicoStreamingID">@item.NomeServicoStreaming</option>
+}
+count++;
+}
+}
+else
+{
+foreach (var item in Servicos)
+{
+                        <option value="@item.ServicoStreamingID">@item.NomeServicoStreaming</option>
 
-                                                        count++;
-                                                    }
-                                                }
+count++;
+}
+}
                                             </select>
                                         </div>
                                     </div>

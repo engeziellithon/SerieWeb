@@ -55,7 +55,7 @@ namespace SerieWeb.Controllers.Admininstracao
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,Trailer,Sinopse,Nota,ListGeneros,ListServicos")] Serie serie)
+        public async Task<ActionResult> Adicionar([Bind(Include = "SerieID,NomeSerie,Imagem,ImagemFavorito,Trailer,Sinopse,Nota,ListGeneros,ListServicos")] Serie serie)
         {
             if (ModelState.IsValid)
             {
@@ -120,7 +120,7 @@ namespace SerieWeb.Controllers.Admininstracao
             try
             {
                 if (TryUpdateModel(Serie, "",
-                  new string[] { "SerieID", "NomeSerie", "Imagem", "Sinopse", "Nota", "Trailer", "ListGeneros", "ListServicos" }))
+                  new string[] { "SerieID", "NomeSerie", "Imagem","ImagemFavorito", "Sinopse", "Nota", "Trailer", "ListGeneros", "ListServicos" }))
                 {
                     try
                     {

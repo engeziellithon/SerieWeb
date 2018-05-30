@@ -22,6 +22,11 @@ namespace SerieWeb.Models.Admininstracao
         [DataType(DataType.ImageUrl)]
         public String Imagem { get; set; }
 
+        [Required()]
+        [Url]
+        [DataType(DataType.ImageUrl)]
+        public String ImagemFavorito { get; set; }
+
         [RegularExpression(@"^(https:\/\/)youtu(.be)?(\.com)?\/.+", ErrorMessage = "Adicione Url de Compartilhamento do Youtube. Ex:"+""+"https:/ /youtu.be/4SZ3rMMYBLY"+"")]
         public String Trailer { get; set; }
 

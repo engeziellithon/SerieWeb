@@ -260,6 +260,10 @@
     <Compile Include="Migrations\201805280045133_avaliacaoSerieTipocampo.Designer.cs">
       <DependentUpon>201805280045133_avaliacaoSerieTipocampo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805292034554_ImgFavoritos.cs" />
+    <Compile Include="Migrations\201805292034554_ImgFavoritos.Designer.cs">
+      <DependentUpon>201805292034554_ImgFavoritos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
     <Compile Include="Models\Admininstracao\Genero.cs" />
@@ -502,6 +506,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805280045133_avaliacaoSerieTipocampo.resx">
       <DependentUpon>201805280045133_avaliacaoSerieTipocampo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805292034554_ImgFavoritos.resx">
+      <DependentUpon>201805292034554_ImgFavoritos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
