@@ -1,6 +1,6 @@
-﻿@model SerieWeb.Models.Admininstracao.Serie
+﻿@model List<SerieWeb.Models.Admininstracao.SeriesServicos>
 @{
-    ViewBag.Title = "Servico";
+    ViewBag.Title = "Serviço";
 }
 <div class="panel-header panel-header-sm">
 
@@ -29,4 +29,16 @@
 
         </div>
     </div>
+</div>
+
+<div class="container">
+    @foreach (var serie in Model.Distinct())
+        {
+            <p>@serie.Serie.NomeSerie</p>
+
+        }
+    @foreach (var item in Model)
+    {       
+        <p>@item.ServicoStreaming.NomeServicoStreaming</p>
+    }
 </div>

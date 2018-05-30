@@ -1,40 +1,7 @@
-﻿@model SerieWeb.Models.Usuario.UsuarioPerfil
+﻿@model List<SerieWeb.Models.Admininstracao.Serie>
 @{
     ViewBag.Title = "Index";
 }
-@*<div class="container-fluid Perfilbackground">
-    <div class="col-2" style="background-color:white; height:250px;border-radius: 250px;">
-    </div>
-</div>
-<div class="container-fluid-no-padding">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div style="margin-left:80px">
-            <ul class="navbar-nav">
-                @Html.ActionLink("Perfil", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Calendario", "CalendarioSerie", "Perfil", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Configuraçoes", "Index", "Manage", new { area = "" }, new { @class = "nav-link" })
-            </ul>
-        </div>
-    </nav>
-</div>*@
-@*<div class="container containerDetalhesSerie">
-        <div class="row">
-
-        </div>
-    </div>*@
-
-<!--partial views-->
-@*<div class="container">
-    <div class="row">@Html.Partial("_Recomendado")</div>
-
-
-    <div class="row">@Html.Partial("_Favorito")</div>
-
-    <div class="row">@Html.Partial("_Calendario")</div>
-
-
-    <div class="row">@Html.Partial("_Servico")</div>
-</div>*@
 <div class="panel-header panel-header-sm">
 
 </div>
@@ -63,6 +30,15 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    @foreach (var serie in Model)
+    {
+        <p>@serie.NomeSerie</p>
+    }
+</div>
+
+
 
 
 <script>
