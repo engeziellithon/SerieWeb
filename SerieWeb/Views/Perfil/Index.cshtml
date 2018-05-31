@@ -10,7 +10,7 @@
         <div class="col-12">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    @Html.ActionLink("Favorito", "Index", "Perfil", new { area = "" }, new { @class = "nav-link active" })
+                    @Html.ActionLink("Favoritos", "Index", "Perfil", new { area = "" }, new { @class = "nav-link active" })
 
                 </li>
                 <li class="nav-item">
@@ -32,14 +32,17 @@
 </div>
 
 <div class="container">
-
+    <h1 style="text-align:center">Lista de Séries Favoritas</h1>
 
     @foreach (var serie in Model)
     {
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-11">
                 <img src="@serie.ImagemFavorito" style="height:200px; width:100%; margin-bottom:10px" />
+            </div>
+            <div class="col-1">
+                <button class="btn btn-danger"> X</button>
             </div>
         </div>
     }
