@@ -28,6 +28,9 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.NomeServicoStreaming)
                                         </th>
+                                        <td>
+                                            @Html.DisplayNameFor(model => model.Preco)
+                                        </td>
                                         <th> Opções</th>
                                     </tr>
                                 </thead>
@@ -38,6 +41,9 @@
                                         <tr>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.NomeServicoStreaming)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(ModelItem => item.Preco)
                                             </td>
                                             <td>
                                                 @Html.ActionLink("Editar", "Editar", new { id = item.ServicoStreamingID }) |

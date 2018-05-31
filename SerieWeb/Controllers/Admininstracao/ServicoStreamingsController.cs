@@ -52,7 +52,7 @@ namespace SerieWeb.Controllers.Admininstracao
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Adicionar([Bind(Include = "ServicoStreamingID,NomeServicoStreaming")] ServicoStreaming servicoStreaming)
+        public async Task<ActionResult> Adicionar([Bind(Include = "ServicoStreamingID,NomeServicoStreaming,Preco")] ServicoStreaming servicoStreaming)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SerieWeb.Controllers.Admininstracao
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Editar([Bind(Include = "ServicoStreamingID,NomeServicoStreaming")] ServicoStreaming servicoStreaming)
+        public async Task<ActionResult> Editar([Bind(Include = "ServicoStreamingID,NomeServicoStreaming,Preco")] ServicoStreaming servicoStreaming)
         {
             if (ModelState.IsValid)
             {

@@ -24,6 +24,14 @@
                                 @Html.DisplayFor(model => model.NomeServicoStreaming)
                             </dd>
 
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Preco)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Preco)
+                            </dd>
+
                         </dl>
                         <div class="float-right" style="margin-right:25px">
                             @Html.ActionLink("Voltar", "Index", new object { }, new { @class = "badge badge-secondary" })
