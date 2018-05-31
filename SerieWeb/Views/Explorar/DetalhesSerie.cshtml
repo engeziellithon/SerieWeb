@@ -209,7 +209,7 @@
         }
     </div>
 
-    <div class="card mb-3" style="margin-bottom:30px;">
+    <div class="card" style="margin-bottom:30px;">
         <div class="card-header">
             <h5>Indicações</h5>
         </div>
@@ -221,10 +221,15 @@
                     <li data-target="#carousel" data-slide-to="3"></li>
                 </ol>*@
             <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="container-fluid">
+                        <p>teste</p>
+                    </div>
+                </div>
                 <!-- /.carousel-item -->
                 @foreach (var item in Indicacoes)
                 {
-                    <div class="carousel-item active">
+                    <div class="carousel-item ">
                         <div class="container-fluid">
                             <div class="row" style="margin-top:10px; margin-bottom:10px">
                                 <div class="col-md-2"><img src="@item.Imagem" class="d-block img-fluid" style="height:200px; width:150px;"></div>
@@ -235,7 +240,7 @@
                                 </div>
 
                             </div>
-                            <div class="row">
+                            <div class="row" style="margin-bottom:10px">
                                 <div class="col-12">
                                     <a href="" class="btn btn-primary btn-lg btn-block">Ir para serie</a>
                                 </div>
