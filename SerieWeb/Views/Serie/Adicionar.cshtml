@@ -4,7 +4,7 @@
     ViewBag.Title = "Adicionar Série";
     var Generos = (List<SerieWeb.Models.Admininstracao.Genero>)ViewBag.Generos;
     var Servicos = (List<SerieWeb.Models.Admininstracao.ServicoStreaming>)ViewBag.Servicos;
-   
+
     var count = 0;
     @Scripts.Render("~/bundles/popper")
 }
@@ -96,10 +96,10 @@
                                         <div class="col-md-12">
                                             <select class="custom-select col-md-12" id="Generos" name="ListGeneros" multiple="multiple">
                                                 @foreach (var item in Generos)
-                        {
-                            <option value="@item.GeneroID">@item.NomeGenero</option>
-    count++;
-}
+                                                {
+                                                    <option value="@item.GeneroID">@item.NomeGenero</option>
+                                                    count++;
+                                                }
                                             </select>
                                             @Html.ValidationMessageFor(model => model.ListGeneros, "", new { @class = "text-danger" })
                                         </div>
@@ -111,10 +111,10 @@
                                         <div class="col-md-12">
                                             <select class="custom-select col-md-12 " id="Servicos" name="ListServicos" multiple="multiple">
                                                 @foreach (var item in Servicos)
-                        {
-                            <option value="@item.ServicoStreamingID">@item.NomeServicoStreaming</option>
-    count++;
-}
+                                                {
+                                                    <option value="@item.ServicoStreamingID">@item.NomeServicoStreaming</option>
+                                                    count++;
+                                                }
                                             </select>
                                         </div>
                                     </div>

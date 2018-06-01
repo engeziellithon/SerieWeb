@@ -157,6 +157,8 @@ namespace SerieWeb.Controllers.Admininstracao
                             }
                         }
                         await db.SaveChangesAsync();
+
+                        Session["MensagemSucesso"] = "A Série " + Serie.NomeSerie + " foi editada com sucesso.";
                         return RedirectToAction("Index");
                     }
                     catch (DataException)
@@ -200,6 +202,7 @@ namespace SerieWeb.Controllers.Admininstracao
             Serie serie = await db.Series.FindAsync(id);
             db.Series.Remove(serie);
             await db.SaveChangesAsync();
+            Session["MensagemSucesso"] = "A Série " + serie.NomeSerie + " foi deletada com sucesso.";
             return RedirectToAction("Index");
         }
         #endregion
