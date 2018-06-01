@@ -58,6 +58,7 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 db.Generos.Add(genero);
                 await db.SaveChangesAsync();
+                Session["MensagemSucesso"] = "O gênero " + genero.NomeGenero + " foi salvo com sucesso.";
                 return RedirectToAction("Index");
             }
 
@@ -92,6 +93,7 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 db.Entry(genero).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                Session["MensagemSucesso"] = "O gênero " + genero.NomeGenero + " foi alterado com sucesso.";
                 return RedirectToAction("Index");
             }
             return View(genero);
@@ -122,6 +124,7 @@ namespace SerieWeb.Controllers.Admininstracao
             Genero genero = await db.Generos.FindAsync(id);
             db.Generos.Remove(genero);
             await db.SaveChangesAsync();
+            Session["MensagemSucesso"] = "O gênero " + genero.NomeGenero + " foi deletado com sucesso.";
             return RedirectToAction("Index");
         }
         #endregion

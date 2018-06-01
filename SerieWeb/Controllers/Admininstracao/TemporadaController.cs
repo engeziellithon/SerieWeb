@@ -52,6 +52,7 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 db.Temporadas.Add(temporada);
                 await db.SaveChangesAsync();
+                Session["MensagemSucesso"] = "A temporada " + temporada.NomeTemporada + " foi salva com sucesso.";
                 return RedirectToAction("Index");
             }
 
@@ -83,6 +84,7 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 db.Entry(temporada).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                Session["MensagemSucesso"] = "A temporada " + temporada.NomeTemporada + " foi alterada com sucesso.";
                 return RedirectToAction("Index");
             }
             return View(temporada);
@@ -113,6 +115,7 @@ namespace SerieWeb.Controllers.Admininstracao
             Temporada temporada = await db.Temporadas.FindAsync(id);
             db.Temporadas.Remove(temporada);
             await db.SaveChangesAsync();
+            Session["MensagemSucesso"] = "A temporada " + temporada.NomeTemporada + " foi deletada com sucesso.";
             return RedirectToAction("Index");
         }
         #endregion

@@ -58,6 +58,8 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 db.ServicosStreaming.Add(servicoStreaming);
                 await db.SaveChangesAsync();
+                Session["MensagemSucesso"] = "O serviço " + servicoStreaming.NomeServicoStreaming + " foi salvo com sucesso.";
+
                 return RedirectToAction("Index");
             }
 
@@ -92,6 +94,7 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 db.Entry(servicoStreaming).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                Session["MensagemSucesso"] = "O serviço " + servicoStreaming.NomeServicoStreaming + " foi alterado com sucesso.";
                 return RedirectToAction("Index");
             }
             return View(servicoStreaming);
@@ -123,6 +126,7 @@ namespace SerieWeb.Controllers.Admininstracao
             ServicoStreaming servicoStreaming = await db.ServicosStreaming.FindAsync(id);
             db.ServicosStreaming.Remove(servicoStreaming);
             await db.SaveChangesAsync();
+            Session["MensagemSucesso"] = "O serviço " + servicoStreaming.NomeServicoStreaming + " foi deletado com sucesso.";
             return RedirectToAction("Index");
         }
         #endregion

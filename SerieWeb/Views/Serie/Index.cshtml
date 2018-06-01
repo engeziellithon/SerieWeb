@@ -133,7 +133,10 @@
                 setTimeout(function () {
                     $('.bd-example-modal-sm').modal('hide')
                 }, 3500);
-            }            
+                @{
+                    Session["MensagemSucesso"] = null;
+                }
+            }
         });
 
 
@@ -169,6 +172,6 @@
                 "scrollCollapse": true
             });
 
-        });        
+        });
     </script>
 }
