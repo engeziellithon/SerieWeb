@@ -77,6 +77,7 @@ namespace SerieWeb.Controllers.Admininstracao
                 }
                 await db.SaveChangesAsync();
 
+                Session["MensagemSucesso"] = "A Série " + serie.NomeSerie + " foi salva com sucesso.";
                 return RedirectToAction("Index");
             }
             ViewBag.Generos = db.Generos.ToList();

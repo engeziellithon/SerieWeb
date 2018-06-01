@@ -7,13 +7,13 @@ namespace SerieWeb.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class PreçoServiço : IMigrationMetadata
+    public sealed partial class ServicoPrecoTipocerto : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PreçoServiço));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ServicoPrecoTipocerto));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805311810285_PreçoServiço"; }
+            get { return "201806010220461_ServicoPrecoTipocerto"; }
         }
         
         string IMigrationMetadata.Source

@@ -20,8 +20,6 @@ namespace SerieWeb.Models.Admininstracao
         public String NomeServicoStreaming { get; set; }
 
         [Display(Name = "Preço")]
-        public float Preco { get; set; }
-
-
+        public Double Preco { get; set; }
     }
 }

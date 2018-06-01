@@ -264,13 +264,9 @@
     <Compile Include="Migrations\201805292034554_ImgFavoritos.Designer.cs">
       <DependentUpon>201805292034554_ImgFavoritos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805311810285_PreçoServiço.cs" />
-    <Compile Include="Migrations\201805311810285_PreçoServiço.Designer.cs">
-      <DependentUpon>201805311810285_PreçoServiço.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805311851192_teste.cs" />
-    <Compile Include="Migrations\201805311851192_teste.Designer.cs">
-      <DependentUpon>201805311851192_teste.cs</DependentUpon>
+    <Compile Include="Migrations\201806010220461_ServicoPrecoTipocerto.cs" />
+    <Compile Include="Migrations\201806010220461_ServicoPrecoTipocerto.Designer.cs">
+      <DependentUpon>201806010220461_ServicoPrecoTipocerto.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
@@ -452,7 +448,6 @@
     <Content Include="Views\ServicoStreamings\Editar.cshtml" />
     <Content Include="Views\ServicoStreamings\Index.cshtml" />
     <Content Include="Views\Perfil\Servico.cshtml" />
-    <Content Include="Views\Perfil\Calendario.cshtml" />
     <Content Include="Views\Perfil\Recomendado.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -518,11 +513,8 @@
     <EmbeddedResource Include="Migrations\201805292034554_ImgFavoritos.resx">
       <DependentUpon>201805292034554_ImgFavoritos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805311810285_PreçoServiço.resx">
-      <DependentUpon>201805311810285_PreçoServiço.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805311851192_teste.resx">
-      <DependentUpon>201805311851192_teste.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806010220461_ServicoPrecoTipocerto.resx">
+      <DependentUpon>201806010220461_ServicoPrecoTipocerto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
