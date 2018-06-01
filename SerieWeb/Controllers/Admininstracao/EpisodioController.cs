@@ -64,6 +64,8 @@ namespace SerieWeb.Controllers.Admininstracao
                 //Convert.ToDateTime(episodio.DataExibicao).ToString("dd/MM/yyyy");
                 db.Episodios.Add(episodio);
                 await db.SaveChangesAsync();
+                Session["MensagemSucesso"] = "O episódio " + episodio.NomeEpisodio + " foi salvo com sucesso.";
+
                 return RedirectToAction("Index");
             }
 
@@ -103,6 +105,8 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 db.Entry(episodio).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+                Session["MensagemSucesso"] = "O episódio " + episodio.NomeEpisodio + " foi alterado com sucesso.";
+
                 return RedirectToAction("Index");
             }
             ViewBag.SerieID = new SelectList(db.Series, "SerieID", "NomeSerie", episodio.SerieID);
@@ -136,6 +140,7 @@ namespace SerieWeb.Controllers.Admininstracao
             Episodio episodio = await db.Episodios.FindAsync(id);
             db.Episodios.Remove(episodio);
             await db.SaveChangesAsync();
+            Session["MensagemSucesso"] = "O episódio " + episodio.NomeEpisodio + " foi deletado com sucesso.";
             return RedirectToAction("Index");
         }
         #endregion

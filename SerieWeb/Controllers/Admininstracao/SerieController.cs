@@ -158,7 +158,7 @@ namespace SerieWeb.Controllers.Admininstracao
                         }
                         await db.SaveChangesAsync();
 
-                        Session["MensagemSucesso"] = "A Série " + Serie.NomeSerie + " foi editada com sucesso.";
+                        Session["MensagemSucesso"] = "A Série " + Serie.NomeSerie + " foi alterada com sucesso.";
                         return RedirectToAction("Index");
                     }
                     catch (DataException)
