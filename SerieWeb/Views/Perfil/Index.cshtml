@@ -15,7 +15,7 @@
                 <li class="nav-item">
                     @Html.ActionLink("Favorito", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
 
-                </li>                
+                </li>
                 <li class="nav-item">
                     @Html.ActionLink("Servico", "Servico", "Perfil", new { area = "" }, new { @class = "nav-link" })
 
@@ -30,20 +30,26 @@
 </nav>
 
 <div class="container">
-    <h1 style="text-align:center">Lista de Séries Favoritas</h1>
-
-    @foreach (var serie in Model)
-    {
-
-        <div class="row">
-            <div class="col-11">
-                <img src="@serie.ImagemFavorito" style="height:200px; width:100%; margin-bottom:10px" />
-            </div>
-            <div class="col-1">
-                <button class="btn btn-danger"> X</button>
-            </div>
+    <div class="card">
+        <div class="card-footer" style="margin-bottom:5px">
+            Lista de Séries Favoritas
         </div>
-    }
+        @foreach (var serie in Model)
+        {
+
+            <div class="row">
+                <div class="col-11">
+                    <a href="@Url.Action("DetalhesSerie","Explorar", new { id = serie.SerieID })">
+                        <img src="@serie.ImagemFavorito" style="height:200px; width:100%; margin-bottom:10px;margin-left:5px" />
+                    </a>
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remover série dos favoritos" style="height:200px">X</button>
+                </div>
+            </div>
+        }
+    </div>
+
 </div>
 
 
