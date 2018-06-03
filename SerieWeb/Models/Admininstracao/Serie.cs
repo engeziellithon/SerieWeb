@@ -33,10 +33,7 @@ namespace SerieWeb.Models.Admininstracao
 
         [DataType(DataType.MultilineText)]
         [Required()]        
-        public String Sinopse { get; set; }
-
-        [Range(1, 100)]
-        public double Nota { get; set; }
+        public String Sinopse { get; set; }       
 
         [NotMapped]
         [Required(ErrorMessage = "A série precisa ter pelo menos 1 gênero")]

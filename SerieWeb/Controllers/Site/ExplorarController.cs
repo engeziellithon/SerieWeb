@@ -27,11 +27,11 @@ namespace SerieWeb.Controllers.Site
             List<Serie> model = new List<Serie>();
             if (pesquisa != null)
             {
-                model = db.Series.Where(x => x.NomeSerie.Contains(pesquisa)).Take(20).OrderBy(d => d.Nota).ToList();
+                model = db.Series.Where(x => x.NomeSerie.Contains(pesquisa)).Take(20).ToList();
             }
             else
             {
-                model = db.Series.OrderBy(d =>d.Nota).Take(20).ToList();
+                model = db.Series.ToList();
             }
            
             return View(model);
@@ -73,7 +73,7 @@ namespace SerieWeb.Controllers.Site
             // user logado
             string user = User.Identity.GetUserId();
 
-            ViewBag.Indicacoes = db.Series.OrderBy(c => c.Nota).Take(3).ToList();
+            ViewBag.Indicacoes = db.Series.Take(3).ToList();
             ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).ToList().Distinct();
             ViewBag.listagenero = db.SeriesGeneros.Where(g => g.SerieID == serie.SerieID).Select(s=>s.Genero).ToList();
             ViewBag.listaservico = db.SeriesServicos.Where(g => g.SerieID == serie.SerieID).Select(s => s.ServicoStreaming).ToList();

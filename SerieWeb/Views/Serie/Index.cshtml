@@ -29,18 +29,9 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.NomeSerie)
                                         </th>
-                                        @*<th>
-                                                @Html.DisplayNameFor(model => model.Imagem)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(model => model.Trailer)
-                                            </th>*@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Sinopse)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Nota)
-                                        </th>
+                                        </th>                                        
                                         <th> Opções</th>
                                     </tr>
                                 </thead>
@@ -52,17 +43,9 @@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.NomeSerie)
                                             </td>
-                                            @*<td>
-                                                    @Html.DisplayFor(modelItem => item.Imagem)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Trailer)
-                                                </td>*@
+
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Sinopse)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Nota)
                                             </td>
                                             <td>
                                                 @Html.ActionLink("Editar", "Editar", new { id = item.SerieID }) |
