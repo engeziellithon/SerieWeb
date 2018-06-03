@@ -8,70 +8,49 @@
 
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 1px solid #000;">
-    <div class="container" style="margin-top:0">       
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom:4px solid #e4e4e4;">
+    <div class="container" style="margin-top:0">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    @Html.ActionLink("Favorito", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
-
+                    @Html.ActionLink("Favoritos", "Index", "Perfil", new { area = "" }, new { id = "Favorito", @class = "nav-link perfil-menu" })
                 </li>
-               
-                <li class="nav-item">
-                    @Html.ActionLink("Servico", "Servico", "Perfil", new { area = "" }, new { @class = "nav-link" })
-
+                <li class="nav-item" >
+                    @Html.ActionLink("Recomendações", "Recomendado", "Perfil", new { area = "" }, new { id = "Recomendado",@class = "nav-link perfil-menu" })
                 </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Recomendado", "Recomendado", "Perfil", new { area = "" }, new { @class = "nav-link active" })
-
+                <li class="nav-item" >
+                    @Html.ActionLink("Servico", "Servico", "Perfil", new { area = "" }, new { id = "Servico",@class = "nav-link perfil-menu" })
                 </li>
             </ul>
-            
+
         </div>
     </div>
 </nav>
-<div class="container">
-    <div class="card">
-        <div class="card-footer">
-            Serviço recomendado
-        </div>
-        <div class="card-body">
 
-            <div class="row" style="margin-bottom:10px">
-                <div class="col-12">
-                    <p> HBO</p>
-                    <div class="progress">
-                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-bottom:10px">
-                <div class="col-12">
-                    <p> Netflix</p>
-                    <div class="progress">
-                        <div class="progress-bar w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-bottom:10px">
-                <div class="col-12">
-                    <p> Amazon Prime</p>
-                    <div class="progress">
-                        <div class="progress-bar w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
+@*<div class="container">
+    @foreach (var serie in Model.Distinct())
+    {
+        <p>@serie.Serie.NomeSerie</p>
 
-             <div class="alert alert-success" role="alert">
-                <h4 class="alert-heading">Recomendação</h4>
-                <p>Nome: HBO</p>
-                <p>Preço: R$34,00</p>
-                <hr>
-                <p class="mb-0">Continue adicionado series aos favoritos para ver qual melhor serviço lhe atende</p>
-            </div>
-        </div>
-    </div>
-</div>
+    }
+    @foreach (var item in Model)
+    {
+        <p>@item.ServicoStreaming.NomeServicoStreaming</p>
+    }
+</div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+    $(document).ready(function () {
+
+
+        $("#Recomendado").addClass('perfil-menu-active');
+        });
+
+    </script>
+}

@@ -1,11 +1,12 @@
 ﻿@model List<SerieWeb.Models.Admininstracao.Serie>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Favoritos";
 }
 <div class="panel-header panel-header-sm">
 
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 1px solid #000;">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom:4px solid #e4e4e4;">
     <div class="container" style="margin-top:0">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,27 +14,22 @@
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    @Html.ActionLink("Favorito", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
-
+                    @Html.ActionLink("Favoritos", "Index", "Perfil", new { area = "" }, new { id = "Favorito", @class = "nav-link perfil-menu" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Servico", "Servico", "Perfil", new { area = "" }, new { @class = "nav-link" })
-
+                    @Html.ActionLink("Recomendações", "Recomendado", "Perfil", new { area = "" }, new { id = "Recomendado", @class = "nav-link perfil-menu" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Recomendado", "Recomendado", "Perfil", new { area = "" }, new { @class = "nav-link active" })
+                    @Html.ActionLink("Servico", "Servico", "Perfil", new { area = "" }, new { id = "Servico", @class = "nav-link perfil-menu" })
                 </li>
             </ul>
 
         </div>
     </div>
 </nav>
-
-<div class="container">
-    <div class="card">
-        <div class="card-footer" style="margin-bottom:5px">
-            Lista de Séries Favoritas
-        </div>
+<div class="container" style="margin-bottom:50px">
+    @*<h2> Lista de Séries Favoritas</h2>*@  
+       
         @foreach (var serie in Model)
         {
 
@@ -47,17 +43,20 @@
                     <button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remover série dos favoritos" style="height:200px">X</button>
                 </div>
             </div>
-        }
-    </div>
-
+      }
 </div>
 
 
 
+@section Scripts {
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $(document).ready(function () {
 
-<script>
-    $('#myTab a').on('click', function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
-</script>
+
+            $("#Favorito").addClass('perfil-menu-active');
+        });
+
+    </script>
+}

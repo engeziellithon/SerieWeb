@@ -560,6 +560,18 @@ textarea.form-control {
 .container {
     margin-top: 20px;
 }
+.perfil-menu {
+    font-size: 1.2em;
+    margin: 0 20px;
+    font-style:red;
+}
+.perfil-menu-active {
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom-style: solid;
+    border-width: 3px;
+    border-bottom-color: #0000a7;
+}
 
 
 /*Botoes do admin*/
@@ -576,12 +588,12 @@ textarea.form-control {
 }
 /*------fimm ----*/
 
-/*Email confirmacao - Account/EmailPedido*/
+/* #region Email confirmacao - Account/EmailPedido*/
 #imagemEmail {
     margin: 30px;
     width: 10%;
 }
-/*---Fim---*/
+/* #endregion ---Fim---*/
 
 /*Serie individual Explorar/DetalhesSerie*/
 
@@ -875,6 +887,8 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
     }
 /*#endregion ModalSucesso */
 
+
+/*#region salvar nota */
 *,
 *::before,
 *::after {
@@ -1010,7 +1024,10 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
     transform: rotate(-45deg);
 }
 
-/*css do carrousel*/
+/*#endregion alert salvar */
+
+
+/*#region carrousel */
 
 .carousel {
     background-color:white;
@@ -1024,6 +1041,7 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
     display: block;
     width: 100%;
 }
+/*#endregion carrousel */
 
 
 /*#region alert salvar */
