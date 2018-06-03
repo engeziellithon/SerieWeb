@@ -5,7 +5,6 @@ using SerieWeb.Models.Identity;
 
 namespace SerieWeb.Models.Usuario
 {
-
     [Table(name: "UsuarioPerfil")]
     public class UsuarioPerfil
     {

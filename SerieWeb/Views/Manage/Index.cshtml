@@ -1,9 +1,12 @@
 ﻿@model SerieWeb.Models.Identity.IndexViewModel
 @{
-    ViewBag.Title = "Gerenciar";
+    ViewBag.Title = "Gerenciar Configuraçoes";
 }
-<div class="container">
-    <h2>@ViewBag.Title.</h2>
+
+<div class="panel-header panel-header-sm">
+
+</div>
+<div class="container">   
 
     <p class="text-success">@ViewBag.StatusMessage</p>
     <div>
@@ -56,13 +59,13 @@
                     }
                 </dd>
             *@
-            <dt>Autenticação de dois fatores:</dt>
+            @*<dt>Autenticação de dois fatores:</dt>
             <dd>
                 <p>
                     Não há provedores de autenticação de dois fatores configurados. Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artigo</a>
                     para obter detalhes sobre como configurar este aplicativo ASP.NET para dar suporte à autenticação de dois fatores.
                 </p>
-                @*@if (Model.TwoFactor)
+                if (Model.TwoFactor)
                     {
                         using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
@@ -81,8 +84,8 @@
                             <input type="submit" value="Ativar" class="btn btn-link" />
                             </text>
                         }
-                    }*@
-            </dd>
+                    }
+            </dd>*@
         </dl>
     </div>
 </div>

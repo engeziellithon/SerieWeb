@@ -121,7 +121,7 @@ namespace SerieWeb.Controllers.Admininstracao
             try
             {
                 if (TryUpdateModel(Serie, "",
-                  new string[] { "SerieID", "NomeSerie", "Imagem","ImagemFavorito", "Sinopse", "Nota", "Trailer", "ListGeneros", "ListServicos" }))
+                  new string[] { "SerieID", "NomeSerie", "Imagem","ImagemFavorito", "Sinopse", "Trailer", "ListGeneros", "ListServicos" }))
                 {
                     try
                     {

@@ -3,8 +3,10 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using SerieWeb.Models.Admininstracao;
+using SerieWeb.Models.Usuario;
 using SerieWeb.Models.Identity;
-
+using System.Data;
+using System.Data.Entity;
 
 namespace SerieWeb.Controllers.Usuario
 {
@@ -71,25 +73,60 @@ namespace SerieWeb.Controllers.Usuario
                 {
                     ListaServicos.Add(filho);                   
                 }
-            }
+            }          
             
-
-
             return View(ListaServicos);
         }
 
-        public List<SeriesServicos> ChildrenOf(int SerieID)
-        {
-            List<SeriesServicos> ListaServicos = new List<SeriesServicos>();
-            AddChildren(SerieID, ListaServicos);
 
-            return ListaServicos;
-        }
-
-        private void AddChildren(int SerieID, List<SeriesServicos> ListaServicos)
+        #region Avaliacao da serie 
+        [HttpPost]
+        public ActionResult ExcluirFavorito(int FavoritoExcluido)
         {
-            
+            #region verifica se esta logando / Verifica id do usuario logado / verifica se a serie existe.
+
+            string user = User.Identity.GetUserId();
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            Serie serie = db.Series.Find(FavoritoExcluido);
+
+            if (serie == null)
+            {
+                return HttpNotFound();
+            }
+            #endregion
+
+            UsuarioPerfil perfil = new UsuarioPerfil();
+            var SerieFavoritoExcluido = db.UsuarioPerfil.Where(p => p.SerieID == serie.SerieID && p.UserId == user).FirstOrDefault();
+
+            #region Edição do favorito       
+            if(SerieFavoritoExcluido != null)
+            {
+                try
+                {
+                    perfil = db.UsuarioPerfil.Find(SerieFavoritoExcluido.UsuarioPerfilID);
+                    perfil.SerieFavorita = false;
+                    db.Entry(perfil).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json(new { perfil = perfil });
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
+                }
+            }
+            #endregion
+
+            return RedirectToAction("Index", "Perfil");
         }
+        #endregion
+
+
+
 
 
     }

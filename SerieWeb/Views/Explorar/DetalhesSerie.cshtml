@@ -85,7 +85,6 @@
                             }
                         </div>
                         <div class="col-3">
-
                             @if (User.Identity.IsAuthenticated == true)
                             {
                                 <button type="button" class="btn btn-default BtnStar disabled" data-toggle="tooltip" data-placement="bottom" title="Nota da Série e Número de avalições" style="opacity: 1;">
@@ -331,7 +330,7 @@
         });
 
         $("#SalvarAvaliacao").click(function () {
-            debugger
+           
             var avaliacao = $('#range').val();
             var SerieID = @Model.SerieID;
 
