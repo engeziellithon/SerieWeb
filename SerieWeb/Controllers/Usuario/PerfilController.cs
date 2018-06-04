@@ -29,7 +29,7 @@ namespace SerieWeb.Controllers.Usuario
 
             return View(ListaSerie);
         }
-        
+
 
         public ActionResult Recomendado()
         {
@@ -47,7 +47,7 @@ namespace SerieWeb.Controllers.Usuario
 
             return View();
         }
-        
+
         public ActionResult Calendario()
         {
             /// tirar isso não vai ficar bom para ficar vai ser dificil 
@@ -61,20 +61,28 @@ namespace SerieWeb.Controllers.Usuario
 
             string user = User.Identity.GetUserId();
 
-            List<Serie> PerfilSerieFavorito = db.UsuarioPerfil.Where(u => u.UserId == user && u.SerieFavorita == true).Select(s => s.Serie).ToList();
-            foreach (var serie in PerfilSerieFavorito)
+            List<Serie> PerfilSerie = db.UsuarioPerfil.Where(u => u.UserId == user && u.SerieFavorita == true).Select(s => s.Serie).ToList();
+            if (PerfilSerie != null)
             {
-                ListaSerie.Add(serie);
-            }
-            foreach (var item in ListaSerie)
-            {
-                List<SeriesServicos> listaFilhos = db.SeriesServicos.Where(c => c.SerieID == item.SerieID).ToList();
-                foreach (SeriesServicos filho in listaFilhos)
+                foreach (var item in PerfilSerie)
                 {
-                    ListaServicos.Add(filho);                   
+                    List<SeriesServicos> listaFilhos = db.SeriesServicos.Where(c => c.SerieID == item.SerieID).ToList();
+                    foreach (SeriesServicos filho in listaFilhos)
+                    {
+                        ListaServicos.Add(filho);
+                    }
                 }
-            }          
-            
+            }
+
+            ViewBag.HBO = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "HBO").ToList();
+            ViewBag.NETFLIX = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "NETFLIX").ToList();
+            ViewBag.AMAZON = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "AMAZON PRIME").ToList();
+
+             var maior  = ListaServicos.Select(s => s.ServicoStreaming).Max(c => c.NomeServicoStreaming);
+
+            ServicoStreaming MelhorServico = db.ServicosStreaming.Where(s => s.NomeServicoStreaming == maior).FirstOrDefault();
+            ViewBag.MelhorServico = MelhorServico;
+
             return View(ListaServicos);
         }
 
@@ -103,7 +111,7 @@ namespace SerieWeb.Controllers.Usuario
             var SerieFavoritoExcluido = db.UsuarioPerfil.Where(p => p.SerieID == serie.SerieID && p.UserId == user).FirstOrDefault();
 
             #region Edição do favorito       
-            if(SerieFavoritoExcluido != null)
+            if (SerieFavoritoExcluido != null)
             {
                 try
                 {

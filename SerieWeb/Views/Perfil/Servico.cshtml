@@ -1,6 +1,16 @@
 ﻿@model List<SerieWeb.Models.Admininstracao.SeriesServicos>
 @{
-    ViewBag.Title = "Serviço";
+    ViewBag.Title = "Serviços de Streaming";
+    var HBO = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.HBO;
+    var NETFLIX = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.NETFLIX;
+    var AMAZON = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.AMAZON;
+    var MelhorServico = (SerieWeb.Models.Admininstracao.ServicoStreaming)ViewBag.MelhorServico;
+
+    float totalservicos = HBO.Count() + AMAZON.Count() + NETFLIX.Count();
+
+    float porcetagemHBO = (HBO.Count() / totalservicos) * 100;
+    float porcetagemNETFLIX = (NETFLIX.Count() / totalservicos) * 100;
+    float porcetagemAMAZON = (AMAZON.Count() / totalservicos) * 100;
 }
 <div class="panel-header panel-header-sm">
 
@@ -20,7 +30,7 @@
                     @Html.ActionLink("Recomendações", "Recomendado", "Perfil", new { area = "" }, new { id = "Recomendado", @class = "nav-link perfil-menu" })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Servico", "Servico", "Perfil", new { area = "" }, new { id = "Servico", @class = "nav-link perfil-menu" })
+                    @Html.ActionLink("Serviços Streaming", "Servico", "Perfil", new { area = "" }, new { id = "Servico", @class = "nav-link perfil-menu" })
                 </li>
             </ul>
 
@@ -29,48 +39,44 @@
 </nav>
 
 <div class="container">
-    <div class="card">
-        <div class="card-footer">
-            Serviço recomendado
-        </div>
-        <div class="card-body">
-
+    <h4 style="margin-bottom: 40px;">Melhores Serviços</h4>
             <div class="row" style="margin-bottom:10px">
                 <div class="col-12">
-                    <p> HBO</p>
-                    <div class="progress">
-                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    <p class="font-weight-normal"> HBO</p>                    
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width:@Convert.ToInt32(porcetagemHBO)%;" aria-valuenow="@Convert.ToInt32(porcetagemHBO);" aria-valuemin="0" aria-valuemax="100">@Convert.ToInt32(porcetagemHBO)%</div>
                     </div>
                 </div>
             </div>
             <div class="row" style="margin-bottom:10px">
                 <div class="col-12">
-                    <p> Netflix</p>
-                    <div class="progress">
-                        <div class="progress-bar w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    <p class="font-weight-normal"> Netflix</p>
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@Convert.ToInt32(porcetagemNETFLIX)%;" aria-valuenow="@Convert.ToInt32(porcetagemNETFLIX);" aria-valuemin="0" aria-valuemax="100">@Convert.ToInt32(porcetagemNETFLIX)%</div>
                     </div>
                 </div>
             </div>
             <div class="row" style="margin-bottom:10px">
                 <div class="col-12">
-                    <p> Amazon Prime</p>
-                    <div class="progress">
-                        <div class="progress-bar w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <p class="font-weight-normal"> Amazon Prime</p>
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:@Convert.ToInt32(porcetagemAMAZON)%;" aria-valuenow="@Convert.ToInt32(porcetagemAMAZON);" aria-valuemin="0" aria-valuemax="100">@Convert.ToInt32(porcetagemAMAZON)%</div>
                     </div>
                 </div>
             </div>
 
-            <div class="alert alert-success" role="alert">
-                <h4 class="alert-heading">Recomendação</h4>
-                <p>Nome: HBO</p>
-                <p>Preço: R$34,00</p>
-                <hr>
-                <p class="mb-0">Continue adicionado series aos favoritos para ver qual melhor serviço lhe atende</p>
+            <div class="alert alert-success" role="alert" style="margin-top:50px">
+                <div class="container-fluid">
+                    <h4 class="alert-heading">Recomendação</h4>
+                    <p>Nome: @MelhorServico.NomeServicoStreaming</p>
+                    <p>Preço: R$ @MelhorServico.Preco,00</p>
+                    <hr>
+                    @*<p class="mb-0">Continue adicionado series aos favoritos para ver qual melhor serviço lhe atende</p>*@
+                    <p class="mb-0">Esta indição Serviço é baseado nos seus favoritos continue adicionando descobrir o que melhor lhe atende</p>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
+  
 @section Scripts {
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")

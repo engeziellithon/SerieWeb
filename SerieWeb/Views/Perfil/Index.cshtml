@@ -80,12 +80,10 @@
         $(document).ready(function () {
             $("#Favorito").addClass('perfil-menu-active');
         });
-        $(".excluirfavorito").click(function () {
-            debugger
+        $(".excluirfavorito").click(function () {          
             
             var FavoritoExcluido = $(this).attr('data-serie');
-            FavoritoExcluido = parseInt(FavoritoExcluido);
-            
+            FavoritoExcluido = parseInt(FavoritoExcluido);            
 
             $.ajax({
                 type: "POST",
@@ -102,12 +100,11 @@
 
                         setTimeout(function () {
                             $('.bd-example-modal-sm').modal('hide')
-                        }, 3500);                     
-                       
+                        }, 3500);                  
 
                         setTimeout(function () {
                             window.location.reload(1);
-                        }, 5000);
+                        }, 4200);
                     }                   
                 }
             });

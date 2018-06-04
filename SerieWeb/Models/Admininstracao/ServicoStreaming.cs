@@ -20,6 +20,8 @@ namespace SerieWeb.Models.Admininstracao
         public String NomeServicoStreaming { get; set; }
 
         [Display(Name = "Preço")]
+        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public Double Preco { get; set; }
     }
 }
