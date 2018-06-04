@@ -1,7 +1,7 @@
-﻿@model SerieWeb.Models.Admininstracao.Serie
+﻿@model List<SerieWeb.Models.Admininstracao.Serie>
 @{
     ViewBag.Title = "Recomendado";
-
+    var Series = (List<SerieWeb.Models.Admininstracao.Serie>)ViewBag.Series;
 }
 
 <div class="panel-header panel-header-sm">
@@ -18,11 +18,14 @@
                 <li class="nav-item">
                     @Html.ActionLink("Favoritos", "Index", "Perfil", new { area = "" }, new { id = "Favorito", @class = "nav-link perfil-menu" })
                 </li>
-                <li class="nav-item" >
-                    @Html.ActionLink("Recomendações", "Recomendado", "Perfil", new { area = "" }, new { id = "Recomendado",@class = "nav-link perfil-menu" })
+                <li class="nav-item">
+                    @Html.ActionLink("Recomendações", "Recomendado", "Perfil", new { area = "" }, new { id = "Recomendado", @class = "nav-link perfil-menu" })
                 </li>
-                <li class="nav-item" >
-                    @Html.ActionLink("Servico", "Servico", "Perfil", new { area = "" }, new { id = "Servico",@class = "nav-link perfil-menu" })
+                <li class="nav-item">
+                    @Html.ActionLink("Serviços Streaming", "Servico", "Perfil", new { area = "" }, new { id = "Servico", @class = "nav-link perfil-menu" })
+                </li>
+                <li>
+                    @Html.ActionLink("Configurações", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link perfil-menu" })
                 </li>
             </ul>
 
@@ -30,26 +33,42 @@
     </div>
 </nav>
 
-@*<div class="container">
-    @foreach (var serie in Model.Distinct())
-    {
-        <p>@serie.Serie.NomeSerie</p>
+<div id="desktop">
+    <div class="container" style="margin-bottom:50px;">
+        <h4 style="margin-bottom: 40px;">Minhas recomendações</h4>
+        <div class="row">
+            <div class="card-deck">
 
-    }
-    @foreach (var item in Model)
-    {
-        <p>@item.ServicoStreaming.NomeServicoStreaming</p>
-    }
-</div>*@
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3" id="DivExplorarCard">
+                        <div class="card explorarCard">
+                            <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
+                                <img class="card-img-top" src="@item.Imagem" alt="Card image cap">
+                            </a>
+                            <div class="card-block">
+                                <div class="card-text">
+                                    <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
+                                        <h5 class="card-text text-uppercase font-weight-bold" style="text-align:center">@item.NomeSerie</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
     <script>
-    $(document).ready(function () {
+        $(document).ready(function () {
 
 
-        $("#Recomendado").addClass('perfil-menu-active');
+            $("#Recomendado").addClass('perfil-menu-active');
         });
 
     </script>

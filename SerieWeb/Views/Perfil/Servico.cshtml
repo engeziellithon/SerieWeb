@@ -32,6 +32,9 @@
                 <li class="nav-item">
                     @Html.ActionLink("Serviços Streaming", "Servico", "Perfil", new { area = "" }, new { id = "Servico", @class = "nav-link perfil-menu" })
                 </li>
+                <li>
+                    @Html.ActionLink("Configurações", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link perfil-menu" })
+                </li>
             </ul>
 
         </div>

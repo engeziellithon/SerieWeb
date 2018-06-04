@@ -33,19 +33,13 @@ namespace SerieWeb.Controllers.Usuario
 
         public ActionResult Recomendado()
         {
-            //List<Serie> ListaSerie = new List<Serie>();
+            List<Serie> ListaSerie = new List<Serie>();            
 
-            //string user = User.Identity.GetUserId();
+            ListaSerie = db.UsuarioPerfil.OrderBy(s => s.Avaliacao).Select(s=>s.Serie).Take(10).ToList();
 
-            //dd.
+            ViewBag.Series = ListaSerie;
 
-            //List<Serie> PerfilSerieFavorito = db.UsuarioPerfil.Where(u => u.UserId == user && u.SerieFavorita == true).Select(s => s.Serie).ToList();
-            //foreach (var serie in PerfilSerieFavorito)
-            //{
-            //    ListaSerie.Add(serie);
-            //}
-
-            return View();
+            return View(ListaSerie);
         }
 
         public ActionResult Calendario()
