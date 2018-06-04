@@ -6,7 +6,32 @@
 <div class="panel-header panel-header-sm">
 
 </div>
-<div class="container">   
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom:4px solid #e4e4e4;">
+    <div class="container" style="margin-top:0">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("Favoritos", "Index", "Perfil", new { area = "" }, new { id = "Favorito", @class = "nav-link perfil-menu" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Recomendações", "Recomendado", "Perfil", new { area = "" }, new { id = "Recomendado", @class = "nav-link perfil-menu" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Serviços Streaming", "Servico", "Perfil", new { area = "" }, new { id = "Servico", @class = "nav-link perfil-menu" })
+                </li>
+                <li>
+                    @Html.ActionLink("Configurações", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", id = "config", @class = "nav-link perfil-menu" })
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="container">
 
     <p class="text-success">@ViewBag.StatusMessage</p>
     <div>
@@ -60,32 +85,42 @@
                 </dd>
             *@
             @*<dt>Autenticação de dois fatores:</dt>
-            <dd>
-                <p>
-                    Não há provedores de autenticação de dois fatores configurados. Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artigo</a>
-                    para obter detalhes sobre como configurar este aplicativo ASP.NET para dar suporte à autenticação de dois fatores.
-                </p>
-                if (Model.TwoFactor)
-                    {
-                        using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                <dd>
+                    <p>
+                        Não há provedores de autenticação de dois fatores configurados. Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artigo</a>
+                        para obter detalhes sobre como configurar este aplicativo ASP.NET para dar suporte à autenticação de dois fatores.
+                    </p>
+                    if (Model.TwoFactor)
                         {
-                            @Html.AntiForgeryToken()
-                            <text>Ativado
-                            <input type="submit" value="Desativar" class="btn btn-link" />
-                            </text>
+                            using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <text>Ativado
+                                <input type="submit" value="Desativar" class="btn btn-link" />
+                                </text>
+                            }
                         }
-                    }
-                    else
-                    {
-                        using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        else
                         {
-                            @Html.AntiForgeryToken()
-                            <text>Desativado
-                            <input type="submit" value="Ativar" class="btn btn-link" />
-                            </text>
+                            using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <text>Desativado
+                                <input type="submit" value="Ativar" class="btn btn-link" />
+                                </text>
+                            }
                         }
-                    }
-            </dd>*@
+                </dd>*@
         </dl>
     </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $(document).ready(function () {
+            $("#config").addClass('perfil-menu-active');
+        });
+
+    </script>
+}

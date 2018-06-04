@@ -42,11 +42,7 @@ namespace SerieWeb.Controllers.Usuario
             return View(ListaSerie);
         }
 
-        public ActionResult Calendario()
-        {
-            /// tirar isso não vai ficar bom para ficar vai ser dificil 
-            return View();
-        }
+      
         public ActionResult Servico()
         {
             List<Serie> ListaSerie = new List<Serie>();
