@@ -13,26 +13,26 @@
 
 <div id="desktop">
     <div class="container">
-        <div class="row">
-            <div class="card-deck">
-                @foreach (var item in Model)
-                {
-                    <div class="col-lg-3" id="DivExplorarCard">
-                        <div class="card explorarCard">
-                            <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
-                                <img class="card-img-top" src="@item.Imagem" alt="Card image cap">
-                            </a>
-                            <div class="card-block">
-                                <div class="card-text">
-                                    <a href="@Url.Action("DetalhesSerie","Explorar", new { id = @item.SerieID })">
-                                        <h5 class="card-text text-uppercase font-weight-bold" style="text-align:center">@item.NomeSerie</h5>
-                                    </a>
+        <div class="row">          
+                <div class="card-deck">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-3" id="DivExplorarCard" style="min-height:372.083px; min-width:292px;">
+                            <div class="card explorarCard">
+                                <a href="@Url.Action("DetalhesSerie", "Explorar", new { id = @item.SerieID })">
+                                    <img class="card-img-top" src="@item.Imagem" alt="Card image cap">
+                                </a>
+                                <div class="card-block">
+                                    <div class="card-text">
+                                        <a href="@Url.Action("DetalhesSerie", "Explorar", new { id = @item.SerieID })">
+                                            <h5 class="card-text text-uppercase font-weight-bold" style="text-align:center">@item.NomeSerie</h5>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }
-            </div>
+                    }
+                </div>            
         </div>
     </div>
 </div>
@@ -41,14 +41,14 @@
 
 @section Scripts{
     <script>
-                if (
-                    (screen.width <= 640) ||
-                    (window.matchMedia &&
-                        window.matchMedia('only screen and (max-width: 640px)').matches
-                    )
-                ) {
-                    
+        if (
+            (screen.width <= 640) ||
+            (window.matchMedia &&
+                window.matchMedia('only screen and (max-width: 640px)').matches
+            )
+        ) {
 
-                }
+
+        }
     </script>
 }
