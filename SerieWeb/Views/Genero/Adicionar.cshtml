@@ -16,13 +16,14 @@
                     <div class="card">
                         <div class="card-header">
                             <h5 class="title">Adicionar Gênero</h5>
+                            <span>Campos com * são obrigatórios</span>
                         </div>
                         <div class="card-body">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="row">
                                 <div class="col-md-12 px-1">                                   
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.NomeGenero, htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold" })
+                                        <label class="control-label col-md-8 font-weight-bold">Nome do Gênero *</label>
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.NomeGenero, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.NomeGenero, "", new { @class = "text-danger" })
