@@ -36,9 +36,11 @@ namespace SerieWeb.Models.Admininstracao
         public String Sinopse { get; set; }       
 
         [NotMapped]
+        [Display(Name = "Gêneros")]
         [Required(ErrorMessage = "A série precisa ter pelo menos 1 gênero")]
         public int[] ListGeneros { get; set; }
 
+        [Display(Name = "Serviços de Streaming")]
         [NotMapped]
         public int[] ListServicos { get; set; }
     }

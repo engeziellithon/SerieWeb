@@ -61,20 +61,27 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 db.Series.Add(serie);
                 await db.SaveChangesAsync();
-                foreach (int item in serie.ListGeneros)
+                if (serie.ListGeneros != null)
                 {
-                    var serieGeneros = new SeriesGeneros();
-                    serieGeneros.SerieID = serie.SerieID;
-                    serieGeneros.GeneroID = item;
-                    db.SeriesGeneros.Add(serieGeneros);
+                    foreach (int item in serie.ListGeneros)
+                    {
+                        var serieGeneros = new SeriesGeneros();
+                        serieGeneros.SerieID = serie.SerieID;
+                        serieGeneros.GeneroID = item;
+                        db.SeriesGeneros.Add(serieGeneros);
+                    }
                 }
-                foreach (int item in serie.ListServicos)
+                if(serie.ListServicos != null)
                 {
-                    var serieServicos = new SeriesServicos();
-                    serieServicos.SerieID = serie.SerieID;
-                    serieServicos.ServicoStreamingID = item;
-                    db.SeriesServicos.Add(serieServicos);
+                    foreach (int item in serie.ListServicos)
+                    {
+                        var serieServicos = new SeriesServicos();
+                        serieServicos.SerieID = serie.SerieID;
+                        serieServicos.ServicoStreamingID = item;
+                        db.SeriesServicos.Add(serieServicos);
+                    }
                 }
+                
                 await db.SaveChangesAsync();
 
                 Session["MensagemSucesso"] = "A Série " + serie.NomeSerie + " foi salva com sucesso.";
@@ -186,11 +193,16 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Serie serie = await db.Series.FindAsync(id);
+            Serie serie = await db.Series.FindAsync(id);         
+
             if (serie == null)
             {
                 return HttpNotFound();
             }
+
+            ViewBag.listagenero = db.SeriesGeneros.Where(g => g.SerieID == serie.SerieID).Select(s => s.Genero).ToList();
+            ViewBag.listaservico = db.SeriesServicos.Where(g => g.SerieID == serie.SerieID).Select(s => s.ServicoStreaming).ToList();
+
             return View(serie);
         }
 

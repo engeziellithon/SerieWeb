@@ -47,7 +47,7 @@
                 <div class="col-12">
                     <p class="font-weight-normal"> HBO</p>                    
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width:@Convert.ToInt32(porcetagemHBO)%;" aria-valuenow="@Convert.ToInt32(porcetagemHBO);" aria-valuemin="0" aria-valuemax="100">@Convert.ToInt32(porcetagemHBO)%</div>
+                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width:@String.Format("{0}", porcetagemHBO)%" aria-valuenow="@String.Format("{0}", porcetagemHBO)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemHBO) %</div>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 <div class="col-12">
                     <p class="font-weight-normal"> Netflix</p>
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@Convert.ToInt32(porcetagemNETFLIX)%;" aria-valuenow="@Convert.ToInt32(porcetagemNETFLIX);" aria-valuemin="0" aria-valuemax="100">@Convert.ToInt32(porcetagemNETFLIX)%</div>
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemNETFLIX)%" aria-valuenow="@String.Format("{0}", porcetagemNETFLIX)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemNETFLIX)%</div>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                 <div class="col-12">
                     <p class="font-weight-normal"> Amazon Prime</p>
                     <div class="progress" style="height: 20px;">
-                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:@Convert.ToInt32(porcetagemAMAZON)%;" aria-valuenow="@Convert.ToInt32(porcetagemAMAZON);" aria-valuemin="0" aria-valuemax="100">@Convert.ToInt32(porcetagemAMAZON)%</div>
+                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:@String.Format("{0}", porcetagemAMAZON)%" aria-valuenow="@String.Format("{0}", porcetagemAMAZON)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemAMAZON)%</div>
                     </div>
                 </div>
             </div>

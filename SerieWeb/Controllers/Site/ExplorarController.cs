@@ -89,7 +89,7 @@ namespace SerieWeb.Controllers.Site
         }
         #endregion
 
-        #region listar episodio da serue
+        #region listar episodio da série
         [HttpPost]
         public ActionResult ExiberEpisodio(int SerieID,int TemporadaID)
         {
