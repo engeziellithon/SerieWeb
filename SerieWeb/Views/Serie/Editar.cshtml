@@ -73,17 +73,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12 pr-2">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Trailer, htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold" })
-                                        <div class="col-md-12">
-                                            @Html.EditorFor(model => model.Trailer, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.Trailer, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-4 pr-1">
                                     <div class="form-group">
                                         <label class="control-label col-md-8 font-weight-bold">Gênero</label>
@@ -149,7 +138,16 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>                               
+                                </div>
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8 font-weight-bold">Trailer</label>
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Trailer, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Trailer, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
