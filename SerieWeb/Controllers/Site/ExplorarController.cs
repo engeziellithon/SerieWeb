@@ -210,9 +210,9 @@ namespace SerieWeb.Controllers.Site
                 db.UsuarioPerfil.Add(perfil);
                 db.SaveChanges();
 
-                var serieAvalizcao = perfil.Avaliacao;
+                var serieAvaliacao = perfil.Avaliacao;
 
-                return Json(new { serieAvalizcao = serieAvalizcao });
+                return Json(new { serieAvalizcao = serieAvaliacao });
             }
             #endregion
 
