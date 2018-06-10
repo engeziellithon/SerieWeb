@@ -29,9 +29,7 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.NomeTemporada)
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.NumeroTemporada)
-                                        </th>
+                                      
                                         <th> Opções</th>
                                     </tr>
                                 </thead>
@@ -43,9 +41,7 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.NomeTemporada)
                                         </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NumeroTemporada)
-                                        </td>
+                                        
                                         <td>
                                             @Html.ActionLink("Editar", "Editar", new { id = item.TemporadaID }) |
                                             @Html.ActionLink("Detalhes", "Detalhes", new { id = item.TemporadaID }) |

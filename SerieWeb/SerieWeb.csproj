@@ -276,6 +276,10 @@
     <Compile Include="Migrations\201806101501489_NumEpisodioeTemporada.Designer.cs">
       <DependentUpon>201806101501489_NumEpisodioeTemporada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806101732154_removenumtemp.cs" />
+    <Compile Include="Migrations\201806101732154_removenumtemp.Designer.cs">
+      <DependentUpon>201806101732154_removenumtemp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
     <Compile Include="Models\Admininstracao\Genero.cs" />
@@ -531,6 +535,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806101501489_NumEpisodioeTemporada.resx">
       <DependentUpon>201806101501489_NumEpisodioeTemporada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806101732154_removenumtemp.resx">
+      <DependentUpon>201806101732154_removenumtemp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -17,8 +17,6 @@ namespace SerieWeb.Models.Admininstracao
         [Display(Name = "Nome da Temporada")]
         public String NomeTemporada { get; set; }
 
-        [Required()]
-        [Display(Name = "Número da Temporada")]
-        public int NumeroTemporada { get; set; }
+        
     }
 }
