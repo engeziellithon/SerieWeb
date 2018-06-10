@@ -59,12 +59,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 pr-1">
+                                <div class="col-md-4 pr-1">                                   
                                     <div class="form-group">
-                                        <label class="control-label col-md-8 font-weight-bold">Data de Exibição <span style="color:red">*</span></label>
+                                        <label class="control-label col-md-8 font-weight-bold">Número do Episodio <span style="color:red">*</span></label>
                                         <div class="col-md-12">
-                                            @Html.EditorFor(model => model.DataExibicao, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.DataExibicao, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.NumeroEpisodio, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NumeroEpisodio, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
@@ -81,12 +81,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12 pr-1">
+                                <div class="col-md-8 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Video, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                                        <label class="control-label col-md-8 font-weight-bold">Video</label>
                                         <div class="col-md-12">
-                                            @Html.EditorFor(model => model.Video, new { htmlAttributes = new { @class = "form-control", rows = "4", cols = "80" } })
+                                            @Html.EditorFor(model => model.Video, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.Video, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8 font-weight-bold">Data de Exibição <span style="color:red">*</span></label>
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.DataExibicao, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DataExibicao, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
