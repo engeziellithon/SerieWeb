@@ -57,7 +57,7 @@ namespace SerieWeb.Controllers.Admininstracao
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Adicionar([Bind(Include = "EpisodioID,NomeEpisodio,Sinopse,Video,DataExibicao,SerieID,TemporadaID")] Episodio episodio)
+        public async Task<ActionResult> Adicionar([Bind(Include = "EpisodioID,NomeEpisodio,Sinopse,Video,DataExibicao,SerieID,TemporadaID,NumeroEpisodio")] Episodio episodio)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace SerieWeb.Controllers.Admininstracao
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Editar([Bind(Include = "EpisodioID,NomeEpisodio,Sinopse,Video,DataExibicao,SerieID,TemporadaID")] Episodio episodio)
+        public async Task<ActionResult> Editar([Bind(Include = "EpisodioID,NomeEpisodio,Sinopse,Video,DataExibicao,SerieID,TemporadaID,NumeroEpisodio")] Episodio episodio)
         {
             if (ModelState.IsValid)
             {
