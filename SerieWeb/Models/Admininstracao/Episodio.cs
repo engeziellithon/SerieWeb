@@ -22,7 +22,7 @@ namespace SerieWeb.Models.Admininstracao
         public int NumeroEpisodio { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [StringLength(400, MinimumLength = 50)]
+        [StringLength(2000, MinimumLength = 50)]
         public string Sinopse { get; set; }
 
         [Url]

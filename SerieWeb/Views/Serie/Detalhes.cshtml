@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Detalhes";
+    var Generos = (List<SerieWeb.Models.Admininstracao.Genero>)ViewBag.listagenero;
+    var Servicos = (List<SerieWeb.Models.Admininstracao.ServicoStreaming>)ViewBag.listaservico;
 }
 <div class="panel-header panel-header-sm">
 
@@ -22,6 +24,14 @@
 
                             <dd>
                                 @Html.DisplayFor(model => model.NomeSerie)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Sinopse)
+                            </dt>
+
+                            <dd class="text-justify">
+                                @Html.DisplayFor(model => model.Sinopse)
                             </dd>
 
                             <dt>
@@ -48,14 +58,40 @@
                                 @Html.DisplayFor(model => model.Trailer)
                             </dd>
 
+
+
                             <dt>
-                                @Html.DisplayNameFor(model => model.Sinopse)
+                                @Html.DisplayNameFor(model => model.ListGeneros)
                             </dt>
 
-                            <dd class="text-justify">
-                                @Html.DisplayFor(model => model.Sinopse)
+
+                            <dd>
+                                <div class="row" style="margin-left: 1px;">
+                                    @foreach (var item in Generos)
+                                    {
+                                        <span style="margin-right: 10px; margin-top:5px;">
+                                            <p class="text-justify" style="padding-left:5px;">@item.NomeGenero </p>
+                                        </span>
+                                    }
+                                </div>
                             </dd>
-                           
+
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ListServicos)
+                            </dt>
+
+                            <dd>
+                                <div class="row" style="margin-left: 1px;">
+                                    @foreach (var item in Servicos)
+                                    {
+                                        <span style="margin-right: 10px; margin-top:5px;">
+                                            <p class="text-justify" style="padding-left:5px;"> @item.NomeServicoStreaming</p>
+                                        </span>
+                                    }
+                                </div>
+                            </dd>
+
 
 
                         </dl>
