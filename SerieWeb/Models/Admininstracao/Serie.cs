@@ -12,17 +12,18 @@ namespace SerieWeb.Models.Admininstracao
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SerieID { get; set; }
        
-        [Required()]
+        
+        [Required(ErrorMessage = "O campo Nome da Série é obrigatório.")]
         [StringLength(40, MinimumLength = 2)]
         [Display(Name = "Nome da Série")]
         public String NomeSerie { get; set; }
 
-        [Required()]
+        [Required(ErrorMessage = "O campo Imagem é obrigatório.")]
         [Url]
         [DataType(DataType.ImageUrl)]
         public String Imagem { get; set; }
 
-        [Required()]
+        [Required(ErrorMessage = "O campo Banner é obrigatório.")]
         [Url]
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Banner")]
@@ -32,7 +33,7 @@ namespace SerieWeb.Models.Admininstracao
         public String Trailer { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [Required()]        
+        [Required(ErrorMessage = "O campo Sinopse é obrigatório.")]
         public String Sinopse { get; set; }       
 
         [NotMapped]

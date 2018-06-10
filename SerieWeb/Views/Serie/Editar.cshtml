@@ -110,6 +110,7 @@
                                                     }
                                                 }
                                             </select>
+                                            @Html.ValidationMessageFor(model => model.ListGeneros, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
@@ -143,6 +144,7 @@
                                                     }
                                                 }
                                             </select>
+                                            @Html.ValidationMessageFor(model => model.ListServicos, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>

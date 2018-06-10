@@ -12,12 +12,12 @@ namespace SerieWeb.Models.Admininstracao
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EpisodioID { get; set; }
 
-        [Required()]       
+        [Required(ErrorMessage = "O campo Nome do Episódio é obrigatório.")]
         [StringLength(40, MinimumLength = 4)]
         [Display(Name = "Nome do Episódio")]
         public String NomeEpisodio { get; set; }
 
-        [Required()]        
+        [Required(ErrorMessage = "O campo Número do Episódio é obrigatório.")]
         [Display(Name = "Número do Episódio")]
         public int NumeroEpisodio { get; set; }
 
@@ -30,8 +30,8 @@ namespace SerieWeb.Models.Admininstracao
         [MaxLength(255)]
         [RegularExpression("https://www.youtube.com/watch\\?v=.*", ErrorMessage = "Adicione uma Url do Youtube")]
         public string Video { get; set; }
-        
-        [Required]       
+
+        [Required(ErrorMessage = "O campo Data de Exibição é obrigatório.")]
         [DataType(DataType.Date, ErrorMessage = "Data de Exibição deve estar Preenchida")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [Display(Name = "Data de Exibição")]       

@@ -12,7 +12,7 @@ namespace SerieWeb.Models.Admininstracao
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GeneroID { get; set; }
 
-        [Required()]
+        [Required(ErrorMessage = "O campo Gênero é obrigatório.")]
         [Display(Name = "Gênero")]
         [StringLength(40, MinimumLength = 4)]
         [RegularExpression(@"^[a-zA-Z]{1,40}$", ErrorMessage = "Números e caracteres especiais não são permitidos no Gênero.")]
