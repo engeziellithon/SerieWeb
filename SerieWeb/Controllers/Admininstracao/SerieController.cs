@@ -40,6 +40,8 @@ namespace SerieWeb.Controllers.Admininstracao
             {
                 return HttpNotFound();
             }
+            ViewBag.listagenero = db.SeriesGeneros.Where(g => g.SerieID == serie.SerieID).Select(s => s.Genero).ToList();
+            ViewBag.listaservico = db.SeriesServicos.Where(g => g.SerieID == serie.SerieID).Select(s => s.ServicoStreaming).ToList();
             return View(serie);
         }
         #endregion

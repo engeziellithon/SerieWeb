@@ -280,6 +280,10 @@
     <Compile Include="Migrations\201806101732154_removenumtemp.Designer.cs">
       <DependentUpon>201806101732154_removenumtemp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806101821251_sinopseEpisodio.cs" />
+    <Compile Include="Migrations\201806101821251_sinopseEpisodio.Designer.cs">
+      <DependentUpon>201806101821251_sinopseEpisodio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
     <Compile Include="Models\Admininstracao\Genero.cs" />
@@ -538,6 +542,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806101732154_removenumtemp.resx">
       <DependentUpon>201806101732154_removenumtemp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806101821251_sinopseEpisodio.resx">
+      <DependentUpon>201806101821251_sinopseEpisodio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
