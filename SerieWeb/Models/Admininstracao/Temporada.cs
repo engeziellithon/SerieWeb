@@ -15,6 +15,10 @@ namespace SerieWeb.Models.Admininstracao
         [Required()]
         [StringLength(15, MinimumLength = 9)]
         [Display(Name = "Nome da Temporada")]
-        public String NomeTemporada { get; set; }        
+        public String NomeTemporada { get; set; }
+
+        [Required()]
+        [Display(Name = "Número da Temporada")]
+        public int NumeroTemporada { get; set; }
     }
 }

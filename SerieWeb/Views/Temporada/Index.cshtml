@@ -29,6 +29,9 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.NomeTemporada)
                                         </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.NumeroTemporada)
+                                        </th>
                                         <th> Opções</th>
                                     </tr>
                                 </thead>
@@ -36,17 +39,20 @@
                                     @foreach (var item in Model)
                                     {
 
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.NomeTemporada)
-                                            </td>
-                                            <td>
-                                                @Html.ActionLink("Editar", "Editar", new { id = item.TemporadaID }) |
-                                                @Html.ActionLink("Detalhes", "Detalhes", new { id = item.TemporadaID }) |
-                                                @Html.ActionLink("Deletar", "Deletar", new { id = item.TemporadaID })
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NomeTemporada)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NumeroTemporada)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Editar", "Editar", new { id = item.TemporadaID }) |
+                                            @Html.ActionLink("Detalhes", "Detalhes", new { id = item.TemporadaID }) |
+                                            @Html.ActionLink("Deletar", "Deletar", new { id = item.TemporadaID })
 
-                                            </td>
-                                        </tr>
+                                        </td>
+                                    </tr>
 
                                     }
                                 </tbody>

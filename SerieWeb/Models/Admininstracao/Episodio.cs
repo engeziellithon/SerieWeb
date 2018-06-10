@@ -17,6 +17,10 @@ namespace SerieWeb.Models.Admininstracao
         [Display(Name = "Nome do Episódio")]
         public String NomeEpisodio { get; set; }
 
+        [Required()]        
+        [Display(Name = "Número do Episódio")]
+        public int NumeroEpisodio { get; set; }
+
         [DataType(DataType.MultilineText)]
         [StringLength(400, MinimumLength = 50)]
         public string Sinopse { get; set; }

@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201806031351233_RemoçãoNotaSerie.Designer.cs">
       <DependentUpon>201806031351233_RemoçãoNotaSerie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806101501489_NumEpisodioeTemporada.cs" />
+    <Compile Include="Migrations\201806101501489_NumEpisodioeTemporada.Designer.cs">
+      <DependentUpon>201806101501489_NumEpisodioeTemporada.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admininstracao\Episodio.cs" />
     <Compile Include="Models\Admininstracao\Genero.cs" />
@@ -523,6 +527,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806031351233_RemoçãoNotaSerie.resx">
       <DependentUpon>201806031351233_RemoçãoNotaSerie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806101501489_NumEpisodioeTemporada.resx">
+      <DependentUpon>201806101501489_NumEpisodioeTemporada.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
