@@ -6,9 +6,9 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
+        @*<li>
             @Html.ActionLink("Olá " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
-        </li>
+        </li>*@
         <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
     </ul>
     }
