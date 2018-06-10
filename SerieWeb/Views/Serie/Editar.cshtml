@@ -23,7 +23,14 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="title">Editar Série</h4>
+                            <div class="row justify-content-between">
+                                <div class="col-6">
+                                    <h5 class="title font-weight-bold">Editar Série</h5>
+                                </div>
+                                <div class="col-6">
+                                    <span style="text-align:right; float:right; color:red;">* Obrigatório</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -31,7 +38,7 @@
                             <div class="row">
                                 <div class="col-md-12 pr-4">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.NomeSerie, htmlAttributes: new { @class = "control-label col-md-6 font-weight-bold" })
+                                        <label class="control-label col-md-8 font-weight-bold">Nome da Série  <span style="color:red">*</span> </label>
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.NomeSerie, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.NomeSerie, "", new { @class = "text-danger" })
@@ -53,7 +60,7 @@
                             <div class="row">
                                 <div class="col-md-12 pr-4">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Imagem, htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold" })
+                                        <label class="control-label col-md-8 font-weight-bold">Imagem <span style="color:red">*</span></label>
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.Imagem, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.Imagem, "", new { @class = "text-danger" })
@@ -64,7 +71,7 @@
                             <div class="row">
                                 <div class="col-md-12 pr-1">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.ImagemFavorito, htmlAttributes: new { @class = "control-label col-md-8 font-weight-bold" })
+                                        <label class="control-label col-md-8 font-weight-bold">Banner <span style="color:red">*</span></label>
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.ImagemFavorito, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.ImagemFavorito, "", new { @class = "text-danger" })
@@ -75,7 +82,7 @@
                             <div class="row">
                                 <div class="col-md-4 pr-1">
                                     <div class="form-group">
-                                        <label class="control-label col-md-8 font-weight-bold">Gênero</label>
+                                        <label class="control-label col-md-8 font-weight-bold">Gênero <span style="color:red">*</span></label>
                                         <div class="col-md-12">
                                             <select class="custom-select col-md-12" id="Generos" name="ListGeneros" multiple="multiple">
                                                 @if (GeneroSelecionado != null)
@@ -108,7 +115,7 @@
                                 </div>
                                 <div class="col-md-4 pr-1">
                                     <div class="form-group">
-                                        <label class="control-label col-md-12 font-weight-bold">Servico de Streaming</label>
+                                        <label class="control-label col-md-12 font-weight-bold">Serviço de Streaming</label>
                                         <div class="col-md-12">
                                             <select class="custom-select col-md-12 " id="Servicos" name="ListServicos" multiple="multiple">
                                                 @if (ServicoSelecionado != null)
