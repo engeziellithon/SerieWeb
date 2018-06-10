@@ -212,7 +212,7 @@ namespace SerieWeb.Controllers.Site
 
                 var serieAvaliacao = perfil.Avaliacao;
 
-                return Json(new { serieAvalizcao = serieAvaliacao });
+                return Json(new { serieAvaliacao = serieAvaliacao });
             }
             #endregion
 
