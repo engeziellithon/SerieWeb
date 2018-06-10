@@ -5,21 +5,20 @@
 
 
 <div class="container" style="height:100%; margin-top:25vh;" ">
-    <div class="row">
+    <div class="row" style="padding-bottom:10px">
         <div class="col-sm"></div>
         <div class="col-sm" style="margin:auto;">
-            <h1 style="color:black; text-align:center;">SERIES WEB</h1>
+            <h1 style="color:black; text-align:center; font-size:60px">SERIES WEB</h1>
         </div>
         <div class="col-sm"></div>
     </div>
     <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
             @using (Html.BeginForm("Index", "Explorar", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <div class="form-row">
-
                     <div class="input-group">
                         <input type="text" class="form-control" name="pesquisa" id="HomePesquisa" style="border: 2px solid #007bff;border-top-right-radius: 0 !important;border-bottom-right-radius: 0 !important;" placeholder="Digite sua Pesquisa">
                         <button class="btn btn-primary BtnPesquisa" type="submit">
@@ -30,6 +29,6 @@
                 </div>
             }
         </div>
-        <div class="col-sm"></div>
+        <div class="col-sm-3"></div>
     </div>
 </div>
