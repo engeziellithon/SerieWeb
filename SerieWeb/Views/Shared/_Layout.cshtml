@@ -25,12 +25,6 @@
                 <li class="nav-item">
                     @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "nav-link" })
                 </li>
-                @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Usuario"))
-                {
-                    <li class="nav-item">
-                        @Html.ActionLink("Perfil", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                }
                 @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                 {
 
@@ -46,6 +40,12 @@
                             @Html.ActionLink("Serviço de Streaming", "Index", "ServicoStreamings", new { area = "" }, new { @class = "dropdown-item" })
                         </div>
 
+                    </li>
+                }
+                @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Usuario"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Perfil", "Index", "Perfil", new { area = "" }, new { @class = "nav-link" })
                     </li>
                 }
                 <li class="nav-item">

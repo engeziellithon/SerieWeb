@@ -209,6 +209,10 @@ namespace SerieWeb.Controllers.Site
                 perfil.Avaliacao = avaliacao;
                 db.UsuarioPerfil.Add(perfil);
                 db.SaveChanges();
+
+                var serieAvalizcao = perfil.Avaliacao;
+
+                return Json(new { serieAvalizcao = serieAvalizcao });
             }
             #endregion
 
@@ -222,7 +226,9 @@ namespace SerieWeb.Controllers.Site
                     db.Entry(perfil).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
+                    var serieAvaliacao = perfil.Avaliacao;
+
+                    return Json(new { serieAvaliacao = serieAvaliacao });
                 }
                 catch (DataException)
                 {
