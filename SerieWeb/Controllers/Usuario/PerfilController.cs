@@ -66,11 +66,10 @@ namespace SerieWeb.Controllers.Usuario
 
             ViewBag.HBO = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "HBO").ToList();
             ViewBag.NETFLIX = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "NETFLIX").ToList();
-            ViewBag.AMAZON = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "AMAZON PRIME").ToList();
-            //ViewBag.HBO = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "HBO").ToList();
-            //ViewBag.NETFLIX = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "NETFLIX").ToList();
-            //ViewBag.AMAZON = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "AMAZON PRIME").ToList();
-
+            ViewBag.PRIMEVIDEO = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "PRIME VIDEO").ToList();
+            ViewBag.FOXPLAY = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "FOX PLAY").ToList();
+            ViewBag.SONY = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "SONY").ToList();
+           
             var maior  = ListaServicos.Select(s => s.ServicoStreaming).Max(c => c.NomeServicoStreaming);
 
             ServicoStreaming MelhorServico = db.ServicosStreaming.Where(s => s.NomeServicoStreaming == maior).FirstOrDefault();
