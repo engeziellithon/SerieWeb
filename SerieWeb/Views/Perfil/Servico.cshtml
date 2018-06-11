@@ -43,50 +43,119 @@
 
 <div class="container">
     <h4 style="margin-bottom: 40px;">Melhores Serviços</h4>
-            <div class="row" style="margin-bottom:10px">
-                <div class="col-12">
-                    <p class="font-weight-normal"> HBO</p>                    
-                    <div class="progress" style="height: 20px;">
-                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width:@String.Format("{0}", porcetagemHBO)%" aria-valuenow="@String.Format("{0}", porcetagemHBO)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemHBO) %</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-bottom:10px">
-                <div class="col-12">
-                    <p class="font-weight-normal"> Netflix</p>
+    <div class="row">
+        @*@foreach (var item in collection)
+            {
+
+            }*@
+        <div class="box">
+            <label class="recomended">Recomendação</label>
+            <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">Netflix</h2>
+            <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
+                <li style="margin-bottom:30px;">
+                    <p class="text text-center">Você possui @porcetagemNETFLIX.ToString() séries nos favoritos da netflix</p>
+                </li>
+                
+                <li style="margin-bottom:30px;">
                     <div class="progress" style="height: 20px;">
                         <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemNETFLIX)%" aria-valuenow="@String.Format("{0}", porcetagemNETFLIX)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemNETFLIX)%</div>
                     </div>
-                </div>
-            </div>
-            <div class="row" style="margin-bottom:10px">
-                <div class="col-12">
-                    <p class="font-weight-normal"> Amazon Prime</p>
-                    <div class="progress" style="height: 20px;">
-                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:@String.Format("{0}", porcetagemAMAZON)%" aria-valuenow="@String.Format("{0}", porcetagemAMAZON)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemAMAZON)%</div>
-                    </div>
-                </div>
-            </div>
+                </li>
 
-            <div class="alert alert-success" role="alert" style="margin-top:50px">
-                <div class="container-fluid">
-                    <h4 class="alert-heading">Recomendação</h4>
-                    <p>Nome: @MelhorServico.NomeServicoStreaming</p>
-                    <p>Preço: R$ @MelhorServico.Preco</p>
-                    <hr>
-                    @*<p class="mb-0">Continue adicionado series aos favoritos para ver qual melhor serviço lhe atende</p>*@
-                    <p class="mb-0">Esta indição de Serviço é baseado nos seus favoritos continue adicionando para descobrir o que melhor lhe atende!</p>
+            </ul>
+
+            <h2 class="text text-center">R$ @MelhorServico.Preco</h2>
+        </div>
+
+        @*<div class="box">
+            <h2>HBO Now</h2>
+            <ul>
+                <li>4k, FullHD and HD resolutions</li>
+                <li>More than 250 movies</li>
+                <li>Original content</li>
+                <li>Discounts on credit card</li>
+            </ul>
+
+            <h1>US$ 25,00</h1>
+        </div>
+
+        <div class="box">
+            <h2>Mubi</h2>
+            <ul>
+                <li>4k, FullHD and HD resolutions</li>
+                <li>More than 2000 movies</li>
+                <li>The better selection</li>
+                <li>Discounts on credit card</li>
+            </ul>
+
+            <h3>US$ 10,00</h3>
+        </div>
+        <div class="box">
+            <h2>Mubi</h2>
+            <ul>
+                <li>4k, FullHD and HD resolutions</li>
+                <li>More than 2000 movies</li>
+                <li>The better selection</li>
+                <li>Discounts on credit card</li>
+            </ul>
+
+            <h3>US$ 10,00</h3>
+        </div>
+        <div class="box">
+            <h2>Mubi</h2>
+            <ul>
+                <li>4k, FullHD and HD resolutions</li>
+                <li>More than 2000 movies</li>
+                <li>The better selection</li>
+                <li>Discounts on credit card</li>
+            </ul>
+
+            <h3>US$ 10,00</h3>
+        </div>*@
+    </div>
+    @*<div class="row" style="margin-bottom:10px">
+            <div class="col-12">
+                <p class="font-weight-normal"> HBO</p>
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width:@String.Format("{0}", porcetagemHBO)%" aria-valuenow="@String.Format("{0}", porcetagemHBO)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemHBO) %</div>
                 </div>
             </div>
         </div>
-  
+        <div class="row" style="margin-bottom:10px">
+            <div class="col-12">
+                <p class="font-weight-normal"> Netflix</p>
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemNETFLIX)%" aria-valuenow="@String.Format("{0}", porcetagemNETFLIX)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemNETFLIX)%</div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:10px">
+            <div class="col-12">
+                <p class="font-weight-normal"> Amazon Prime</p>
+                <div class="progress" style="height: 20px;">
+                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:@String.Format("{0}", porcetagemAMAZON)%" aria-valuenow="@String.Format("{0}", porcetagemAMAZON)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemAMAZON)%</div>
+                </div>
+            </div>
+        </div>*@
+
+    <div class="alert alert-success" role="alert" style="margin-top:50px">
+        <div class="container-fluid">
+            <h4 class="alert-heading">Recomendação</h4>
+            <p>Nome: @MelhorServico.NomeServicoStreaming</p>
+            <p>Preço: R$ @MelhorServico.Preco</p>
+            <hr>
+            @*<p class="mb-0">Continue adicionado series aos favoritos para ver qual melhor serviço lhe atende</p>*@
+            <p class="mb-0">Esta indição de Serviço é baseado nos seus favoritos continue adicionando para descobrir o que melhor lhe atende!</p>
+        </div>
+    </div>
+
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
     <script>
         $(document).ready(function () {
-
-
             $("#Servico").addClass('perfil-menu-active');
         });
 

@@ -9,8 +9,9 @@
     var Servicos = (List<SerieWeb.Models.Admininstracao.ServicoStreaming>)ViewBag.listaservico;
     var avaliacao = (List<SerieWeb.Models.Usuario.UsuarioPerfil>)ViewBag.Avaliacoes;
     var TrailerCompartilhar = ViewBag.TrailerCompartilhar;
-    var UserNota = ViewBag.UserNota != null ? ViewBag.UserNota : 0;    
+    var UserNota = ViewBag.UserNota != null ? ViewBag.UserNota : 0;
     var SerieFavorita = ViewBag.SerieFavorita != null ? ViewBag.SerieFavorita : 0;
+    int count = 0;
 }
 
 <div id="Desktop">
@@ -207,53 +208,32 @@
         <div class="card-header">
             <h5>Indicações</h5>
         </div>
-        <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
-            @*<ol class="carousel-indicators">
-                    <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel" data-slide-to="1"></li>
-                    <li data-target="#carousel" data-slide-to="2"></li>
-                    <li data-target="#carousel" data-slide-to="3"></li>
-                </ol>*@
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <div class="container-fluid">
-                        <p>series indicadas para esse genero</p>
-                    </div>
-                </div>
-                <!-- /.carousel-item -->
+
+
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+
                 @foreach (var item in Indicacoes)
                 {
-                    <div class="carousel-item ">
-                        <div class="container-fluid">
-                            <div class="row" style="margin-top:10px; margin-bottom:10px">
-                                <div class="col-md-2"><img src="@item.Imagem" class="d-block img-fluid" style="height:200px; width:150px;"></div>
-                                <div class="col-md-10">
-                                    <h3>@item.NomeSerie</h3>
-                                    <p>@item.Sinopse</p>
-                                </div>
-
+                    count += 1;
+                    <div class="carousel-item" id="item-carousel-@count">
+                        <div class="row" style="margin-top:10px; margin-bottom:10px">
+                            <div class="col-md-2"><img src="@item.Imagem" class="d-block img-fluid" style="height:200px; width:150px;"></div>
+                            <div class="col-md-10">
+                                <h3>@item.NomeSerie</h3>
+                                <p>@item.Sinopse</p>
                             </div>
-                            <div class="row" style="margin-bottom:10px">
-                                <div class="col-12">
-                                    <a href="" class="btn btn-primary btn-lg btn-block">Ir para serie</a>
-                                </div>
+
+                        </div>
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-12">
+                                <a href="" class="btn btn-primary btn-lg btn-block">Ir para serie</a>
                             </div>
                         </div>
                     </div>
-
                 }
-                <!-- /.carousel-item -->
             </div>
-            <!-- /.carousel-inner -->
-            @*<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>*@
-        </div>    <!-- /.carousel -->
+        </div>
     </div>
 
 
@@ -312,6 +292,7 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+
 
 
         window.addEventListener('resize', triggerAll);
@@ -385,7 +366,7 @@
 
         $("#FavoritarSerie").click(function () {
 
-            
+
             var IdSerie = @Model.SerieID;
 
             $.ajax({
@@ -425,14 +406,15 @@
         }(document, 'script', 'facebook-jssdk'));
 
 
-        $(document).ready(function () {           
+        $(document).ready(function () {
 
             if ($("#SerieFavorita").val() == 1) {
                 $("#FavoritarSerie").css({ border: "3px solid red", opacity: "1.20", cursor:"no-drop" });
                 $("#FavoritarSerie").prop("disabled", true);
-                //$("#FavoritarSerie").attr('title', "Foo")  
+                //$("#FavoritarSerie").attr('title', "Foo")
                 $("#FavoritarSerie").attr('title', 'Para Remover dos favoritos entre no seu perfil');
             }
+            $("#item-carousel-1").addClass('active');
 
             var TemporadaID = $('#Temporada').val();
             var SerieID = @Model.SerieID;

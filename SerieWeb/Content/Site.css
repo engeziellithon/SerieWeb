@@ -1148,3 +1148,36 @@ button.multiselect.dropdown-toggle.btn.btn-Light {
     }
 
 /*#endregion */
+
+
+
+.box {
+    position: relative;
+    width: 300px;    
+    border: 1px solid #dadada !important;
+    box-shadow: 2px 2px 5px darkgrey;
+    border-radius: 3px;
+    padding: 30px;
+    padding-top: 50px;
+    height: 350px;
+    opacity: 1;
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+    .box:hover {
+        width: 400px;
+        height: 400px;
+        opacity: 1.5;
+        transition: 0.3s;
+    }
+
+.recomended {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: darkgreen;
+    padding: 10px;
+    color: white;
+}
+
