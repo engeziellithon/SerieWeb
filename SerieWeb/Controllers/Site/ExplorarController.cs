@@ -77,13 +77,17 @@ namespace SerieWeb.Controllers.Site
             ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).ToList().Distinct();
             ViewBag.listagenero = db.SeriesGeneros.Where(g => g.SerieID == serie.SerieID).Select(s=>s.Genero).ToList();
             ViewBag.listaservico = db.SeriesServicos.Where(g => g.SerieID == serie.SerieID).Select(s => s.ServicoStreaming).ToList();
-            ViewBag.Avaliacoes = db.UsuarioPerfil.Where(s => s.SerieID == serie.SerieID && s.Avaliacao >= 0).ToList();
+            ViewBag.Avaliacoes = db.UsuarioPerfil.Where(s => s.SerieID == serie.SerieID && s.Avaliacao > 0).ToList();
+
 
             if (user != null)
             {
                 int nota = db.UsuarioPerfil.Where(s => s.UserId == user && s.SerieID == serie.SerieID && s.Avaliacao > 0).Select(a=>a.Avaliacao).FirstOrDefault();
+                int SerieFavorita = db.UsuarioPerfil.FirstOrDefault(s => s.SerieID == serie.SerieID && s.SerieFavorita == true && s.UserId == user).SerieFavorita == true ? 1 : 0;
+                ViewBag.SerieFavorita = SerieFavorita;
                 ViewBag.UserNota = nota;                    
             }           
+            
 
             return View(serie);
         }

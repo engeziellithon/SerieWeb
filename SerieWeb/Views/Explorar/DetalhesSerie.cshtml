@@ -9,9 +9,8 @@
     var Servicos = (List<SerieWeb.Models.Admininstracao.ServicoStreaming>)ViewBag.listaservico;
     var avaliacao = (List<SerieWeb.Models.Usuario.UsuarioPerfil>)ViewBag.Avaliacoes;
     var TrailerCompartilhar = ViewBag.TrailerCompartilhar;
-    var UserNota = ViewBag.UserNota;
-    UserNota = UserNota != null ? UserNota : 0;
-    var SerieFavorita = avaliacao.FirstOrDefault(s => s.SerieID == Model.SerieID).SerieFavorita == true ? 1 : 0;
+    var UserNota = ViewBag.UserNota != null ? ViewBag.UserNota : 0;    
+    var SerieFavorita = ViewBag.SerieFavorita != null ? ViewBag.SerieFavorita : 0;
 }
 
 <div id="Desktop">
@@ -132,7 +131,6 @@
                                                    max="10"
                                                    step="1"
                                                    value="@UserNota">
-
                                             <span class="range-box">
                                                 <span class="range-counter" id="counter"></span>
                                             </span>
@@ -387,7 +385,7 @@
 
         $("#FavoritarSerie").click(function () {
 
-            debugger
+            
             var IdSerie = @Model.SerieID;
 
             $.ajax({
@@ -400,7 +398,7 @@
                 success: function (result) {
                     if (result.Seriefavorito != null)
 
-                    var Seriefavorito = result.serieAvaliacao;
+                        var Seriefavorito = result.Seriefavorito;
 
                     $('.bd-example-modal-sm').modal('show');
                     $('#mensagemModalSucesso').html('A série ' + Seriefavorito + ' foi salva nos favoritos com sucesso.');
