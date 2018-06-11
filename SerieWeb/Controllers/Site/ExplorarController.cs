@@ -81,8 +81,8 @@ namespace SerieWeb.Controllers.Site
 
             if (user != null)
             {
-                int nota = db.UsuarioPerfil.Where(s => s.UserId == user && s.SerieID == serie.SerieID && s.Avaliacao >= 0).Select(a=>a.Avaliacao).FirstOrDefault();
-                ViewBag.UserNota = nota;
+                int nota = db.UsuarioPerfil.Where(s => s.UserId == user && s.SerieID == serie.SerieID && s.Avaliacao > 0).Select(a=>a.Avaliacao).FirstOrDefault();
+                ViewBag.UserNota = nota;                    
             }           
 
             return View(serie);
@@ -133,48 +133,49 @@ namespace SerieWeb.Controllers.Site
             {
                 perfil.UserId = user;
                 perfil.SerieID = serie.SerieID;
-                perfil.SerieFavorita = true;
+                perfil.SerieFavorita = true;                
                 db.UsuarioPerfil.Add(perfil);
                 db.SaveChanges();
             }
             #endregion
 
-            #region Edição da Serie favorita 
-            else if (StatusSerieFavorita.SerieFavorita == false)
-            {
-                try
-                {
-                    perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
-                    perfil.SerieFavorita = true;
-                    db.Entry(perfil).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
-                }
-                catch (DataException)
-                { 
-                    ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
-                }
-            }
-            else
-            {
-                try
-                {
-                    perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
-                    perfil.SerieFavorita = false;
-                    db.Entry(perfil).State = EntityState.Modified;
-                    db.SaveChanges();
-                    
-                    return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
-                }
-                catch (DataException)
-                {                    
-                    ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
-                }
-            }
-            #endregion
-            
-          
-            return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
+            //#region Edição da Serie favorita 
+            //else if (StatusSerieFavorita.SerieFavorita == false)
+            //{
+            //    try
+            //    {
+            //        perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
+            //        perfil.SerieFavorita = true;
+            //        if(StatusSerieFavorita.Avaliacao != null)
+            //        db.Entry(perfil).State = EntityState.Modified;
+            //        db.SaveChanges();
+            //        return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
+            //    }
+            //    catch (DataException)
+            //    { 
+            //        ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
+            //    }
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
+            //        perfil.SerieFavorita = false;
+            //        db.Entry(perfil).State = EntityState.Modified;
+            //        db.SaveChanges();
+
+            //        return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
+            //    }
+            //    catch (DataException)
+            //    {                    
+            //        ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
+            //    }
+            //}
+            //#endregion
+            var Seriefavorito = serie.NomeSerie;
+
+            return Json(new { Seriefavorito = Seriefavorito });
         }
         #endregion
 

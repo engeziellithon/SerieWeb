@@ -11,6 +11,7 @@
     var TrailerCompartilhar = ViewBag.TrailerCompartilhar;
     var UserNota = ViewBag.UserNota;
     UserNota = UserNota != null ? UserNota : 0;
+    var SerieFavorita = avaliacao.FirstOrDefault(s => s.SerieID == Model.SerieID).SerieFavorita == true ? 1 : 0;
 }
 
 <div id="Desktop">
@@ -68,12 +69,8 @@
                         <div class="col-3">
                             @if (User.Identity.IsAuthenticated == true)
                             {
-                                using (Html.BeginForm("SalvarFavorito", "Explorar", FormMethod.Post))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="IdSerie" value="@Model.SerieID" />
-                                    <button type="submit" class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Adicionar aos Favoritos"><img src="~/Content/SVG/favorito.svg" /> Favoritar</button>
-                                }
+                                <input type="hidden" id="SerieFavorita" value="@SerieFavorita" />
+                                <button type="button" id="FavoritarSerie" class="btn btn-default BtnFavorito" data-toggle="tooltip" data-placement="bottom" title="Adicionar aos Favoritos"><img src="~/Content/SVG/favorito.svg" /> Favoritar</button>
                             }
                             else
                             {
@@ -135,13 +132,15 @@
                                                    max="10"
                                                    step="1"
                                                    value="@UserNota">
+
                                             <span class="range-box">
                                                 <span class="range-counter" id="counter"></span>
                                             </span>
+
                                         </label>
                                     </div>
                                     <div class="col-2" style="margin:auto;">
-                                        <span class="badge badge-pill badge-primary" style="padding:8px" id="Avaliacao"><a id="SalvarAvaliacao">Salvar</a> </span>
+                                        <span class="badge badge-pill badge-primary" style="padding:8px; cursor:pointer;" id="Avaliacao"><a id="SalvarAvaliacao">Salvar</a> </span>
                                     </div>
                                 </div>
                             }
@@ -368,21 +367,52 @@
                 data: { avaliacao: avaliacao, SerieID: SerieID },
                 dataType: "json",
                 cache: false,
-                success: function (result) {                    
+                success: function (result) {
                     if (result.serieAvaliacao != null)
                         var nomeSerie = '@Model.NomeSerie';
                         var avaliacao = result.serieAvaliacao;
 
                     $('.bd-example-modal-sm').modal('show');
                     $('#mensagemModalSucesso').html('A Nota ' + avaliacao + ' para ' + nomeSerie + ' foi salva com sucesso.');
-                    
+
                     setTimeout(function () {
                         $('.bd-example-modal-sm').modal('hide')
-                    }, 2500);                         
+                    }, 2500);
                     setTimeout(function () {
                         window.location.reload(1);
                     }, 3200);
-                }                
+                }
+            });
+        });
+
+        $("#FavoritarSerie").click(function () {
+
+            debugger
+            var IdSerie = @Model.SerieID;
+
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "/Explorar/SalvarFavorito",
+                data: { IdSerie: IdSerie },
+                dataType: "json",
+                cache: false,
+                success: function (result) {
+                    if (result.Seriefavorito != null)
+
+                    var Seriefavorito = result.serieAvaliacao;
+
+                    $('.bd-example-modal-sm').modal('show');
+                    $('#mensagemModalSucesso').html('A série ' + Seriefavorito + ' foi salva nos favoritos com sucesso.');
+
+                    setTimeout(function () {
+                        $('.bd-example-modal-sm').modal('hide')
+                    }, 2500);
+
+                    setTimeout(function () {
+                        window.location.reload(1);
+                    }, 3200);
+                }
             });
         });
 
@@ -397,36 +427,14 @@
         }(document, 'script', 'facebook-jssdk'));
 
 
-        $(document).ready(function () {
+        $(document).ready(function () {           
 
-           var TemporadaID = $('#Temporada').val();
-            var SerieID = @Model.SerieID;
-
-            $.ajax({
-                type: "POST",
-                async: false,
-                url: "/Explorar/ExiberEpisodio",
-                data: { TemporadaID: TemporadaID, SerieID: SerieID },
-                dataType: "json",
-                cache: false,
-                success: function (result) {
-                    if (result.listaEpisodio != null) {
-                        var resultado = "";
-                        var count = 1;
-                        $.each(result.listaEpisodio, function (idx, elem) {
-                            resultado += "<tr>";
-                            resultado += "<td>" + count++ + "</td>"
-                            resultado += "<td>" + elem.NomeEpisodio + "</td>"
-                            resultado += "<td>" + elem.DataEpisodio + "</td>";
-                            resultado += "</tr>";
-                        });
-                        $("#dadosTabela-Episodio").html(resultado);
-                    }
-                }
-            });
-        });
-
-        $("#Temporada").change(function () {
+            if ($("#SerieFavorita").val() == 1) {
+                $("#FavoritarSerie").css({ border: "3px solid red", opacity: "1.20", cursor:"no-drop" });
+                $("#FavoritarSerie").prop("disabled", true);
+                //$("#FavoritarSerie").attr('title', "Foo")  
+                $("#FavoritarSerie").attr('title', 'Para Remover dos favoritos entre no seu perfil');
+            }
 
             var TemporadaID = $('#Temporada').val();
             var SerieID = @Model.SerieID;
@@ -439,21 +447,50 @@
                 dataType: "json",
                 cache: false,
                 success: function (result) {
-                    if (result.listaEpisodio != null) {
-                        var resultado = "";
-                        var count = 1;
+                            if (result.listaEpisodio != null) {
+                                var resultado = "";
+                                var count = 1;
                         $.each(result.listaEpisodio, function (idx, elem) {
-                            resultado += "<tr>";
-                            resultado += "<td>" + count++ + "</td>"
+                                    resultado += "<tr>";
+                                    resultado += "<td>" + count++ + "</td>"
                             resultado += "<td>" + elem.NomeEpisodio + "</td>"
                             resultado += "<td>" + elem.DataEpisodio + "</td>";
-                            resultado += "</tr>";
-                        });
+                                    resultado += "</tr>";
+                                });
                         $("#dadosTabela-Episodio").html(resultado);
-                    }
-                }
-            });
+                            }
+                        }
+                    });
         });
+
+        $("#Temporada").change(function () {
+
+                    var TemporadaID = $('#Temporada').val();
+                    var SerieID = @Model.SerieID;
+
+                $.ajax({
+                type: "POST",
+                async: false,
+                url: "/Explorar/ExiberEpisodio",
+                data: { TemporadaID: TemporadaID, SerieID: SerieID },
+                dataType: "json",
+                cache: false,
+                success: function (result) {
+                            if (result.listaEpisodio != null) {
+                                var resultado = "";
+                                var count = 1;
+                        $.each(result.listaEpisodio, function (idx, elem) {
+                                    resultado += "<tr>";
+                                    resultado += "<td>" + count++ + "</td>"
+                            resultado += "<td>" + elem.NomeEpisodio + "</td>"
+                            resultado += "<td>" + elem.DataEpisodio + "</td>";
+                                    resultado += "</tr>";
+                                });
+                        $("#dadosTabela-Episodio").html(resultado);
+                            }
+                        }
+                    });
+                });
 
     </script>
 

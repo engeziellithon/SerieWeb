@@ -62,33 +62,34 @@
                                 @Html.DisplayNameFor(model => model.ListGeneros)
                             </dt>
 
-                           
-                                    <dd>
-                                        <div class="row" style="margin-left: 1px;">
-                                            @foreach (var item in Generos)
-                                            {
-                                                <span style="margin-right: 10px; margin-top:5px;">
-                                                    <p class="text-justify" style="padding-left:5px;">@item.NomeGenero </p>
-                                                </span>
-                                            }
-                                        </div>
-                                    </dd>
-                                
 
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ListServicos)
-                                </dt>
+                            <dd>
+                                <div class="row" style="margin-left: 1px;">
+                                    @foreach (var item in Generos)
+                                    {
+                                        <span class="border border-black" style="margin-right: 10px; margin-top:5px;">
+                                            <p class="text-justify" style="padding:5px; margin:5px">@item.NomeGenero </p>
+                                        </span>
+                                    }
+                                </div>
+                            </dd>
 
-                                <dd>
-                                    <div class="row" style="margin-left: 1px;">
-                                        @foreach (var item in Servicos)
-                                        {
-                                            <span style="margin-right: 10px; margin-top:5px;">
-                                                <p class="text-justify" style="padding-left:5px;"> @item.NomeServicoStreaming</p>
-                                            </span>
-                                        }
-                                    </div>
-                                </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ListServicos)
+                            </dt>
+
+                            <dd>
+                                <div class="row" style="margin-left: 1px;">
+                                    @foreach (var item in Servicos)
+                                    {
+                                        <span class="border border-black" style="margin-right: 10px; margin-top:5px;">
+                                            <p class="text-justify" style="padding:5px; margin:5px">@item.NomeServicoStreaming</p>
+                                        </span>
+                                    }
+                                </div>
+                            </dd>
+
 
 
                         </dl>

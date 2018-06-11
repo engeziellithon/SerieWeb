@@ -22,13 +22,10 @@
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav ">
-                <li class="nav-item">
-                    @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "nav-link" })
-                </li>
                 @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                 {
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" style="cursor:pointer">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin
                         </a>
@@ -42,6 +39,10 @@
 
                     </li>
                 }
+                <li class="nav-item">
+                    @Html.ActionLink("Explorar", "Index", "Explorar", new { area = "" }, new { @class = "nav-link" })
+                </li>
+
                 @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin") || User.IsInRole("Usuario"))
                 {
                     <li class="nav-item">
