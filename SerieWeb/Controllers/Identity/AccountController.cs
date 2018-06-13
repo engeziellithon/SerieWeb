@@ -1,4 +1,5 @@
 ﻿using System;
+using SerieWeb;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -9,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SerieWeb.Models.Identity;
+using System.Net;
 
 namespace SerieWeb.Controllers.Identity
 {
@@ -78,13 +80,13 @@ namespace SerieWeb.Controllers.Identity
 
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             // If username and password is correct check if account is activated.
-            bool confirmaremail = db.Users.Where(c => c.Email == model.Email).Select(e => e.EmailConfirmed).FirstOrDefault();
+            //bool confirmaremail = db.Users.Where(c => c.Email == model.Email).Select(e => e.EmailConfirmed).FirstOrDefault();
 
-            if (confirmaremail == false && result == SignInStatus.Success)
-            {
-                ModelState.AddModelError("", "Por favor confirme seu email antes de tentar fazer login.");
-                return View(model);
-            }
+            //if (confirmaremail == false && result == SignInStatus.Success)
+            //{
+            //    ModelState.AddModelError("", "Por favor confirme seu email antes de tentar fazer login.");
+            //    return View(model);
+            //}
             // Isso não conta falhas de login em relação ao bloqueio de conta
             // Para permitir que falhas de senha acionem o bloqueio da conta, altere para shouldLockout: true
 
@@ -174,15 +176,15 @@ namespace SerieWeb.Controllers.Identity
                     await UserManager.AddToRoleAsync(user.Id, "Usuario");
 
 
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action(
-                       "ConfirmEmail", "Account",
-                       new { userId = user.Id, code = code },
-                       protocol: Request.Url.Scheme);
+                    //var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Action(
+                    //   "ConfirmEmail", "Account",
+                    //   new { userId = user.Id, code = code },
+                    //   protocol: Request.Url.Scheme);
 
-                    await UserManager.SendEmailAsync(user.Id, "Confirme sua conta", callbackUrl);
+                    //await UserManager.SendEmailAsync(user.Id, "Confirme sua conta", callbackUrl);
                     // ViewBag.Link = callbackUrl;   // Used only for initial demo.
-                    return RedirectToActionPermanent("EmailPedido", "Account", new { valor = 1 });
+                    return RedirectToActionPermanent("Login", "Account");
                 }
                 AddErrors(result);
             }
@@ -496,6 +498,57 @@ namespace SerieWeb.Controllers.Identity
             // redirecionar para a página principal}}
             return View();
         }
+
+        #region Administrador Crud 
+        [Authorize(Roles = "SuperAdmin")]
+        public ActionResult Administrador()
+        {
+
+            UserManager<ApplicationUser> userManager;
+            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+            var user = userManager.Users.Where(d => d.Id != null).ToList();
+            IdentityRole valor = new IdentityRole();
+
+           
+            var toles = db.Roles.Select(r => r.Name).ToList();
+            ViewBag.Usuarios = user;
+
+            var teste = user.Select(s => s.Roles).ToList();
+            return View();
+        }
+        
+        [HttpGet]
+        public ActionResult EditarAdministrador(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            UserManager<ApplicationUser> userManager;
+            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            ////var user = userManager.Users.Where(d => d.Id != null).ToList();
+
+            ////.
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult EditarAdministrador()
+        {
+
+            UserManager<ApplicationUser> userManager;
+            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+            var user = userManager.Users.Where(d => d.Id != null).ToList();
+
+            ViewBag.Usuarios = user;
+            return View();
+        }
+
+
+
+        #endregion
 
         private ActionResult RedirectToLocal(string returnUrl)
         {

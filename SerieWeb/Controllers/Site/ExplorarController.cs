@@ -83,7 +83,7 @@ namespace SerieWeb.Controllers.Site
             if (user != null)
             {
                 int nota = db.UsuarioPerfil.Where(s => s.UserId == user && s.SerieID == serie.SerieID && s.Avaliacao > 0).Select(a=>a.Avaliacao).FirstOrDefault();
-                int SerieFavorita = db.UsuarioPerfil.FirstOrDefault(s => s.SerieID == serie.SerieID && s.SerieFavorita == true && s.UserId == user).SerieFavorita == true ? 1 : 0;
+                int SerieFavorita = db.UsuarioPerfil.Where(s => s.SerieID == serie.SerieID && s.SerieFavorita == true && s.UserId == user).Select(s=>s.SerieFavorita).FirstOrDefault() == true ? 1 : 0;
                 ViewBag.SerieFavorita = SerieFavorita;
                 ViewBag.UserNota = nota;                    
             }           

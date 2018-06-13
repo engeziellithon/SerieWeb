@@ -51,14 +51,14 @@
     <div class="row">
         @if (NETFLIX != null)
         {
-            @foreach (var item in NETFLIX)
+            foreach (var item in NETFLIX)
             {
                 <div class="box">
-                    <label class="recomended">Recomendação</label>
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">Netflix</h2>
+                    
+                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
                     <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
                         <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @NETFLIX.Count() séries nos favoritos da @item.ServicoStreaming.NomeServicoStreaming</p>
+                            <p class="text text-center">Você possui @NETFLIX.Count() séries nos favoritos</p>
                         </li>
 
                         <li style="margin-bottom:30px;">
@@ -75,16 +75,15 @@
         }
         @if (PRIMEVIDEO != null)
         {
-            @foreach (var item in PRIMEVIDEO)
+            foreach (var item in PRIMEVIDEO)
             {
 
 
                 <div class="box">
-                    <label class="recomended">Recomendação</label>
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">Netflix</h2>
+                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
                     <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
                         <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @PRIMEVIDEO.Count() séries nos favoritos da @PRIMEVIDEO.Select(D => D.ServicoStreaming.NomeServicoStreaming)</p>
+                            <p class="text text-center">Você possui @PRIMEVIDEO.Count() séries nos favoritos</p>
                         </li>
 
                         <li style="margin-bottom:30px;">
@@ -101,14 +100,14 @@
         }
         @if (FOXPLAY != null)
         {
-            @foreach (var item in FOXPLAY)
+            foreach (var item in FOXPLAY)
             {
                 <div class="box">
-                    <label class="recomended">Recomendação</label>
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">Netflix</h2>
+                    
+                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
                     <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
                         <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @FOXPLAY.Count() séries nos favoritos da @FOXPLAY.Select(D => D.ServicoStreaming.NomeServicoStreaming)</p>
+                            <p class="text text-center">Você possui @FOXPLAY.Count() séries nos favoritos</p>
                         </li>
 
                         <li style="margin-bottom:30px;">
@@ -125,14 +124,14 @@
         }
         @if (SONY != null)
         {
-            @foreach (var item in SONY)
+            foreach (var item in SONY)
             {
                 <div class="box">
-                    <label class="recomended">Recomendação</label>
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">Netflix</h2>
+                    
+                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
                     <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
                         <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @SONY.Count() séries nos favoritos da @SONY.Select(D => D.ServicoStreaming.NomeServicoStreaming)</p>
+                            <p class="text text-center">Você possui @SONY.Count() séries nos favoritos</p>
                         </li>
 
                         <li style="margin-bottom:30px;">
@@ -149,14 +148,14 @@
         }
         @if (HBO != null)
         {
-            @foreach (var item in HBO)
+            foreach (var item in HBO)
             {
                 <div class="box">
-                    <label class="recomended">Recomendação</label>
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">Netflix</h2>
+                   
+                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
                     <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
                         <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @HBO.Count() séries nos favoritos da @HBO.Select(D => D.ServicoStreaming.NomeServicoStreaming)</p>
+                            <p class="text text-center">Você possui @HBO.Count() séries nos favoritos</p>
                         </li>
 
                         <li style="margin-bottom:30px;">
@@ -164,9 +163,7 @@
                                 <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemHBO)%" aria-valuenow="@String.Format("{0}", porcetagemHBO)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemHBO)%</div>
                             </div>
                         </li>
-
                     </ul>
-
                     <h2 class="text text-center">R$ @item.ServicoStreaming.Preco</h2>
                 </div>
             }
@@ -244,18 +241,8 @@
         </div>
     </div>*@
 
-<div class="alert alert-success" role="alert" style="margin-top:50px">
-    <div class="container-fluid">
-        <h4 class="alert-heading">Recomendação</h4>
-        <p>Nome: @MelhorServico.NomeServicoStreaming</p>
-        <p>Preço: R$ @MelhorServico.Preco</p>
-        <hr>
-        @*<p class="mb-0">Continue adicionado series aos favoritos para ver qual melhor serviço lhe atende</p>*@
-        <p class="mb-0">Esta indição de Serviço é baseado nos seus favoritos continue adicionando para descobrir o que melhor lhe atende!</p>
-    </div>
-</div>
 
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/popper")

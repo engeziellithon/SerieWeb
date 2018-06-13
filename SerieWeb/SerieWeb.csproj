@@ -467,6 +467,8 @@
     <Content Include="Views\Perfil\Servico.cshtml" />
     <Content Include="Views\Perfil\Recomendado.cshtml" />
     <Content Include="Views\Perfil\Configuracao.cshtml" />
+    <Content Include="Views\Account\Administrador.cshtml" />
+    <Content Include="Views\Account\EditarAdministrador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,173 @@
+﻿@model  List<SerieWeb.Models.Identity.ApplicationUser>
+@{
+    ViewBag.Title = "EditarAdministrador";
+}
+
+
+@*<div class="panel-header panel-header-sm">
+
+</div>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="content" style="padding: 0; min-height: calc(100vh - 123px); margin-top: -50px; margin-bottom:100px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row justify-content-between">
+                                <div class="col-6">
+                                    <h5 class="title font-weight-bold">Editar Série</h5>
+                                </div>
+                                <div class="col-6">
+                                    <span style="text-align:right; float:right; color:red;">* Obrigatório</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.SerieID)
+                            <div class="row">
+                                <div class="col-md-12 pr-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8 font-weight-bold">Nome da Série  <span style="color:red">*</span> </label>
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.NomeSerie, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NomeSerie, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pr-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Sinopse, htmlAttributes: new { @class = "control-label col-md-6 font-weight-bold" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Sinopse, new { htmlAttributes = new { @class = "form-control", rows = "4", cols = "80" } })
+                                            @Html.ValidationMessageFor(model => model.Sinopse, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pr-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8 font-weight-bold">Imagem <span style="color:red">*</span></label>
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Imagem, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Imagem, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pr-1">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8 font-weight-bold">Banner <span style="color:red">*</span></label>
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.ImagemFavorito, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.ImagemFavorito, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8 font-weight-bold">Gênero <span style="color:red">*</span></label>
+                                        <div class="col-md-12">
+                                            <select class="custom-select col-md-12" id="Generos" name="ListGeneros" multiple="multiple">
+                                                @if (GeneroSelecionado != null)
+                                                {
+                                                    foreach (var item in Generos)
+                                                    {
+                                                        if (GeneroSelecionado.Contains(item.GeneroID))
+                                                        {
+                                                            <option value="@item.GeneroID" selected>@item.NomeGenero</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.GeneroID">@item.NomeGenero</option>
+                                                        }
+                                                        count++;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    foreach (var item in Generos)
+                                                    {
+                                                        <option value="@item.GeneroID">@item.NomeGenero</option>
+
+                                                        count++;
+                                                    }
+                                                }
+                                            </select>
+                                            @Html.ValidationMessageFor(model => model.ListGeneros, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-12 font-weight-bold">Serviço de Streaming</label>
+                                        <div class="col-md-12">
+                                            <select class="custom-select col-md-12 " id="Servicos" name="ListServicos" multiple="multiple">
+                                                @if (ServicoSelecionado != null)
+                                                {
+                                                    foreach (var item in Servicos)
+                                                    {
+                                                        if (ServicoSelecionado.Contains(item.ServicoStreamingID))
+                                                        {
+                                                            <option value="@item.ServicoStreamingID" selected>@item.NomeServicoStreaming</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.ServicoStreamingID">@item.NomeServicoStreaming</option>
+                                                        }
+                                                        count++;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    foreach (var item in Servicos)
+                                                    {
+                                                        <option value="@item.ServicoStreamingID">@item.NomeServicoStreaming</option>
+
+                                                        count++;
+                                                    }
+                                                }
+                                            </select>
+                                            @Html.ValidationMessageFor(model => model.ListServicos, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8 font-weight-bold">Trailer</label>
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Trailer, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Trailer, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <div class="float-right" style="margin-right:25px">
+                                    @Html.ActionLink("Voltar", "Index", new object { }, new { @class = "badge badge-secondary" })
+                                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
