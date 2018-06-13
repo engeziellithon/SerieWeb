@@ -1,20 +1,18 @@
 ﻿@model List<SerieWeb.Models.Admininstracao.SeriesServicos>
 @{
     ViewBag.Title = "Serviços de Streaming";
-    var HBO = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.HBO;
+    var HBOGO = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.HBOGO;
     var NETFLIX = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.NETFLIX;
     var PRIMEVIDEO = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.PRIMEVIDEO;
-    var SONY = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.SONY;
     var FOXPLAY = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.FOXPLAY;
 
     var MelhorServico = (SerieWeb.Models.Admininstracao.ServicoStreaming)ViewBag.MelhorServico;
 
-    float totalservicos = HBO.Count() + PRIMEVIDEO.Count() + NETFLIX.Count() + SONY.Count() + FOXPLAY.Count();
+    float totalservicos = HBOGO.Count() + PRIMEVIDEO.Count() + NETFLIX.Count() + FOXPLAY.Count();
 
-    float porcetagemHBO = (HBO.Count() / totalservicos) * 100;
+    float porcetagemHBO = (HBOGO.Count() / totalservicos) * 100;
     float porcetagemNETFLIX = (NETFLIX.Count() / totalservicos) * 100;
     float porcetagemPrimeVideo = (PRIMEVIDEO.Count() / totalservicos) * 100;
-    float porcetagemSony = (SONY.Count() / totalservicos) * 100;
     float porcetagemFoxPlay = (FOXPLAY.Count() / totalservicos) * 100;
 }
 <div class="panel-header panel-header-sm">
@@ -31,9 +29,7 @@
                 <li class="nav-item">
                     @Html.ActionLink("Favoritos", "Index", "Perfil", new { area = "" }, new { id = "Favorito", @class = "nav-link perfil-menu" })
                 </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Recomendações", "Recomendado", "Perfil", new { area = "" }, new { id = "Recomendado", @class = "nav-link perfil-menu" })
-                </li>
+               
                 <li class="nav-item">
                     @Html.ActionLink("Serviços Streaming", "Servico", "Perfil", new { area = "" }, new { id = "Servico", @class = "nav-link perfil-menu" })
                 </li>
@@ -122,40 +118,18 @@
                 </div>
             }
         }
-        @if (SONY != null)
+        
+        
+        @if (HBOGO != null)
         {
-            foreach (var item in SONY)
-            {
-                <div class="box">
-                    
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
-                    <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
-                        <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @SONY.Count() séries nos favoritos</p>
-                        </li>
-
-                        <li style="margin-bottom:30px;">
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemSony)%" aria-valuenow="@String.Format("{0}", porcetagemSony)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemSony)%</div>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                    <h2 class="text text-center">R$ @item.ServicoStreaming.Preco</h2>
-                </div>
-            }
-        }
-        @if (HBO != null)
-        {
-            foreach (var item in HBO)
+            foreach (var item in HBOGO)
             {
                 <div class="box">
                    
                     <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
                     <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
                         <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @HBO.Count() séries nos favoritos</p>
+                            <p class="text text-center">Você possui @HBOGO.Count() séries nos favoritos</p>
                         </li>
 
                         <li style="margin-bottom:30px;">

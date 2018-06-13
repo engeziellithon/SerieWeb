@@ -29,20 +29,7 @@ namespace SerieWeb.Controllers.Usuario
 
             return View(ListaSerie);
         }
-
-
-        public ActionResult Recomendado()
-        {
-            List<Serie> ListaSerie = new List<Serie>();            
-
-            ListaSerie = db.UsuarioPerfil.OrderBy(s => s.Avaliacao).Select(s=>s.Serie).Take(10).ToList();
-
-            ViewBag.Series = ListaSerie;
-
-            return View(ListaSerie);
-        }
-
-      
+    
         public ActionResult Servico()
         {
             List<Serie> ListaSerie = new List<Serie>();
@@ -64,11 +51,10 @@ namespace SerieWeb.Controllers.Usuario
                 }
             }
 
-            ViewBag.HBO = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "HBO").ToList();
+            ViewBag.HBOGO = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "HBO GO").ToList();
             ViewBag.NETFLIX = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "NETFLIX").ToList();
             ViewBag.PRIMEVIDEO = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "PRIME VIDEO").ToList();
             ViewBag.FOXPLAY = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "FOX PLAY").ToList();
-            ViewBag.SONY = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "SONY").ToList();
            
             var maior  = ListaServicos.Select(s => s.ServicoStreaming).Max(c => c.NomeServicoStreaming);
 
