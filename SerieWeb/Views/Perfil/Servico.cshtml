@@ -1,6 +1,9 @@
 ﻿@model List<SerieWeb.Models.Admininstracao.SeriesServicos>
 @{
     ViewBag.Title = "Serviços de Streaming";
+
+    var ListaAgrupada = (List<IGrouping<SerieWeb.Models.Admininstracao.ServicoStreaming, SerieWeb.Models.Admininstracao.SeriesServicos>>)ViewBag.ListaAgrupada;
+
     var HBOGO = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.HBOGO;
     var NETFLIX = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.NETFLIX;
     var PRIMEVIDEO = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.PRIMEVIDEO;
@@ -10,7 +13,7 @@
 
     float totalservicos = HBOGO.Count() + PRIMEVIDEO.Count() + NETFLIX.Count() + FOXPLAY.Count();
 
-    float porcetagemHBO = (HBOGO.Count() / totalservicos) * 100;
+    
     float porcetagemNETFLIX = (NETFLIX.Count() / totalservicos) * 100;
     float porcetagemPrimeVideo = (PRIMEVIDEO.Count() / totalservicos) * 100;
     float porcetagemFoxPlay = (FOXPLAY.Count() / totalservicos) * 100;
@@ -45,175 +48,34 @@
 <div class="container">
     <h4 style="margin-bottom: 40px;">Melhores Serviços</h4>
     <div class="row">
-        @if (NETFLIX != null)
+        @foreach (var item in ListaAgrupada)
         {
-            foreach (var item in NETFLIX)
-            {
-                <div class="box">
-                    
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
-                    <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
-                        <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @NETFLIX.Count() séries nos favoritos</p>
-                        </li>
+        <div class="box">
 
-                        <li style="margin-bottom:30px;">
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemNETFLIX)%" aria-valuenow="@String.Format("{0}", porcetagemNETFLIX)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemNETFLIX)%</div>
-                            </div>
-                        </li>
+            <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.Select(s => s.ServicoStreaming).FirstOrDefault().NomeServicoStreaming</h2>
+            <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
+                <li style="margin-bottom:30px;">
+                    <p class="text text-center">Você possui @item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() séries nos favoritos</p>
+                </li>
 
-                    </ul>
+                <li style="margin-bottom:30px;">
+                    <div class="progress" style="height: 20px;">
+                         @{
+                             float porcetagem = (item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() / totalservicos) * 100;
+                         }
 
-                    <h2 class="text text-center">R$ @item.ServicoStreaming.Preco</h2>
-                </div>
-            }
-        }
-        @if (PRIMEVIDEO != null)
-        {
-            foreach (var item in PRIMEVIDEO)
-            {
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagem)%" aria-valuenow="@String.Format("{0}", porcetagem)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagem)%</div>
+                    </div>
+                </li>
 
+            </ul>
 
-                <div class="box">
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
-                    <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
-                        <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @PRIMEVIDEO.Count() séries nos favoritos</p>
-                        </li>
+            <h2 class="text text-center">R$ @item.Select(s => s.ServicoStreaming).FirstOrDefault().Preco </h2>
+        </div>
+}
 
-                        <li style="margin-bottom:30px;">
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemPrimeVideo)%" aria-valuenow="@String.Format("{0}", porcetagemPrimeVideo)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemPrimeVideo)%</div>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                    <h2 class="text text-center">R$ @item.ServicoStreaming.Preco</h2>
-                </div>
-            }
-        }
-        @if (FOXPLAY != null)
-        {
-            foreach (var item in FOXPLAY)
-            {
-                <div class="box">
-                    
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
-                    <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
-                        <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @FOXPLAY.Count() séries nos favoritos</p>
-                        </li>
-
-                        <li style="margin-bottom:30px;">
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemFoxPlay)%" aria-valuenow="@String.Format("{0}", porcetagemFoxPlay)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemFoxPlay)%</div>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                    <h2 class="text text-center">R$ @item.ServicoStreaming.Preco</h2>
-                </div>
-            }
-        }
-        
-        
-        @if (HBOGO != null)
-        {
-            foreach (var item in HBOGO)
-            {
-                <div class="box">
-                   
-                    <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.ServicoStreaming.NomeServicoStreaming</h2>
-                    <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
-                        <li style="margin-bottom:30px;">
-                            <p class="text text-center">Você possui @HBOGO.Count() séries nos favoritos</p>
-                        </li>
-
-                        <li style="margin-bottom:30px;">
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemHBO)%" aria-valuenow="@String.Format("{0}", porcetagemHBO)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemHBO)%</div>
-                            </div>
-                        </li>
-                    </ul>
-                    <h2 class="text text-center">R$ @item.ServicoStreaming.Preco</h2>
-                </div>
-            }
-        }
     </div>
 </div>
-@*<div class="box">
-        <h2>HBO Now</h2>
-        <ul>
-            <li>4k, FullHD and HD resolutions</li>
-            <li>More than 250 movies</li>
-            <li>Original content</li>
-            <li>Discounts on credit card</li>
-        </ul>
-
-        <h1>US$ 25,00</h1>
-    </div>
-
-    <div class="box">
-        <h2>Mubi</h2>
-        <ul>
-            <li>4k, FullHD and HD resolutions</li>
-            <li>More than 2000 movies</li>
-            <li>The better selection</li>
-            <li>Discounts on credit card</li>
-        </ul>
-
-        <h3>US$ 10,00</h3>
-    </div>
-    <div class="box">
-        <h2>Mubi</h2>
-        <ul>
-            <li>4k, FullHD and HD resolutions</li>
-            <li>More than 2000 movies</li>
-            <li>The better selection</li>
-            <li>Discounts on credit card</li>
-        </ul>
-
-        <h3>US$ 10,00</h3>
-    </div>
-    <div class="box">
-        <h2>Mubi</h2>
-        <ul>
-            <li>4k, FullHD and HD resolutions</li>
-            <li>More than 2000 movies</li>
-            <li>The better selection</li>
-            <li>Discounts on credit card</li>
-        </ul>
-
-        <h3>US$ 10,00</h3>
-    </div>*@
-@*</div>*@
-@*<div class="row" style="margin-bottom:10px">
-        <div class="col-12">
-            <p class="font-weight-normal"> HBO</p>
-            <div class="progress" style="height: 20px;">
-                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width:@String.Format("{0}", porcetagemHBO)%" aria-valuenow="@String.Format("{0}", porcetagemHBO)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemHBO) %</div>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="margin-bottom:10px">
-        <div class="col-12">
-            <p class="font-weight-normal"> Netflix</p>
-            <div class="progress" style="height: 20px;">
-                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagemNETFLIX)%" aria-valuenow="@String.Format("{0}", porcetagemNETFLIX)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemNETFLIX)%</div>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="margin-bottom:10px">
-        <div class="col-12">
-            <p class="font-weight-normal"> Amazon Prime</p>
-            <div class="progress" style="height: 20px;">
-                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:@String.Format("{0}", porcetagemAMAZON)%" aria-valuenow="@String.Format("{0}", porcetagemAMAZON)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagemAMAZON)%</div>
-            </div>
-        </div>
-    </div>*@
 
 
 

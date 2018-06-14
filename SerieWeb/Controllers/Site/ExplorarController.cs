@@ -15,7 +15,7 @@ namespace SerieWeb.Controllers.Site
 {
     public class ExplorarController : Controller
     {
-       
+
         #region Banco
         private ApplicationDbContext db = new ApplicationDbContext();
         #endregion
@@ -33,11 +33,11 @@ namespace SerieWeb.Controllers.Site
             {
                 model = db.Series.ToList();
             }
-           
+
             return View(model);
         }
         #endregion
-        
+
         #region Detalhes dos serie
         // GET: Serie/DetailsUsuario/5
         [HttpGet]
@@ -48,9 +48,9 @@ namespace SerieWeb.Controllers.Site
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             Serie serie = db.Series.Find(id);
-            
+
 
             if (serie == null)
             {
@@ -73,21 +73,41 @@ namespace SerieWeb.Controllers.Site
             // user logado
             string user = User.Identity.GetUserId();
 
-            ViewBag.Indicacoes = db.Series.Take(3).ToList();
+
             ViewBag.listatemporada = db.Episodios.Where(s => s.SerieID == serie.SerieID).Select(t => t.Temporada).ToList().Distinct();
-            ViewBag.listagenero = db.SeriesGeneros.Where(g => g.SerieID == serie.SerieID).Select(s=>s.Genero).ToList();
             ViewBag.listaservico = db.SeriesServicos.Where(g => g.SerieID == serie.SerieID).Select(s => s.ServicoStreaming).ToList();
             ViewBag.Avaliacoes = db.UsuarioPerfil.Where(s => s.SerieID == serie.SerieID && s.Avaliacao > 0).ToList();
+
+            var ListaGenero = db.SeriesGeneros.Where(g => g.SerieID == serie.SerieID).Select(s => s.Genero).ToList();
+            ViewBag.listagenero = ListaGenero;
+
+            
+
+            var ListaGeneroSerie = ListaGenero.Select(f => f.GeneroID).ToList();
+            var lista = db.SeriesGeneros.Where(d => ListaGeneroSerie.Contains(d.GeneroID) && d.Serie.SerieID != serie.SerieID).Select(d => d.Serie).ToList();
+
+            if (lista.Count() == 0)
+            {
+                ViewBag.Indicacoes = db.Series.Where(d => d.SerieID != serie.SerieID).Take(3).ToList();
+            }
+            else if (lista.Count() <= 3)
+            {
+                ViewBag.Indicacoes = lista.Where(s => s.SerieID != serie.SerieID).Distinct().ToList();
+            }
+            else
+            {
+                ViewBag.Indicacoes = lista.Where(s => s.SerieID != serie.SerieID).Take(3).Distinct().ToList();
+            }
 
 
             if (user != null)
             {
-                int nota = db.UsuarioPerfil.Where(s => s.UserId == user && s.SerieID == serie.SerieID && s.Avaliacao > 0).Select(a=>a.Avaliacao).FirstOrDefault();
-                int SerieFavorita = db.UsuarioPerfil.Where(s => s.SerieID == serie.SerieID && s.SerieFavorita == true && s.UserId == user).Select(s=>s.SerieFavorita).FirstOrDefault() == true ? 1 : 0;
+                int nota = db.UsuarioPerfil.Where(s => s.UserId == user && s.SerieID == serie.SerieID && s.Avaliacao > 0).Select(a => a.Avaliacao).FirstOrDefault();
+                int SerieFavorita = db.UsuarioPerfil.Where(s => s.SerieID == serie.SerieID && s.SerieFavorita == true && s.UserId == user).Select(s => s.SerieFavorita).FirstOrDefault() == true ? 1 : 0;
                 ViewBag.SerieFavorita = SerieFavorita;
-                ViewBag.UserNota = nota;                    
-            }           
-            
+                ViewBag.UserNota = nota;
+            }
+
 
             return View(serie);
         }
@@ -95,7 +115,7 @@ namespace SerieWeb.Controllers.Site
 
         #region listar episodio da série
         [HttpPost]
-        public ActionResult ExiberEpisodio(int SerieID,int TemporadaID)
+        public ActionResult ExiberEpisodio(int SerieID, int TemporadaID)
         {
 
             var listaEpisodios = db.Episodios.Where(s => s.SerieID == SerieID && s.TemporadaID == TemporadaID).Select(s => new
@@ -104,7 +124,7 @@ namespace SerieWeb.Controllers.Site
                 DataEpisodio = s.DataExibicao.Day + "/" + s.DataExibicao.Month + "/" + s.DataExibicao.Year
             }).ToList();
 
-           
+
             return Json(new { listaEpisodio = listaEpisodios });
         }
         #endregion
@@ -132,52 +152,39 @@ namespace SerieWeb.Controllers.Site
             UsuarioPerfil perfil = new UsuarioPerfil();
             var StatusSerieFavorita = db.UsuarioPerfil.Where(p => p.SerieID == serie.SerieID && p.UserId == user).FirstOrDefault();
 
+            var Seriefavorito = serie.NomeSerie;
+
             #region Adicionar aos favoritos
             if (StatusSerieFavorita == null)
             {
                 perfil.UserId = user;
                 perfil.SerieID = serie.SerieID;
-                perfil.SerieFavorita = true;                
+                perfil.SerieFavorita = true;
                 db.UsuarioPerfil.Add(perfil);
                 db.SaveChanges();
             }
             #endregion
+           
+            #region Edição da Serie favorita 
+            else if (StatusSerieFavorita.SerieFavorita == false)
+            {
+                try
+                {
+                    perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
+                    perfil.SerieFavorita = true;                    
+                    db.Entry(perfil).State = EntityState.Modified;
+                    db.SaveChanges();                   
 
-            //#region Edição da Serie favorita 
-            //else if (StatusSerieFavorita.SerieFavorita == false)
-            //{
-            //    try
-            //    {
-            //        perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
-            //        perfil.SerieFavorita = true;
-            //        if(StatusSerieFavorita.Avaliacao != null)
-            //        db.Entry(perfil).State = EntityState.Modified;
-            //        db.SaveChanges();
-            //        return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
-            //    }
-            //    catch (DataException)
-            //    { 
-            //        ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
-            //    }
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        perfil = db.UsuarioPerfil.Find(StatusSerieFavorita.UsuarioPerfilID);
-            //        perfil.SerieFavorita = false;
-            //        db.Entry(perfil).State = EntityState.Modified;
-            //        db.SaveChanges();
-
-            //        return RedirectToAction("DetalhesSerie", "Explorar", new { id = serie.SerieID });
-            //    }
-            //    catch (DataException)
-            //    {                    
-            //        ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
-            //    }
-            //}
-            //#endregion
-            var Seriefavorito = serie.NomeSerie;
+                    return Json(new { Seriefavorito = Seriefavorito });
+                }
+                catch (DataException)
+                {
+                    ModelState.AddModelError("", "Não foi possível salvar as alterações.Tente novamente se o problema persistir, consulte o administrador do sistema.");
+                }
+            }
+           
+            #endregion
+           
 
             return Json(new { Seriefavorito = Seriefavorito });
         }

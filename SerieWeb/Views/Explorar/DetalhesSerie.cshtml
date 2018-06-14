@@ -87,7 +87,7 @@
                                     @if (avaliacao.Count > 0)
                                     {
                                         double media = avaliacao.Average(a => a.Avaliacao) > 0 ? avaliacao.Average(a => a.Avaliacao) : 0;
-                                        @media
+                                        @String.Format("{0}", media)
                                     }
                                     |
                                     @if (avaliacao.Count > 0)
@@ -105,7 +105,7 @@
                                     @if (avaliacao.Count > 0)
                                     {
                                         double media = avaliacao.Average(a => a.Avaliacao) > 0 ? avaliacao.Average(a => a.Avaliacao) : 0;
-                                        @media
+                                        @String.Format("{0}", media)
                                     }
                                     |
                                     @if (avaliacao.Count > 0)
@@ -212,30 +212,30 @@
 
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                    @foreach (var item in Indicacoes)
-                    {
-                        count += 1;
-                        <div class="carousel-item" id="item-carousel-@count">
-                            <div class="row" style="margin-top:10px; margin-bottom:10px">
-                                <div class="col-md-2">
+                @foreach (var item in Indicacoes)
+                {
+                    count += 1;
+                    <div class="carousel-item" id="item-carousel-@count">
+                        <div class="row" style="margin-top:10px; margin-bottom:10px">
+                            <div class="col-md-2">
 
-                                    <a href="@Url.Action("DetalhesSerie", "Explorar", new { id = @item.SerieID })">
-                                        <img src="@item.Imagem" class="d-block img-fluid" style="height:200px; width:150px;">
-                                    </a>
-                                </div>
-                                <div class="col-md-10">
-                                    <h3>@item.NomeSerie</h3>
-                                    <p>@item.Sinopse</p>
-                                </div>
-
+                                <a href="@Url.Action("DetalhesSerie", "Explorar", new { id = @item.SerieID })">
+                                    <img src="@item.Imagem" class="d-block img-fluid" style="height:200px; width:150px;">
+                                </a>
                             </div>
-                            @*<div class="row" style="margin-bottom:10px">
-                                    <div class="col-12">
-                                        <a href="@Url.Action("DetalhesSerie", "Explorar", new { id = @item.SerieID })" class="btn btn-primary btn-lg btn-block">Ir para serie</a>
-                                    </div>
-                                </div>*@
+                            <div class="col-md-10">
+                                <h3>@item.NomeSerie</h3>
+                                <p class="text text-justify">@item.Sinopse</p>
+                            </div>
+
                         </div>
-                    }
+                        @*<div class="row" style="margin-bottom:10px">
+                                <div class="col-12">
+                                    <a href="@Url.Action("DetalhesSerie", "Explorar", new { id = @item.SerieID })" class="btn btn-primary btn-lg btn-block">Ir para serie</a>
+                                </div>
+                            </div>*@
+                    </div>
+                }
             </div>
         </div>
     </div>
