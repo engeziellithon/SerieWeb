@@ -13,8 +13,12 @@ namespace SerieWeb.Controllers.Usuario
     [Authorize(Roles = "SuperAdmin,Admin,Usuario")]
     public class PerfilController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
 
+        #region banco
+        private ApplicationDbContext db = new ApplicationDbContext();
+        #endregion
+
+        #region Index
         public ActionResult Index()
         {
             List<Serie> ListaSerie = new List<Serie>();
@@ -29,7 +33,9 @@ namespace SerieWeb.Controllers.Usuario
 
             return View(ListaSerie);
         }
+        #endregion
 
+        #region Serviço Recomendado
         public ActionResult Servico()
         {
             List<Serie> ListaSerie = new List<Serie>();
@@ -53,7 +59,7 @@ namespace SerieWeb.Controllers.Usuario
             var listaID = PerfilSerie.Select(i => i.SerieID).ToList();
             var lista = db.SeriesServicos.Where(s => listaID.Contains(s.SerieID)).GroupBy(d => d.ServicoStreaming).ToList();
 
-            
+
 
             ViewBag.ListaAgrupada = lista;
 
@@ -70,6 +76,7 @@ namespace SerieWeb.Controllers.Usuario
             return View(ListaServicos);
         }
 
+        #endregion
 
         #region Avaliacao da serie 
         [HttpPost]
@@ -116,10 +123,6 @@ namespace SerieWeb.Controllers.Usuario
             return RedirectToAction("Index", "Perfil");
         }
         #endregion
-
-
-
-
 
     }
 }
