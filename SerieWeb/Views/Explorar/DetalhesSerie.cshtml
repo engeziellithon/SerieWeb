@@ -87,7 +87,7 @@
                                     @if (avaliacao.Count > 0)
                                     {
                                         double media = avaliacao.Average(a => a.Avaliacao) > 0 ? avaliacao.Average(a => a.Avaliacao) : 0;
-                                        @String.Format("{0}", media)
+                                        @String.Format("{0:0}", media)
                                     }
                                     |
                                     @if (avaliacao.Count > 0)
@@ -105,7 +105,7 @@
                                     @if (avaliacao.Count > 0)
                                     {
                                         double media = avaliacao.Average(a => a.Avaliacao) > 0 ? avaliacao.Average(a => a.Avaliacao) : 0;
-                                        @String.Format("{0}", media)
+                                        @String.Format("{0:0}", media)
                                     }
                                     |
                                     @if (avaliacao.Count > 0)

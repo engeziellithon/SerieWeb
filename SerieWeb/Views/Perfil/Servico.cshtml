@@ -11,9 +11,9 @@
 
     var MelhorServico = (SerieWeb.Models.Admininstracao.ServicoStreaming)ViewBag.MelhorServico;
 
-    float totalservicos = HBOGO.Count() + PRIMEVIDEO.Count() + NETFLIX.Count() + FOXPLAY.Count();
+    float totalservicos = ListaAgrupada.Count();
 
-    
+
     float porcetagemNETFLIX = (NETFLIX.Count() / totalservicos) * 100;
     float porcetagemPrimeVideo = (PRIMEVIDEO.Count() / totalservicos) * 100;
     float porcetagemFoxPlay = (FOXPLAY.Count() / totalservicos) * 100;
@@ -32,7 +32,7 @@
                 <li class="nav-item">
                     @Html.ActionLink("Favoritos", "Index", "Perfil", new { area = "" }, new { id = "Favorito", @class = "nav-link perfil-menu" })
                 </li>
-               
+
                 <li class="nav-item">
                     @Html.ActionLink("Serviços Streaming", "Servico", "Perfil", new { area = "" }, new { id = "Servico", @class = "nav-link perfil-menu" })
                 </li>
@@ -50,29 +50,43 @@
     <div class="row">
         @foreach (var item in ListaAgrupada)
         {
-        <div class="box">
+            string recomendado = "recomended";
+            <div class="box">
+                <label class="@recomendado">Recomendação</label>
 
-            <h2 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.Select(s => s.ServicoStreaming).FirstOrDefault().NomeServicoStreaming</h2>
-            <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
-                <li style="margin-bottom:30px;">
-                    <p class="text text-center">Você possui @item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() séries nos favoritos</p>
-                </li>
+                <h3 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.Select(s => s.ServicoStreaming).FirstOrDefault().NomeServicoStreaming</h3>
+                <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
+                    <li style="margin-bottom:30px;">
+                        <p class="text text-center">Quantidade de Séries:  @item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count()</p>
+                    </li>
 
-                <li style="margin-bottom:30px;">
-                    <div class="progress" style="height: 20px;">
-                         @{
-                             float porcetagem = (item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() / totalservicos) * 100;
-                         }
+                    <li style="margin-bottom:30px;">
+                        <div class="progress" style="height: 20px;">
 
-                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagem)%" aria-valuenow="@String.Format("{0}", porcetagem)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagem)%</div>
-                    </div>
-                </li>
+                            @if (totalservicos > 0)
+                            {
+                                //float porcetagem = (item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() / totalservicos) * 100;
+                                float porcetagem = (item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() * totalservicos) / 100;
 
-            </ul>
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagem)%" aria-valuenow="@String.Format("{0}", porcetagem)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagem)%</div>
 
-            <h2 class="text text-center">R$ @item.Select(s => s.ServicoStreaming).FirstOrDefault().Preco </h2>
-        </div>
-}
+                            }
+                        </div>
+                    </li>
+
+                </ul>
+
+                @{
+                    double sPreco = @item.Select(s => s.ServicoStreaming).FirstOrDefault().Preco;
+                    double qSerie = @item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count();
+                    double mPreco = sPreco / qSerie;
+
+                }
+
+                <h2 class="text text-center">R$ @sPreco </h2>
+                <p>Preço médio  por Série: @mPreco</p>
+            </div>
+        }
 
     </div>
 </div>
