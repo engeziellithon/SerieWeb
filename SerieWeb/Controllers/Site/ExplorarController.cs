@@ -129,7 +129,7 @@ namespace SerieWeb.Controllers.Site
         }
         #endregion
 
-        #region Salvar seie nos favoritos 
+        #region Salvar serie nos favoritos 
         [HttpPost]
         public ActionResult SalvarFavorito(int IdSerie)
         {
