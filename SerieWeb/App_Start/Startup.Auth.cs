@@ -51,18 +51,18 @@ namespace SerieWeb
             //    clientSecret: "");
 
             app.UseTwitterAuthentication(
-               consumerKey: "9AUFsAf8UBzLr4hDnWLcicPrM",
-               consumerSecret: "tdch5n5gpv4xkdqc3eSxSZEFmJyBZuHJzYlyYA4D1jglJWm0r5");
+               consumerKey: "JzuK3DYktX58ZnpPuLeN2yNFl",
+               consumerSecret: "Jb5hXybTzEJiKoaHBaQie5JfitxUFPj41NyAZs2gwuHP9Mptkz");
 
             app.UseFacebookAuthentication(
                appId: "156200418404491",
                appSecret: "bb343f24b154a8a2472d04e7fca7d35f");
 
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "132800174708-tcad5k2cq4p34250ia0hd06sug7bvhpb.apps.googleusercontent.com",
-                ClientSecret = "0WqWdTYegjpoA2mBZlF7KlY2"
-            });
+            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            //{
+            //    ClientId = "132800174708-tcad5k2cq4p34250ia0hd06sug7bvhpb.apps.googleusercontent.com",
+            //    ClientSecret = "0WqWdTYegjpoA2mBZlF7KlY2"
+            //});
         }
     }
 }
