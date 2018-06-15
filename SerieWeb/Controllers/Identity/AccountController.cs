@@ -499,56 +499,59 @@ namespace SerieWeb.Controllers.Identity
             return View();
         }
 
-        #region Administrador Crud 
-        [Authorize(Roles = "SuperAdmin")]
-        public ActionResult Administrador()
-        {
+        //#region Administrador Crud 
+        //[Authorize(Roles = "SuperAdmin")]
+        //public ActionResult Administrador()
+        //{
 
-            UserManager<ApplicationUser> userManager;
-            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        //    UserManager<ApplicationUser> userManager;
+        //    userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
-            var user = userManager.Users.Where(d => d.Id != null).ToList();
-            IdentityRole valor = new IdentityRole();
+        //    var user = userManager.Users.Where(d => d.Id != null).ToList();
+        //    IdentityRole valor = new IdentityRole();
 
            
-            var toles = db.Roles.Select(r => r.Name).ToList();
-            ViewBag.Usuarios = user;
+        //    var toles = db.Roles.Select(r => r.Users).ToList();
+        //    ViewBag.Usuarios = user;
 
-            var teste = user.Select(s => s.Roles).ToList();
-            return View();
-        }
-        
-        [HttpGet]
-        public ActionResult EditarAdministrador(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            UserManager<ApplicationUser> userManager;
-            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            ////var user = userManager.Users.Where(d => d.Id != null).ToList();
+        //    var teste = user.Select(s => s.Roles).ToList();
+        //    return View();
+        //}
+       
 
-            ////.
+        //[HttpGet]
+        //public ActionResult EditarAdministrador(int? id)
+        //{
+        //    //if (id == null)
+        //    //{
+        //    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    //}
+        //    UserManager<ApplicationUser> userManager;
+        //    userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
-            return View();
-        }
-        [HttpPost]
-        public ActionResult EditarAdministrador()
-        {
+            
+        //    var user = userManager.Users.Where(d => d.Id != null).ToList();
 
-            UserManager<ApplicationUser> userManager;
-            userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            
 
-            var user = userManager.Users.Where(d => d.Id != null).ToList();
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult EditarAdministrador()
+        //{
 
-            ViewBag.Usuarios = user;
-            return View();
-        }
+        //    UserManager<ApplicationUser> userManager;
+        //    userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+        //    var user = userManager.Users.Where(d => d.Id != null).ToList();
+
+        //    ViewBag.Usuarios = user;
+        //    return View();
+        //}
 
 
 
-        #endregion
+        //#endregion
 
         private ActionResult RedirectToLocal(string returnUrl)
         {

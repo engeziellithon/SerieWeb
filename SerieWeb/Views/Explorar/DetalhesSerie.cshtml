@@ -422,7 +422,16 @@
 
             var TemporadaID = $('#Temporada').val();
             var SerieID = @Model.SerieID;
+            if (TemporadaID == null) {
+                var resultado = "";
+                resultado += "<tr>";
+                resultado += "<td>  </td>"
+                resultado += "<td>" + "Ainda não possui nenhum Episódio cadastrado" + "</td>"
+                resultado += "<td> </td>";
+                resultado += "</tr>";
 
+                $("#dadosTabela-Episodio").html(resultado);
+            }
             $.ajax({
                 type: "POST",
                 async: false,
@@ -430,21 +439,23 @@
                 data: { TemporadaID: TemporadaID, SerieID: SerieID },
                 dataType: "json",
                 cache: false,
-                success: function (result) {
-                            if (result.listaEpisodio != null) {
+                success: function (result) {  
+                    
+                    if (result.listaEpisodio != null) {
+                        
                                 var resultado = "";
                                 var count = 1;
-                        $.each(result.listaEpisodio, function (idx, elem) {
+                                    $.each(result.listaEpisodio, function (idx, elem) {
                                     resultado += "<tr>";
                                     resultado += "<td>" + count++ + "</td>"
-                            resultado += "<td>" + elem.NomeEpisodio + "</td>"
-                            resultado += "<td>" + elem.DataEpisodio + "</td>";
+                                    resultado += "<td>" + elem.NomeEpisodio + "</td>"
+                                    resultado += "<td>" + elem.DataEpisodio + "</td>";
                                     resultado += "</tr>";
                                 });
-                        $("#dadosTabela-Episodio").html(resultado);
-                            }
-                        }
-                    });
+                                $("#dadosTabela-Episodio").html(resultado);
+                    }    
+                }
+            });
         });
 
         $("#Temporada").change(function () {
@@ -459,7 +470,8 @@
                 data: { TemporadaID: TemporadaID, SerieID: SerieID },
                 dataType: "json",
                 cache: false,
-                success: function (result) {
+                    success: function (result) {
+                        debugger
                             if (result.listaEpisodio != null) {
                                 var resultado = "";
                                 var count = 1;

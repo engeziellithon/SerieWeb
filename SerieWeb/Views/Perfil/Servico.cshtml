@@ -58,7 +58,7 @@
                                 //float porcetagem = (item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() / totalservicos) * 100;
                                 double porcetagem = (qSerie / totalservicos) * 100;
 
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@porcetagem%" aria-valuenow="@porcetagem" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagem)%</div>
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0:0}", porcetagem)%" aria-valuenow="@String.Format("{0:0}", porcetagem)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0:0.00}", porcetagem)%</div>
 
                             }
                         </div>
