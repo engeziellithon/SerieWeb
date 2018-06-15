@@ -156,7 +156,7 @@
         <div class="card-header">
             <h5>Temporadas</h5>
         </div>
-        @if (ViewBag.listaTemporada != null)
+        @if (ViewBag.listatemporada != null)
         {
             <div class="col-12" style="margin-top:10px;">
                 <div class="row justify-content-between ">
@@ -187,6 +187,13 @@
                         <!-- CARREGA VIA AJAX -->
                     </tbody>
                 </table>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading">Sem Episódios</h4>
+                <p>Não há episódios cadastrados para essa Série</p>
             </div>
         }
     </div>
@@ -220,20 +227,14 @@
                             <div class="col-md-2">
 
                                 <a href="@Url.Action("DetalhesSerie", "Explorar", new { id = @item.SerieID })">
-                                    <img src="@item.Imagem" class="d-block img-fluid" style="height:200px; width:150px;">
+                                    <img src="@item.Imagem" class="d-block img-fluid" style="height:200px; width:150px;margin-left:10px">
                                 </a>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-10" style="padding-right:50px">
                                 <h3>@item.NomeSerie</h3>
-                                <p class="text text-justify">@item.Sinopse</p>
+                                <p class="text text-justify ">@item.Sinopse</p>
                             </div>
-
                         </div>
-                        @*<div class="row" style="margin-bottom:10px">
-                                <div class="col-12">
-                                    <a href="@Url.Action("DetalhesSerie", "Explorar", new { id = @item.SerieID })" class="btn btn-primary btn-lg btn-block">Ir para serie</a>
-                                </div>
-                            </div>*@
                     </div>
                 }
             </div>
@@ -243,7 +244,7 @@
 
     <div class="card mb-3">
         <div class="card-header">
-            <h5>Comentarios</h5>
+            <h5>Comentários</h5>
         </div>
         <div id="coments">
             <div class="fb-comments" data-href="@Request.Url.ToString()" data-numposts="5"></div>
@@ -251,7 +252,6 @@
     </div>
 
     <!-- Modal para Mensagem de sucesso -->
-    @*<input type="hidden" value="" id="MensagemSucesso" />*@
 
     <div id="MensagemSucesso" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
