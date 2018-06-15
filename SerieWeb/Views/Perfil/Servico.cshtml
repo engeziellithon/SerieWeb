@@ -5,6 +5,8 @@
     var ListaAgrupada = (List<IGrouping<SerieWeb.Models.Admininstracao.ServicoStreaming, SerieWeb.Models.Admininstracao.SeriesServicos>>)ViewBag.ListaAgrupada;
 
     double totalservicos = ViewBag.TotalServicos;
+    double recomendado = 0;
+
 
 }
 <div class="panel-header panel-header-sm">
@@ -37,38 +39,59 @@
 <div class="container">
     <h4 style="margin-bottom: 40px;">Melhores Serviços</h4>
     <div class="row">
+
         @foreach (var item in ListaAgrupada)
-        {            
-            <div class="box">               
+        {
+            double sPreco = item.Select(s => s.ServicoStreaming).FirstOrDefault().Preco;
+            double qSerie = item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count();
+            double mPreco = sPreco / qSerie;
+            if(recomendado == 0)
+            {
+                recomendado = mPreco;
+            }
+
+            if (recomendado > mPreco)
+            {
+                recomendado = mPreco;
+            }
+        }
+
+        @foreach (var item in ListaAgrupada)
+        {
+            <div class="box">
                 @{
                     double sPreco = item.Select(s => s.ServicoStreaming).FirstOrDefault().Preco;
                     double qSerie = item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count();
                     double mPreco = sPreco / qSerie;
+                }               
+                
+                @if (recomendado == mPreco)
+                {
+                    <label class="recomended">Recomendação</label>
                 }
+
                 <h3 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.Select(s => s.ServicoStreaming).FirstOrDefault().NomeServicoStreaming</h3>
                 <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
                     <li style="margin-bottom:30px;">
-                        <p class="text text-center">Quantidade de Séries: @qSerie</p>
+                        <p class="text text-center">Quantidade de séries desse serviço: @qSerie</p>
                     </li>
                     <li style="margin-bottom:30px;">
                         <div class="progress" style="height: 20px;">
 
                             @if (totalservicos > 0)
                             {
-                                //float porcetagem = (item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() / totalservicos) * 100;
                                 double porcetagem = (qSerie / totalservicos) * 100;
 
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0:0}", porcetagem)%" aria-valuenow="@String.Format("{0:0}", porcetagem)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0:0.00}", porcetagem)%</div>
-
+                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width:@String.Format("{0:0}", porcetagem)%" aria-valuenow="@String.Format("{0:0}", porcetagem)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0:0.00}", porcetagem)%</div>
                             }
                         </div>
                     </li>
                 </ul>
                 <h2 class="text text-center">R$ @String.Format("{0:0.00}", sPreco)</h2>
+                <hr />
                 <p class="text text-center" style="margin-top: 2rem;">Preço médio  por Série: @String.Format("{0:0.00}", mPreco)</p>
-            </div>
+            </div>         
         }
-
     </div>
 </div>
 

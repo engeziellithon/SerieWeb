@@ -38,7 +38,7 @@ namespace SerieWeb.Controllers.Site
         }
         #endregion
 
-        #region Detalhes dos serie
+        #region Detalhes das séries
         // GET: Serie/DetailsUsuario/5
         [HttpGet]
         public ActionResult DetalhesSerie(int? id, string MensagemSucesso)
@@ -113,7 +113,7 @@ namespace SerieWeb.Controllers.Site
         }
         #endregion
 
-        #region listar episodio da série
+        #region listar episódio da série
         [HttpPost]
         public ActionResult ExiberEpisodio(int SerieID, int TemporadaID)
         {
@@ -129,7 +129,7 @@ namespace SerieWeb.Controllers.Site
         }
         #endregion
 
-        #region Salvar serie nos favoritos 
+        #region Salvar série nos favoritos 
         [HttpPost]
         public ActionResult SalvarFavorito(int IdSerie)
         {
@@ -190,7 +190,7 @@ namespace SerieWeb.Controllers.Site
         }
         #endregion
 
-        #region Avaliacao da serie 
+        #region Avaliação da série 
         [HttpPost]
         public ActionResult AvaliarSerie(int avaliacao, int SerieID)
         {
