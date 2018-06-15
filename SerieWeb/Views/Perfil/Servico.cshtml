@@ -4,19 +4,8 @@
 
     var ListaAgrupada = (List<IGrouping<SerieWeb.Models.Admininstracao.ServicoStreaming, SerieWeb.Models.Admininstracao.SeriesServicos>>)ViewBag.ListaAgrupada;
 
-    var HBOGO = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.HBOGO;
-    var NETFLIX = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.NETFLIX;
-    var PRIMEVIDEO = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.PRIMEVIDEO;
-    var FOXPLAY = (List<SerieWeb.Models.Admininstracao.SeriesServicos>)ViewBag.FOXPLAY;
+    double totalservicos = ViewBag.TotalServicos;
 
-    var MelhorServico = (SerieWeb.Models.Admininstracao.ServicoStreaming)ViewBag.MelhorServico;
-
-    float totalservicos = ListaAgrupada.Count();
-
-
-    float porcetagemNETFLIX = (NETFLIX.Count() / totalservicos) * 100;
-    float porcetagemPrimeVideo = (PRIMEVIDEO.Count() / totalservicos) * 100;
-    float porcetagemFoxPlay = (FOXPLAY.Count() / totalservicos) * 100;
 }
 <div class="panel-header panel-header-sm">
 
@@ -49,42 +38,34 @@
     <h4 style="margin-bottom: 40px;">Melhores Serviços</h4>
     <div class="row">
         @foreach (var item in ListaAgrupada)
-        {
-            string recomendado = "recomended";
-            <div class="box">
-                <label class="@recomendado">Recomendação</label>
-
+        {            
+            <div class="box">               
+                @{
+                    double sPreco = item.Select(s => s.ServicoStreaming).FirstOrDefault().Preco;
+                    double qSerie = item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count();
+                    double mPreco = sPreco / qSerie;
+                }
                 <h3 class="font-weight-bold text-uppercase" style="margin-bottom: 20px;">@item.Select(s => s.ServicoStreaming).FirstOrDefault().NomeServicoStreaming</h3>
                 <ul style="list-style-type:none; padding:0; margin-bottom:30px;">
                     <li style="margin-bottom:30px;">
-                        <p class="text text-center">Quantidade de Séries:  @item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count()</p>
+                        <p class="text text-center">Quantidade de Séries: @qSerie</p>
                     </li>
-
                     <li style="margin-bottom:30px;">
                         <div class="progress" style="height: 20px;">
 
                             @if (totalservicos > 0)
                             {
                                 //float porcetagem = (item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() / totalservicos) * 100;
-                                float porcetagem = (item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count() * totalservicos) / 100;
+                                double porcetagem = (qSerie / totalservicos) * 100;
 
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@String.Format("{0}", porcetagem)%" aria-valuenow="@String.Format("{0}", porcetagem)" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagem)%</div>
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:@porcetagem%" aria-valuenow="@porcetagem" aria-valuemin="0" aria-valuemax="100">@String.Format("{0}", porcetagem)%</div>
 
                             }
                         </div>
                     </li>
-
                 </ul>
-
-                @{
-                    double sPreco = @item.Select(s => s.ServicoStreaming).FirstOrDefault().Preco;
-                    double qSerie = @item.Select(s => s.ServicoStreaming.ServicoStreamingID).Count();
-                    double mPreco = sPreco / qSerie;
-
-                }
-
-                <h2 class="text text-center">R$ @sPreco </h2>
-                <p>Preço médio  por Série: @mPreco</p>
+                <h2 class="text text-center">R$ @String.Format("{0:0.00}", sPreco)</h2>
+                <p class="text text-center" style="margin-top: 2rem;">Preço médio  por Série: @String.Format("{0:0.00}", mPreco)</p>
             </div>
         }
 

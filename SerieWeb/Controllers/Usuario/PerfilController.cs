@@ -13,12 +13,8 @@ namespace SerieWeb.Controllers.Usuario
     [Authorize(Roles = "SuperAdmin,Admin,Usuario")]
     public class PerfilController : Controller
     {
-
-        #region banco
         private ApplicationDbContext db = new ApplicationDbContext();
-        #endregion
 
-        #region Index
         public ActionResult Index()
         {
             List<Serie> ListaSerie = new List<Serie>();
@@ -33,13 +29,9 @@ namespace SerieWeb.Controllers.Usuario
 
             return View(ListaSerie);
         }
-        #endregion
 
-        #region Serviço Recomendado
         public ActionResult Servico()
         {
-            List<Serie> ListaSerie = new List<Serie>();
-
             List<SeriesServicos> ListaServicos = new List<SeriesServicos>();
 
             string user = User.Identity.GetUserId();
@@ -57,26 +49,16 @@ namespace SerieWeb.Controllers.Usuario
                 }
             }
             var listaID = PerfilSerie.Select(i => i.SerieID).ToList();
+
             var lista = db.SeriesServicos.Where(s => listaID.Contains(s.SerieID)).GroupBy(d => d.ServicoStreaming).ToList();
+            var ListaServicosFavoritos = db.SeriesServicos.Where(d => listaID.Contains(d.SerieID)).Select(s => s.ServicoStreaming);
 
-
-
-            ViewBag.ListaAgrupada = lista;
-
-            ViewBag.HBOGO = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "HBO GO").ToList();
-            ViewBag.NETFLIX = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "NETFLIX").ToList();
-            ViewBag.PRIMEVIDEO = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "PRIME VIDEO").ToList();
-            ViewBag.FOXPLAY = ListaServicos.Where(S => S.ServicoStreaming.NomeServicoStreaming.ToUpper() == "FOX PLAY").ToList();
-
-            var maior = ListaServicos.Select(s => s.ServicoStreaming).Max(c => c.NomeServicoStreaming);
-
-            ServicoStreaming MelhorServico = db.ServicosStreaming.Where(s => s.NomeServicoStreaming == maior).FirstOrDefault();
-            ViewBag.MelhorServico = MelhorServico;
+            ViewBag.TotalServicos = ListaServicosFavoritos.Count();
+            ViewBag.ListaAgrupada = lista;            
 
             return View(ListaServicos);
         }
 
-        #endregion
 
         #region Avaliacao da serie 
         [HttpPost]
@@ -123,6 +105,10 @@ namespace SerieWeb.Controllers.Usuario
             return RedirectToAction("Index", "Perfil");
         }
         #endregion
+
+
+
+
 
     }
 }
